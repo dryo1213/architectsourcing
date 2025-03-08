@@ -10,10 +10,10 @@
         :root {
             --main-bg-color: #111111;
             --main-text-color: #e0e0e0;
-            --accent-color: #4d88ff;
+            --accent-color: #ffffff;
             --light-accent: #222222;
             --dark-accent: #080808;
-            --highlight: rgba(77, 136, 255, 0.15);
+            --highlight: rgba(255, 255, 255, 0.15);
             --transition-time: 0.3s;
             --spacing: 2rem;
             --font-title: "游明朝", YuMincho, "Hiragino Mincho ProN", "Hiragino Mincho Pro", "MS P明朝", serif;
@@ -299,9 +299,9 @@
         }
         
         @keyframes glowPulse {
-            0% { text-shadow: 0 0 5px rgba(77, 136, 255, 0.3); }
-            50% { text-shadow: 0 0 20px rgba(77, 136, 255, 0.6); }
-            100% { text-shadow: 0 0 5px rgba(77, 136, 255, 0.3); }
+            0% { text-shadow: 0 0 5px rgba(255, 255, 255, 0.3); }
+            50% { text-shadow: 0 0 20px rgba(255, 255, 255, 0.6); }
+            100% { text-shadow: 0 0 5px rgba(255, 255, 255, 0.3); }
         }
         
         header, main, section {
@@ -316,7 +316,7 @@
             animation: glowPulse 5s infinite;
         }
         
-        /* SF風の装飾 */
+        /* グリッドオーバーレイ */
         .grid-overlay {
             position: fixed;
             top: 0;
@@ -324,8 +324,8 @@
             width: 100%;
             height: 100%;
             background: 
-                linear-gradient(rgba(77, 136, 255, 0.05) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(77, 136, 255, 0.05) 1px, transparent 1px);
+                linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
             background-size: 20px 20px;
             pointer-events: none;
             z-index: -1;
@@ -335,7 +335,7 @@
             position: fixed;
             width: 100px;
             height: 100px;
-            border: 1px solid rgba(77, 136, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             z-index: -1;
         }
         
