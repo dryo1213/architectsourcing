@@ -5,173 +5,845 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>郊外の影響者たち | 建築家の人格性をめぐる研究とフィクション</title>
     <style>
-        body {
-            font-family: sans-serif;
-            line-height: 1.6;
+        /* 基本スタイル */
+        :root {
+            --color-past: #45526c;
+            --color-past-light: #8393bf;
+            --color-past-dark: #2d3548;
+            --color-future: #1a1b26;
+            --color-future-light: #7aa2f7;
+            --color-accent: #c96567;
+            --color-bg: #f7f7f7;
+            --color-text: #333333;
+            --color-white: #ffffff;
+            --space-sm: 0.5rem;
+            --space-md: 1rem;
+            --space-lg: 2rem;
+            --space-xl: 4rem;
+        }
+        
+        * {
             margin: 0;
-            padding: 20px;
-            max-width: 1200px;
-            margin: 0 auto;
+            padding: 0;
+            box-sizing: border-box;
         }
-        h1, h2, h3 {
-            margin-top: 30px;
+        
+        body {
+            font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+            line-height: 1.8;
+            color: var(--color-text);
+            background-color: var(--color-bg);
+            overflow-x: hidden;
         }
+        
         img {
             max-width: 100%;
+            height: auto;
+            display: block;
         }
+        
+        a {
+            color: var(--color-past);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        a:hover {
+            color: var(--color-accent);
+        }
+        
+        ul, ol {
+            list-style-position: inside;
+            margin-bottom: var(--space-md);
+        }
+        
+        /* レイアウト */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--space-md);
+        }
+        
+        .flex-row {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        
+        .col-2 {
+            width: 50%;
+            padding: 0 var(--space-md);
+        }
+        
+        @media (max-width: 768px) {
+            .col-2 {
+                width: 100%;
+                padding: var(--space-md) 0;
+            }
+        }
+        
+        /* ヘッダー */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: var(--space-md) 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .site-title {
+            font-weight: 300;
+            font-size: 1.2rem;
+            letter-spacing: 0.05em;
+        }
+        
+        .site-title a {
+            color: var(--color-text);
+        }
+        
         nav ul {
+            display: flex;
             list-style: none;
-            padding: 0;
         }
+        
         nav ul li {
-            display: inline;
-            margin-right: 20px;
+            margin-left: var(--space-lg);
         }
+        
+        nav ul li a {
+            font-size: 0.9rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            position: relative;
+        }
+        
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background-color: var(--color-accent);
+            transition: width 0.3s ease;
+        }
+        
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+        
+        .mobile-menu-toggle {
+            display: none;
+            cursor: pointer;
+        }
+        
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+            }
+            
+            .mobile-menu-toggle {
+                display: block;
+            }
+        }
+        
+        /* ヒーローセクション */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            margin-bottom: var(--space-xl);
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://source.unsplash.com/random/1920x1080/?architecture,city,fujisawa');
+            background-size: cover;
+            background-position: center;
+            filter: brightness(0.6);
+            z-index: -1;
+        }
+        
+        .hero-content {
+            color: var(--color-white);
+            max-width: 800px;
+            padding: var(--space-lg);
+        }
+        
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 300;
+            letter-spacing: 0.05em;
+            margin-bottom: var(--space-md);
+            line-height: 1.2;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.2rem;
+            font-weight: 300;
+            margin-bottom: var(--space-lg);
+            opacity: 0.9;
+        }
+        
+        .hero-scroll {
+            position: absolute;
+            bottom: var(--space-lg);
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--color-white);
+            font-size: 0.8rem;
+            letter-spacing: 0.2em;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .hero-scroll::after {
+            content: '';
+            width: 1px;
+            height: 60px;
+            background-color: var(--color-white);
+            margin-top: var(--space-sm);
+        }
+        
+        /* セクション共通 */
         section {
-            margin-bottom: 40px;
-            border-bottom: 1px solid #eee;
-            padding-bottom: 20px;
+            padding: var(--space-xl) 0;
+        }
+        
+        .section-title {
+            font-size: 2rem;
+            font-weight: 300;
+            letter-spacing: 0.05em;
+            margin-bottom: var(--space-lg);
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 40px;
+            height: 1px;
+            background-color: var(--color-accent);
+        }
+        
+        .section-subtitle {
+            font-size: 1.5rem;
+            font-weight: 300;
+            margin: var(--space-lg) 0 var(--space-md);
+        }
+        
+        p {
+            margin-bottom: var(--space-md);
+        }
+        
+        /* プロジェクト概要 */
+        .about {
+            background-color: var(--color-white);
+        }
+        
+        .about-image {
+            padding: var(--space-md);
+        }
+        
+        .about-image img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+        
+        .key-questions {
+            margin-top: var(--space-lg);
+            padding: var(--space-md);
+            background-color: var(--color-past-light);
+            color: var(--color-white);
+        }
+        
+        .key-questions h3 {
+            margin-bottom: var(--space-md);
+        }
+        
+        .key-questions ul {
+            list-style: none;
+        }
+        
+        .key-questions li {
+            margin-bottom: var(--space-sm);
+            position: relative;
+            padding-left: var(--space-md);
+        }
+        
+        .key-questions li::before {
+            content: "?";
+            position: absolute;
+            left: 0;
+            color: var(--color-white);
+            opacity: 0.8;
+        }
+        
+        /* 研究セクション */
+        .research {
+            background-color: var(--color-bg);
+        }
+        
+        .timeline {
+            position: relative;
+            margin: var(--space-xl) 0;
+            padding-left: 30px;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 1px;
+            height: 100%;
+            background-color: var(--color-past);
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: var(--space-lg);
+            padding-bottom: var(--space-md);
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -30px;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background-color: var(--color-past);
+        }
+        
+        .timeline-year {
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-bottom: var(--space-sm);
+            color: var(--color-past-dark);
+        }
+        
+        /* 建築家セクション */
+        .architects {
+            background-color: var(--color-white);
+        }
+        
+        .architect-card {
+            margin-bottom: var(--space-xl);
+            background-color: var(--color-bg);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+        }
+        
+        .architect-header {
+            padding: var(--space-lg);
+            background-color: var(--color-past);
+            color: var(--color-white);
+        }
+        
+        .architect-name {
+            font-size: 1.5rem;
+            font-weight: 300;
+            margin-bottom: var(--space-sm);
+        }
+        
+        .architect-specialty {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        .architect-body {
+            padding: var(--space-lg);
+        }
+        
+        .architect-bio {
+            margin-bottom: var(--space-md);
+        }
+        
+        .architect-label {
+            font-weight: 700;
+            margin-bottom: var(--space-sm);
+            color: var(--color-past);
+        }
+        
+        /* アーキテクトソーシング */
+        .architect-sourcing {
+            background-color: var(--color-future);
+            color: var(--color-white);
+        }
+        
+        .architect-sourcing .section-title::after {
+            background-color: var(--color-future-light);
+        }
+        
+        .future-world {
+            margin-bottom: var(--space-lg);
+            padding: var(--space-lg);
+            background-color: rgba(0, 0, 0, 0.2);
+        }
+        
+        .future-story {
+            font-style: italic;
+            margin: var(--space-lg) 0;
+            padding: var(--space-md);
+            border-left: 3px solid var(--color-future-light);
+        }
+        
+        .hypotheses {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--space-md);
+            margin-top: var(--space-lg);
+        }
+        
+        @media (max-width: 768px) {
+            .hypotheses {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .hypothesis-card {
+            padding: var(--space-md);
+            background-color: rgba(0, 0, 0, 0.2);
+            border-left: 3px solid var(--color-future-light);
+        }
+        
+        .hypothesis-title {
+            margin-bottom: var(--space-sm);
+            color: var(--color-future-light);
+        }
+        
+        /* リソースセクション */
+        .resources {
+            background-color: var(--color-bg);
+        }
+        
+        .resource-category {
+            margin-bottom: var(--space-lg);
+        }
+        
+        .resource-category h3 {
+            border-bottom: 1px solid var(--color-past-light);
+            padding-bottom: var(--space-sm);
+            margin-bottom: var(--space-md);
+            color: var(--color-past-dark);
+        }
+        
+        .resources ul {
+            list-style-type: none;
+        }
+        
+        .resources li {
+            margin-bottom: var(--space-sm);
+        }
+        
+        .resources a {
+            display: inline-block;
+            padding-left: var(--space-md);
+            position: relative;
+        }
+        
+        .resources a::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            transition: transform 0.3s ease;
+        }
+        
+        .resources a:hover::before {
+            transform: translateX(5px);
+        }
+        
+        /* フッター */
+        footer {
+            background-color: var(--color-past-dark);
+            color: var(--color-white);
+            padding: var(--space-lg) 0;
+            text-align: center;
+        }
+        
+        .footer-content {
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+        
+        /* アニメーション */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .animate-fade-in {
+            animation: fadeIn 1s ease forwards;
         }
     </style>
 </head>
 <body>
     <header>
-        <h1>郊外の影響者たち</h1>
-        <p>建築家の人格性をめぐる研究とフィクション</p>
-        <nav>
-            <ul>
-                <li><a href="#about">概要</a></li>
-                <li><a href="#research">研究</a></li>
-                <li><a href="#architects">三人の建築家</a></li>
-                <li><a href="#architect-sourcing">アーキテクトソーシング</a></li>
-                <li><a href="#resources">リソース</a></li>
-            </ul>
-        </nav>
+        <div class="container">
+            <div class="header-content">
+                <h1 class="site-title"><a href="#top">郊外の影響者たち</a></h1>
+                <nav>
+                    <ul>
+                        <li><a href="#about">概要</a></li>
+                        <li><a href="#research">研究</a></li>
+                        <li><a href="#architects">三人の建築家</a></li>
+                        <li><a href="#architect-sourcing">アーキテクトソーシング</a></li>
+                        <li><a href="#resources">リソース</a></li>
+                    </ul>
+                </nav>
+                <div class="mobile-menu-toggle">
+                    <span>≡</span>
+                </div>
+            </div>
+        </div>
     </header>
 
     <main>
+        <!-- ヒーローセクション -->
+        <section class="hero" id="top">
+            <div class="container">
+                <div class="hero-content">
+                    <h2 class="hero-title">郊外の影響者たち</h2>
+                    <p class="hero-subtitle">建築家の人格性をめぐる研究とフィクション</p>
+                </div>
+            </div>
+            <div class="hero-scroll">
+                <span>SCROLL</span>
+            </div>
+        </section>
+
         <!-- プロジェクト概要 -->
-        <section id="about">
-            <h2>プロジェクト概要</h2>
-            <p>「郊外の影響者たち」は、土居亮太の修士論文「郊外都市の隆盛を担った建築家のライフヒストリーとその生産論的分析―建築家の人格性の生産論的解体をめぐって―」と、それに付随する創作「アーキテクトソーシング」を統合したウェブプラットフォームです。</p>
-            <p>本サイトは学術研究とクリエイティブフィクションの境界を越え、戦後日本の郊外都市形成における「量を担う建築家」の役割と、未来の建築家像を多角的に探求します。</p>
-            
-            <h3>本研究の問い</h3>
-            <ul>
-                <li>戦後の郊外都市はどのように形成されたのか</li>
-                <li>「量を担う建築家」は都市形成にどのような影響を与えたのか</li>
-                <li>建築家の人格性はいかに解体されてきたのか</li>
-                <li>未来の建築家は代替可能な存在となるのか</li>
-            </ul>
+        <section class="about" id="about">
+            <div class="container">
+                <h2 class="section-title">プロジェクト概要</h2>
+                
+                <div class="flex-row">
+                    <div class="col-2">
+                        <p>「郊外の影響者たち」は、土居亮太の修士論文「郊外都市の隆盛を担った建築家のライフヒストリーとその生産論的分析―建築家の人格性の生産論的解体をめぐって―」と、それに付随する創作「アーキテクトソーシング」を統合したウェブプラットフォームです。</p>
+                        <p>本サイトは学術研究とクリエイティブフィクションの境界を越え、戦後日本の郊外都市形成における「量を担う建築家」の役割と、未来の建築家像を多角的に探求します。</p>
+                    </div>
+                    <div class="col-2 about-image">
+                        <img src="https://source.unsplash.com/random/600x400/?architecture,blueprint" alt="建築設計図">
+                    </div>
+                </div>
+                
+                <div class="key-questions">
+                    <h3>本研究の問い</h3>
+                    <ul>
+                        <li>戦後の郊外都市はどのように形成されたのか</li>
+                        <li>「量を担う建築家」は都市形成にどのような影響を与えたのか</li>
+                        <li>建築家の人格性はいかに解体されてきたのか</li>
+                        <li>未来の建築家は代替可能な存在となるのか</li>
+                    </ul>
+                </div>
+            </div>
         </section>
 
         <!-- 研究セクション -->
-        <section id="research">
-            <h2>研究</h2>
-            <p>戦後日本において、都市不燃化は復興の大きなテーマでした。本研究では、神奈川県藤沢市を事例に、郊外都市の不燃化の成立と地場に個人設計事務所を構える建築家が如何に影響を及ぼしたかを分析しています。</p>
-            
-            <h3>研究背景：戦後の都市不燃化と建築家</h3>
-            <p>第二次世界大戦により、日本の200以上の中核都市が焦土と化し、都市不燃化が戦後日本復興の大きなテーマとなりました。日本の都市の多くは木造建築物で構成されていたため、RC造をはじめとした不燃建築物の設計を行う技術者が大量に必要となり、法整備と教育改革が求められました。</p>
-            <p>戦後にかけて建築家は大量に育成され、「量を担う建築家」は、都市復興に伴う不燃化ビルや住宅建設のブームに後押しされ郊外や地方へ拡散していきました。</p>
-            
-            <h3>藤沢市の変遷</h3>
-            <p>藤沢市は、神奈川県南部に位置し、1601年に東海道江戸日本橋から数えて6番目の宿場町「藤沢宿」として栄えました。1887年の東海道線開通が後押しとなり町は繁栄しますが、1923年の関東大震災によって多大な被害をこうむりました。</p>
-            <p>戦後の首都圏への急激な人口集中の受け皿となり、藤沢市は高度経済成長期に急速に近代化していきました。1957年「藤沢総合都市計画」による大規模な都市整備を下地とした1960年代の高度経済成長期の都市開発により、藤沢駅を中心に急速な近代化が推進されました。</p>
-            
-            <h3>研究方法</h3>
-            <p>調査対象は、神奈川県藤沢市に個人設計事務所を構える建築家とします。藤沢市は、1960年頃から藤沢駅を中心とした急速な都市の発展に伴い、都市不燃化が推進された経緯があります。</p>
-            <p>実施した調査は、主に藤沢市の建築家の活動実態に関する調査と、3人の藤沢市で活動する建築家へのインタビュー調査（2024年9月19日～2025年1月21日）です。</p>
+        <section class="research" id="research">
+            <div class="container">
+                <h2 class="section-title">研究</h2>
+                <p>戦後日本において、都市不燃化は復興の大きなテーマでした。本研究では、神奈川県藤沢市を事例に、郊外都市の不燃化の成立と地場に個人設計事務所を構える建築家が如何に影響を及ぼしたかを分析しています。</p>
+                
+                <h3 class="section-subtitle">研究背景：戦後の都市不燃化と建築家</h3>
+                <div class="flex-row">
+                    <div class="col-2">
+                        <p>第二次世界大戦により、日本の200以上の中核都市が焦土と化し、都市不燃化が戦後日本復興の大きなテーマとなりました。日本の都市の多くは木造建築物で構成されていたため、RC造をはじめとした不燃建築物の設計を行う技術者が大量に必要となり、法整備と教育改革が求められました。</p>
+                        <p>戦後にかけて建築家は大量に育成され、「量を担う建築家」は、都市復興に伴う不燃化ビルや住宅建設のブームに後押しされ郊外や地方へ拡散していきました。</p>
+                    </div>
+                    <div class="col-2">
+                        <img src="https://source.unsplash.com/random/600x400/?japan,postwar" alt="戦後日本の風景">
+                    </div>
+                </div>
+                
+                <h3 class="section-subtitle">藤沢市の変遷</h3>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-year">1601年</div>
+                        <p>藤沢宿として栄える（東海道江戸日本橋から6番目の宿場町）</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">1887年</div>
+                        <p>東海道線開通により町が繁栄</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">1923年</div>
+                        <p>関東大震災により多大な被害</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">1957年</div>
+                        <p>「藤沢総合都市計画」策定</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">1960年代</div>
+                        <p>高度経済成長期の都市開発により、藤沢駅を中心に急速な近代化が推進</p>
+                    </div>
+                </div>
+                
+                <h3 class="section-subtitle">研究方法</h3>
+                <p>調査対象は、神奈川県藤沢市に個人設計事務所を構える建築家とします。藤沢市は、1960年頃から藤沢駅を中心とした急速な都市の発展に伴い、都市不燃化が推進された経緯があります。</p>
+                <p>実施した調査は、主に藤沢市の建築家の活動実態に関する調査と、3人の藤沢市で活動する建築家へのインタビュー調査（2024年9月19日～2025年1月21日）です。</p>
+            </div>
         </section>
 
         <!-- 三人の建築家 -->
-        <section id="architects">
-            <h2>三人の建築家</h2>
-            <p>藤沢市で活動する3人の建築家へのインタビュー調査を通じて、時代の趨勢による統計的な側面と、代替不可能な個別的な側面の両面から彼らの語りを分析し、建築家の個人史を描き直しました。</p>
-            
-            <h3>Y氏：戦前生まれの役所の仕事を得意とする建築家</h3>
-            <p>1940年藤沢市生まれ。神奈川県内の工業高校を卒業後、日本大学理工学部で建築を学ぶ。1970年に独立し、藤沢市の公共建築設計に携わる。藤沢市設計監理協会会長を務めた。</p>
-            <p><strong>得意分野：</strong> 公共建築</p>
-            <p><strong>思想：</strong>「町医者的な建築家」として地元に根付き、小さくても光るものを設計することを大切にしている。四角いものが多かった時代に、建築の可能性を追求した。</p>
-            <p><strong>代表作：</strong>藤沢市文書館（1984年竣工）- 家型の立面を持つ公共建築として先駆的な作品</p>
-            <p><strong>都市への影響：</strong>藤沢市設計監理協会での活動を通じて、多くの地元建築家や市職員との交流を深め、藤沢の都市景観形成に大きな影響を与えた。家型の立面デザインは周辺建築にも影響を与え、地域のアイデンティティ形成に貢献した。</p>
-            
-            <h3>S氏：バブル期を機に民間商業ビルを得意とする建築家</h3>
-            <p>1947年藤沢市生まれ。茶道の表千家に入門し、後に日本大学理工学部で建築を学ぶ。1973年に独立し、バブル経済期に多くの商業ビル設計を手がける。</p>
-            <p><strong>得意分野：</strong> 民間の商業ビル</p>
-            <p><strong>思想：</strong>建築を彫刻的に捉え、独自の美学を追求。「その場所を見て、ここにはいい感じ」という直感を大切にする。人生の師匠である彫刻家から受けた影響が、建築デザインに表れている。</p>
-            <p><strong>代表作：</strong>Kタワー（1995年竣工）- 曲面のR白御影石を用いた独創的な商業ビル</p>
-            <p><strong>都市への影響：</strong>複数の社会貢献団体に所属し、人脈形成と慈善活動に注力。その過程で築いた人間関係が、バブル経済期の商業ビル設計の仕事獲得に繋がった。独自の美学による建築が、藤沢の都市景観に創造的な視点をもたらした。</p>
-            
-            <h3>M氏：バブル期以後の民間木造住宅を得意とする建築家</h3>
-            <p>1958年東京都文京区生まれ。日本大学生産工学部卒業後、設計事務所で経験を積み、1993年に藤沢市で独立。バブル崩壊直後の厳しい経済環境の中で活動を開始。</p>
-            <p><strong>得意分野：</strong> 民間の木造住宅</p>
-            <p><strong>思想：</strong>立地条件の悪い敷地でも、施主に親身になって寄り添うことを大事にしている。「建築相談室」を設けるなど、アクセスしやすい建築家を目指している。</p>
-            <p><strong>代表作：</strong>約200件の木造住宅を設計</p>
-            <p><strong>都市への影響：</strong>個々の施主の生活に大きな影響を与えている。その影響は個別の建築にとどまり、都市への波及は限定的だが、「街の診療所」的な立場として地域に貢献している。</p>
+        <section class="architects" id="architects">
+            <div class="container">
+                <h2 class="section-title">三人の建築家</h2>
+                <p>藤沢市で活動する3人の建築家へのインタビュー調査を通じて、時代の趨勢による統計的な側面と、代替不可能な個別的な側面の両面から彼らの語りを分析し、建築家の個人史を描き直しました。</p>
+                
+                <div class="architect-card">
+                    <div class="architect-header">
+                        <h3 class="architect-name">Y氏</h3>
+                        <p class="architect-specialty">公共建築設計</p>
+                    </div>
+                    <div class="architect-body">
+                        <p class="architect-bio">1940年藤沢市生まれ。神奈川県内の工業高校を卒業後、日本大学理工学部で建築を学ぶ。1970年に独立し、藤沢市の公共建築設計に携わる。藤沢市設計監理協会会長を務めた。</p>
+                        
+                        <p class="architect-label">思想</p>
+                        <p>「町医者的な建築家」として地元に根付き、小さくても光るものを設計することを大切にしている。四角いものが多かった時代に、建築の可能性を追求した。</p>
+                        
+                        <p class="architect-label">代表作</p>
+                        <p>藤沢市文書館（1984年竣工）- 家型の立面を持つ公共建築として先駆的な作品</p>
+                        
+                        <p class="architect-label">都市への影響</p>
+                        <p>藤沢市設計監理協会での活動を通じて、多くの地元建築家や市職員との交流を深め、藤沢の都市景観形成に大きな影響を与えた。家型の立面デザインは周辺建築にも影響を与え、地域のアイデンティティ形成に貢献した。</p>
+                    </div>
+                </div>
+                
+                <div class="architect-card">
+                    <div class="architect-header">
+                        <h3 class="architect-name">S氏</h3>
+                        <p class="architect-specialty">民間商業ビル設計</p>
+                    </div>
+                    <div class="architect-body">
+                        <p class="architect-bio">1947年藤沢市生まれ。茶道の表千家に入門し、後に日本大学理工学部で建築を学ぶ。1973年に独立し、バブル経済期に多くの商業ビル設計を手がける。</p>
+                        
+                        <p class="architect-label">思想</p>
+                        <p>建築を彫刻的に捉え、独自の美学を追求。「その場所を見て、ここにはいい感じ」という直感を大切にする。人生の師匠である彫刻家から受けた影響が、建築デザインに表れている。</p>
+                        
+                        <p class="architect-label">代表作</p>
+                        <p>Kタワー（1995年竣工）- 曲面のR白御影石を用いた独創的な商業ビル</p>
+                        
+                        <p class="architect-label">都市への影響</p>
+                        <p>複数の社会貢献団体に所属し、人脈形成と慈善活動に注力。その過程で築いた人間関係が、バブル経済期の商業ビル設計の仕事獲得に繋がった。独自の美学による建築が、藤沢の都市景観に創造的な視点をもたらした。</p>
+                    </div>
+                </div>
+                
+                <div class="architect-card">
+                    <div class="architect-header">
+                        <h3 class="architect-name">M氏</h3>
+                        <p class="architect-specialty">民間木造住宅設計</p>
+                    </div>
+                    <div class="architect-body">
+                        <p class="architect-bio">1958年東京都文京区生まれ。日本大学生産工学部卒業後、設計事務所で経験を積み、1993年に藤沢市で独立。バブル崩壊直後の厳しい経済環境の中で活動を開始。</p>
+                        
+                        <p class="architect-label">思想</p>
+                        <p>立地条件の悪い敷地でも、施主に親身になって寄り添うことを大事にしている。「建築相談室」を設けるなど、アクセスしやすい建築家を目指している。</p>
+                        
+                        <p class="architect-label">代表作</p>
+                        <p>約200件の木造住宅を設計</p>
+                        
+                        <p class="architect-label">都市への影響</p>
+                        <p>個々の施主の生活に大きな影響を与えている。その影響は個別の建築にとどまり、都市への波及は限定的だが、「街の診療所」的な立場として地域に貢献している。</p>
+                    </div>
+                </div>
+            </div>
         </section>
 
         <!-- アーキテクトソーシング -->
-        <section id="architect-sourcing">
-            <h2>アーキテクトソーシング</h2>
-            <p>2080年、建築設計は巨大企業が管理する人工知能によって制御され、建築家はそのプロセスの一端を担う存在となっていた。このシナリオアプローチによる創作を通して、建築家の代替不可能性について考察します。</p>
-            
-            <h3>2080年の世界観</h3>
-            <p>日本は深刻な人口減少と高齢化に直面し、ほとんどの知的労働は人工知能に置き換えられています。グローバル化を背景に国家は希薄化し、多くのインフラは民営化されています。</p>
-            <p>建築設計のプロセスは完全に分解され、建築家はそのプロセスの一部を担う存在になっています。プライバシー保護の観点から、建築家は施主と接触することができず、彼らのクライアントは巨大企業となっています。</p>
-            
-            <h3>物語「アーキテクトソーシング」</h3>
-            <p>舞台は2080年の郊外都市藤沢。2040年の南海トラフ地震により藤沢市南部は壊滅した。国家と自治体による復興が困難となり、大企業「白菱社」による市の買収が決定され、大規模な都市計画とインフラシステムの変更が推し進められ、新生都市「湘南市」が誕生した...</p>
-            
-            <h3>建築家の代替不可能性に関する4つの仮説</h3>
-            <ol>
-                <li><strong>仮説的推論の創造性</strong>: 人工知能を活用したASは仮説的推論の原理的な限界を持つため、建築家の継続的な学習と独自の創造性が必要不可欠である。</li>
-                <li><strong>周縁的な創造性</strong>: 創造性は事象の掛け合わせによって生まれ、周縁的な個人の実践や趣味が、偶発的に都市の個性を生み出す可能性がある。</li>
-                <li><strong>経験の不可逆的文脈</strong>: 長年の間、地域に住み、場に愛着を持つ。そうした人生のコンテクストは代替不可能であり、代替不可能性な固有の文脈を持つ。</li>
-                <li><strong>創造性の世代間継承</strong>: 建築家個人の個性や思想、創造性は世代を超えて継承され、その蓄積が都市の成長を支える重要な推進力となる。</li>
-            </ol>
+        <section class="architect-sourcing" id="architect-sourcing">
+            <div class="container">
+                <h2 class="section-title">アーキテクトソーシング</h2>
+                <p>2080年、建築設計は巨大企業が管理する人工知能によって制御され、建築家はそのプロセスの一端を担う存在となっていた。このシナリオアプローチによる創作を通して、建築家の代替不可能性について考察します。</p>
+                
+                <div class="future-world">
+                    <h3 class="section-subtitle">2080年の世界観</h3>
+                    <p>日本は深刻な人口減少と高齢化に直面し、ほとんどの知的労働は人工知能に置き換えられています。グローバル化を背景に国家は希薄化し、多くのインフラは民営化されています。</p>
+                    <p>建築設計のプロセスは完全に分解され、建築家はそのプロセスの一部を担う存在になっています。プライバシー保護の観点から、建築家は施主と接触することができず、彼らのクライアントは巨大企業となっています。</p>
+                </div>
+                
+                <div class="future-story">
+                    <h3 class="section-subtitle">物語「アーキテクトソーシング」</h3>
+                    <p>舞台は2080年の郊外都市藤沢。2040年の南海トラフ地震により藤沢市南部は壊滅した。国家と自治体による復興が困難となり、大企業「白菱社」による市の買収が決定され、大規模な都市計画とインフラシステムの変更が推し進められ、新生都市「湘南市」が誕生した...</p>
+                </div>
+                
+                <h3 class="section-subtitle">建築家の代替不可能性に関する4つの仮説</h3>
+                <div class="hypotheses">
+                    <div class="hypothesis-card">
+                        <h4 class="hypothesis-title">仮説的推論の創造性</h4>
+                        <p>人工知能を活用したASは仮説的推論の原理的な限界を持つため、建築家の継続的な学習と独自の創造性が必要不可欠である。</p>
+                    </div>
+                    
+                    <div class="hypothesis-card">
+                        <h4 class="hypothesis-title">周縁的な創造性</h4>
+                        <p>創造性は事象の掛け合わせによって生まれ、周縁的な個人の実践や趣味が、偶発的に都市の個性を生み出す可能性がある。</p>
+                    </div>
+                    
+                    <div class="hypothesis-card">
+                        <h4 class="hypothesis-title">経験の不可逆的文脈</h4>
+                        <p>長年の間、地域に住み、場に愛着を持つ。そうした人生のコンテクストは代替不可能であり、代替不可能性な固有の文脈を持つ。</p>
+                    </div>
+                    
+                    <div class="hypothesis-card">
+                        <h4 class="hypothesis-title">創造性の世代間継承</h4>
+                        <p>建築家個人の個性や思想、創造性は世代を超えて継承され、その蓄積が都市の成長を支える重要な推進力となる。</p>
+                    </div>card">
+                        <h4 class="hypothesis-title">仮説的推論の創造性</h4>
+                        <p>人工知能を活用したASは仮説的推論の原理的な限界を持つため、建築家の継続的な学習と独自の創造性が必要不可欠である。</p>
+                    </div>
+                    
+                    <div class="hypothesis-card">
+                        <h4 class="hypothesis-title">周縁的な創造性</h4>
+                        <p>創造性は事象の掛け合わせによって生まれ、周縁的な個人の実践や趣味が、偶発的に都市の個性を生み出す可能性がある。</p>
+                    </div>
+                    
+                    <div class="hypothesis-card">
+                        <h4 class="hypothesis-title">経験の不可逆的文脈</h4>
+                        <p>長年の間、地域に住み、場に愛着を持つ。そうした人生のコンテクストは代替不可能であり、代替不可能性な固有の文脈を持つ。</p>
+                    </div>
+                    
+                    <div class="hypothesis-card">
+                        <h4 class="hypothesis-title">創造性の世代間継承</h4>
+                        <p>建築家個人の個性や思想、創造性は世代を超えて継承され、その蓄積が都市の成長を支える重要な推進力となる。</p>
+                    </div>
+                </div>
+            </div>
         </section>
 
         <!-- リソース -->
-        <section id="resources">
-            <h2>リソース</h2>
-            
-            <h3>論文</h3>
-            <ul>
-                <li>修士論文全文：郊外都市の隆盛を担った建築家のライフヒストリーとその生産論的分析（PDF）</li>
-                <li>研究概要（PDF）</li>
-            </ul>
-            
-            <h3>データセット</h3>
-            <ul>
-                <li>藤沢市内の建築物データセット（CSV）</li>
-                <li>建築家活動タイムライン（JSON）</li>
-            </ul>
-            
-            <h3>アーカイブ</h3>
-            <ul>
-                <li>インタビュー記録</li>
-                <li>歴史的写真アーカイブ</li>
-            </ul>
-            
-            <h3>参考文献</h3>
-            <ul>
-                <li>稲垣栄三: 『日本の近代建築──その成立過程』, 丸善, 1959</li>
-                <li>速水清孝: 『建築家と建築士―法と住宅をめぐる百年』, 東京大学出版会, 2011</li>
-                <li>日本建築学会: 『近代日本建築学発達史』, 丸善, 1972</li>
-                <li>高木勇夫: 『藤沢市: 明治・大正・昭和 (地図に刻まれた歴史と景観) 1』, 新人物往来社, 1992</li>
-                <li>中島直人: 藤沢駅前南部第一防災建築街区造成の都市計画史的意義に関する考察, 日本建築学会計画系論文集, 2013年, 78巻, 688号, pp.1301-1310</li>
-                <li>慶應義塾大学ＳＦＣ中島直人研究室: 『藤沢アーバニズム』, 2015</li>
-                <li>乾睦子: 『国内の花崗岩石材産業のあらましと現状─「稲田石」を例として』, 国士舘大学理工学部紀要, 2012, 5, pp.74-80</li>
-                <li>南後由和: 『有名性と「界」の形成――建築家の事例分析に向けて』, ソシオロジ, 2008, 32号, pp.216-234</li>
-                <li>田崎智宏, 金森有子, 吉田綾, 青柳みどり: 『シナリオアプローチの類型とライフスタイル研究への適用性』, シンポジウム論文, 2014年, 27巻, 1号, p.32-42</li>
-                <li>東浩紀, 桜坂洋: 『ゲーテステイト』, 2007</li>
-            </ul>
+        <section class="resources" id="resources">
+            <div class="container">
+                <h2 class="section-title">リソース</h2>
+                
+                <div class="flex-row">
+                    <div class="col-2">
+                        <div class="resource-category">
+                            <h3>論文</h3>
+                            <ul>
+                                <li><a href="#">修士論文全文：郊外都市の隆盛を担った建築家のライフヒストリーとその生産論的分析（PDF）</a></li>
+                                <li><a href="#">研究概要（PDF）</a></li>
+                            </ul>
+                        </div>
+                        
+                        <div class="resource-category">
+                            <h3>データセット</h3>
+                            <ul>
+                                <li><a href="#">藤沢市内の建築物データセット（CSV）</a></li>
+                                <li><a href="#">建築家活動タイムライン（JSON）</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="col-2">
+                        <div class="resource-category">
+                            <h3>アーカイブ</h3>
+                            <ul>
+                                <li><a href="#">インタビュー記録</a></li>
+                                <li><a href="#">歴史的写真アーカイブ</a></li>
+                            </ul>
+                        </div>
+                        
+                        <div class="resource-category">
+                            <h3>参考文献</h3>
+                            <ul>
+                                <li><a href="#">稲垣栄三: 『日本の近代建築──その成立過程』, 丸善, 1959</a></li>
+                                <li><a href="#">速水清孝: 『建築家と建築士―法と住宅をめぐる百年』, 東京大学出版会, 2011</a></li>
+                                <li><a href="#">日本建築学会: 『近代日本建築学発達史』, 丸善, 1972</a></li>
+                                <li><a href="#">高木勇夫: 『藤沢市: 明治・大正・昭和 (地図に刻まれた歴史と景観) 1』, 新人物往来社, 1992</a></li>
+                                <li><a href="#">中島直人: 藤沢駅前南部第一防災建築街区造成の都市計画史的意義に関する考察, 日本建築学会計画系論文集, 2013年</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
     </main>
 
     <footer>
-        <p>© 2025 郊外の影響者たち | 土居亮太</p>
-        <p>お問い合わせ: contact@suburban-influencers.jp</p>
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2025 郊外の影響者たち | 土居亮太</p>
+                <p>お問い合わせ: contact@suburban-influencers.jp</p>
+            </div>
+        </div>
     </footer>
+
+    <script>
+        // 簡易的なスクロールアニメーション
+        document.addEventListener('DOMContentLoaded', function() {
+            // ヘッダーのスクロール効果
+            const header = document.querySelector('header');
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 50) {
+                    header.style.backgroundColor = 'rgba(255, 255, 255, 0.98)';
+                    header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+                } else {
+                    header.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
+                    header.style.boxShadow = 'none';
+                }
+            });
+
+            // スムーズスクロール
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+
+            // モバイルメニュー
+            const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+            const nav = document.querySelector('nav ul');
+
+            if (mobileMenuToggle) {
+                mobileMenuToggle.addEventListener('click', function() {
+                    if (nav.style.display === 'flex') {
+                        nav.style.display = 'none';
+                    } else {
+                        nav.style.display = 'flex';
+                        nav.style.flexDirection = 'column';
+                        nav.style.position = 'absolute';
+                        nav.style.top = '100%';
+                        nav.style.left = '0';
+                        nav.style.width = '100%';
+                        nav.style.backgroundColor = 'rgba(255, 255, 255, 0.98)';
+                        nav.style.padding = '1rem';
+                        nav.style.boxShadow = '0 5px 10px rgba(0, 0, 0, 0.1)';
+                    }
+                });
+            }
+        });
+    </script>
 </body>
 </html>
