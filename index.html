@@ -100,6 +100,10 @@
             letter-spacing: 0.05em;
             margin-bottom: 1rem;
             position: relative;
+            display: inline-block;
+            text-align: center;
+            width: 100%;
+            line-height: 1.4;
         }
         
         h1::after {
@@ -109,7 +113,8 @@
             width: 50px;
             background-color: var(--main-text-color);
             bottom: -10px;
-            left: 0;
+            left: 50%;
+            transform: translateX(-50%);
         }
         
         .subtitle {
@@ -127,6 +132,7 @@
         
         section {
             margin-bottom: calc(var(--spacing) * 2);
+            text-align: center;
         }
         
         h2 {
@@ -135,6 +141,7 @@
             margin-bottom: 1.5rem;
             position: relative;
             display: inline-block;
+            text-align: center;
         }
         
         h2::after {
@@ -144,12 +151,14 @@
             width: 30px;
             background-color: var(--main-text-color);
             bottom: -5px;
-            left: 0;
+            left: 50%;
+            transform: translateX(-50%);
         }
         
         p {
             margin-bottom: 1rem;
             font-size: clamp(0.9rem, 2vw, 1rem);
+            text-align: center;
         }
         
         /* 著者情報 */
@@ -158,6 +167,8 @@
             flex-direction: column;
             gap: 1rem;
             margin-top: 2rem;
+            align-items: center;
+            text-align: center;
         }
         
         .author-name {
@@ -303,7 +314,7 @@
 
     <header>
         <div class="title-container">
-            <h1>郊外都市の隆盛を担った建築家のライフヒストリーとその生産論的分析</h1>
+            <h1>郊外都市の隆盛を担った建築家の<br>ライフヒストリーとその生産論的分析</h1>
             <p class="subtitle">―建築家の人格性の生産論的解体をめぐって―</p>
         </div>
         <nav class="main-nav">
