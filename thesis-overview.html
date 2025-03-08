@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="郊外都市の隆盛を担った建築家のライフヒストリーとその生産論的分析 - 修士論文の概要">
+    <title>修士論文の概要 - 郊外都市の隆盛を担った建築家のライフヒストリーとその生産論的分析</title>
+    <style>
+        /* ベースとなるスタイル */
+        :root {
+            --main-bg-color: #ffffff;
+            --main-text-color: #000000;
+            --accent-color: #333333;
+            --light-accent: #f0f0f0;
+            --transition-time: 0.3s;
+            --spacing: 2rem;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: "游明朝", YuMincho, "Hiragino Mincho ProN", "Hiragino Mincho Pro", "MS P明朝", serif;
+            background-color: var(--main-bg-color);
+            color: var(--main-text-color);
+            line-height: 1.7;
+            overflow-x: hidden;
+            padding: 0 15vw;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        /* ヘッダー */
+        header {
+            padding: 5vh 0;
+            border-bottom: 1px solid #eeeeee;
+            margin-bottom: var(--spacing);
+        }
+        
+        /* ナビゲーションメニュー */
+        .main-nav {
+            margin-top: 3rem;
+        }
+        
+        .main-nav ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: center;
+        }
+        
+        .main-nav li {
+            margin-bottom: 1rem;
+        }
+        
+        .main-nav a {
+            display: inline-block;
+            text-decoration: none;
+            color: var(--main-text-color);
+            font-size: 1rem;
+            padding: 0.8rem 1.5rem;
+            border: 1px solid var(--main-text-color);
+            transition: all var(--transition-time);
+            position: relative;
+            overflow: hidden;
+            background-color: transparent;
+        }
+        
+        .main-nav a:hover {
+            background-color: var(--main-text-color);
+            color: var(--main-bg-color);
+        }
+        
+        .main-nav a::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.1);
+            transition: transform 0.5s;
+            transform: skewX(-15deg);
+        }
+        
+        .main-nav a:hover::before {
+            transform: translateX(200%) skewX(-15deg);
+        }
+        
+        .title-container {
+            position: relative;
+            text-align: center;
+        }
+        
+        h1 {
+            font-size: clamp(1.5rem, 5vw, 2.5rem);
+            font-weight: 300;
+            letter-spacing: 0.05em;
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        h1::after {
+            content: "";
+            position: absolute;
+            height: 1px;
+            width: 50px;
+            background-color: var(--main-text-color);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .subtitle {
+            font-size: clamp(0.9rem, 3vw, 1.2rem);
+            margin-top: 1.5rem;
+            margin-bottom: 3rem;
+            font-weight: 300;
+        }
+        
+        /* メインコンテンツ */
+        main {
+            min-height: 60vh;
+            margin: var(--spacing) 0;
+        }
+        
+        .back-home {
+            margin-bottom: 2rem;
+            display: inline-block;
+            text-decoration: none;
+            color: var(--main-text-color);
+            font-size: 0.9rem;
+            transition: all var(--transition-time);
+            border-bottom: 1px solid transparent;
+        }
+        
+        .back-home:hover {
+            border-bottom: 1px solid var(--main-text-color);
+        }
+        
+        .back-home:before {
+            content: "← ";
+        }
+        
+        section {
+            margin-bottom: calc(var(--spacing) * 2);
+        }
+        
+        .chapter {
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background-color: var(--light-accent);
+            border-left: 3px solid var(--accent-color);
+            transition: transform var(--transition-time);
+        }
+        
+        .chapter:hover {
+            transform: translateX(5px);
+        }
+        
+        h2 {
+            font-size: clamp(1.2rem, 4vw, 1.8rem);
+            font-weight: 400;
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        h2::after {
+            content: "";
+            position: absolute;
+            height: 1px;
+            width: 30px;
+            background-color: var(--main-text-color);
+            bottom: -5px;
+            left: 0;
+        }
+        
+        h3 {
+            font-size: clamp(1rem, 3vw, 1.4rem);
+            font-weight: 400;
+            margin-bottom: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        p {
+            margin-bottom: 1rem;
+            font-size: clamp(0.9rem, 2vw, 1rem);
+        }
+        
+        ul {
+            margin-left: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        li {
+            margin-bottom: 0.5rem;
+        }
+        
+        /* フッター */
+        footer {
+            padding: 3vh 0;
+            border-top: 1px solid #eeeeee;
+            text-align: center;
+            margin-top: calc(var(--spacing) * 2);
+            font-size: 0.8rem;
+        }
+        
+        /* アニメーションとインタラクション */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        header, main, section {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+        
+        section:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        
+        /* SF風の装飾 */
+        .grid-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(rgba(255,255,255,0.97) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.97) 1px, transparent 1px);
+            background-size: 20px 20px;
+            pointer-events: none;
+            z-index: -1;
+            opacity: 0.3;
+        }
+        
+        .corner-decoration {
+            position: fixed;
+            width: 100px;
+            height: 100px;
+            border: 1px solid rgba(0,0,0,0.1);
+            z-index: -1;
+        }
+        
+        .corner-tl {
+            top: 20px;
+            left: 20px;
+            border-right: none;
+            border-bottom: none;
+        }
+        
+        .corner-tr {
+            top: 20px;
+            right: 20px;
+            border-left: none;
+            border-bottom: none;
+        }
+        
+        .corner-bl {
+            bottom: 20px;
+            left: 20px;
+            border-right: none;
+            border-top: none;
+        }
+        
+        .corner-br {
+            bottom: 20px;
+            right: 20px;
+            border-left: none;
+            border-top: none;
+        }
+        
+        /* レスポンシブ対応 */
+        @media (max-width: 768px) {
+            :root {
+                --spacing: 1.5rem;
+            }
+            
+            body {
+                padding: 0 8vw;
+            }
+            
+            .corner-decoration {
+                width: 50px;
+                height: 50px;
+            }
+            
+            .main-nav ul {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: center;
+            }
+            
+            .main-nav a {
+                width: 100%;
+                text-align: center;
+                padding: 0.6rem 1.2rem;
+                font-size: 0.9rem;
+            }
+            
+            .chapter {
+                padding: 1.5rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- SF風の装飾 -->
+    <div class="grid-overlay"></div>
+    <div class="corner-decoration corner-tl"></div>
+    <div class="corner-decoration corner-tr"></div>
+    <div class="corner-decoration corner-bl"></div>
+    <div class="corner-decoration corner-br"></div>
+
+    <header>
+        <div class="title-container">
+            <h1>修士論文の概要</h1>
+            <p class="subtitle">郊外都市の隆盛を担った建築家のライフヒストリーとその生産論的分析</p>
+        </div>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="index.html">トップページ</a></li>
+                <li><a href="thesis-overview.html">修士論文の概要</a></li>
+                <li><a href="novel-theory.html">小説のあらすじと理論</a></li>
+                <li><a href="architect-sourcing.html">小説「アーキテクトソーシング」</a></li>
+                <li><a href="afterword.html">あとがき</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <a href="index.html" class="back-home">トップページに戻る</a>
+        
+        <section id="introduction">
+            <div class="chapter">
+                <h2>序章：研究の背景と問題提起</h2>
+                <p>本研究は、戦後日本の都市形成において見過ごされがちであった「量を担う建築家」に焦点を当て、その歴史的役割を再評価することを目的としています。</p>
+                
+                <h3>都市不燃化と「量を担う建築家」</h3>
+                <p>戦後日本の復興における都市不燃化政策は、大量の建築家育成を必要としました。焦土から立ち上がる日本において、これらの建築家たちは都市の物理的再生に不可欠な存在でした。</p>
+                
+                <h3>見過ごされてきた建築家たち</h3>
+                <p>建築史において捨象されがちだった「量を担う建築家」の存在意義は、著名な建築家による「作品」に焦点を当てた従来の建築史研究では見落とされてきました。しかし、彼らこそが日本の都市景観の大部分を形成してきた立役者です。</p>
+                
+                <h3>研究の目的</h3>
+                <p>郊外都市の隆盛過程を個人設計事務所を構える建築家の視点から描き直すことで、都市形成の新たな歴史的視座を提供します。著名な建築家ではなく、地域に根ざした「街の建築家」の実像を浮かび上がらせることが本研究の目的です。</p>
+            </div>
+        </section>
+        
+        <section id="chapter1">
+            <div class="chapter">
+                <h2>第1章：建築家と都市の生産論的変遷</h2>
+                <p>明治から現代に至るまでの建築家という職能の変遷を歴史的に俯瞰し、特に戦後の「量を担う建築家」の誕生に注目します。</p>
+                
+                <h3>建築家の黎明期</h3>
+                <p>明治維新からの建築家という職業の成立過程を追い、西洋建築の導入と日本の伝統との融合を担った初期の建築家たちの役割を考察します。</p>
+                
+                <h3>戦後都市復興と「量を担う建築家」の誕生</h3>
+                <p>焦土からの復興を担った建築家の大衆化について検証します。戦災復興において、数多くの建築家が養成され、都市再生の担い手となっていった過程を明らかにします。</p>
+                
+                <h3>建築家の人格性の変容</h3>
+                <p>戦前の「英雄譚」的な建築家像から、戦後の「匿名性」を帯びた建築家像への変容を分析します。集団で都市を形成していく過程で、建築家の社会的位置づけがどのように変化したかを考察します。</p>
+                
+                <h3>「地場の建築家」の誕生</h3>
+                <p>郊外に根付いた建築家の社会的位置づけを検証します。地域社会において「町医者」的な役割を果たすようになった建築家の実践について論じます。</p>
+            </div>
+        </section>
+        
+        <section id="chapter2">
+            <div class="chapter">
+                <h2>第2章：藤沢市と建築家の量的調査</h2>
+                <p>研究対象地域として神奈川県藤沢市を取り上げ、郊外都市の発展と建築家の活動を量的データから分析します。</p>
+                
+                <h3>藤沢市の都市変遷</h3>
+                <p>宿場町から郊外都市への発展過程を辿り、東京都心部からの交通網の発達とともに変化してきた藤沢市の都市構造を分析します。</p>
+                
+                <h3>藤沢駅周辺の商業地域の形成</h3>
+                <p>高度経済成長期からバブル期における都市不燃化の推進過程を検証します。木造密集市街地から鉄筋コンクリート造・鉄骨造の商業ビル群へと変貌していく過程を追跡します。</p>
+                
+                <h3>地場の建築家による建築実績</h3>
+                <p>RC造・S造ビル群の設計実績データを分析し、地域の建築家が都市景観形成に果たした役割の大きさを数値的に示します。</p>
+                
+                <h3>設計事務所の推移</h3>
+                <p>藤沢市内の一級建築士事務所の登録状況の変遷を調査し、戦後から現在に至るまでの建築生産体制の変化を明らかにします。</p>
+            </div>
+        </section>
+        
+        <section id="chapter3">
+            <div class="chapter">
+                <h2>第3章：三人の建築家の物語</h2>
+                <p>藤沢市で活動した異なる世代の建築家三名のライフヒストリーを詳細に記述し、それぞれが都市形成に果たした役割を明らかにします。</p>
+                
+                <h3>Y氏: 戦前生まれの「町医者的建築家」</h3>
+                <p>戦前生まれの「町医者的建築家」として公共建築を手がけた軌跡を追います。藤沢市設計監理協会会長としての活動や、家型の公共建築による街並み形成への貢献を検証します。</p>
+                
+                <h3>S氏: バブル期を機に台頭した商業ビル設計の専門家</h3>
+                <p>バブル期を機に台頭した商業ビル設計の専門家としてのキャリアを分析します。人脈形成と社会貢献活動、彫刻的な建築デザインによる都市景観への影響について考察します。</p>
+                
+                <h3>M氏: バブル崩壊後に活動した木造住宅の設計者</h3>
+                <p>バブル崩壊後に活動した木造住宅の設計者としての苦難と挑戦を描きます。経済変動と設計事務所経営の苦難、施主に寄り添う「街の診療所」的な建築家像について論じます。</p>
+            </div>
+        </section>
+        
+        <section id="chapter4">
+            <div class="chapter">
+                <h2>第4章：建築家による都市への決定的影響</h2>
+                <p>三人の建築家の実践を詳細に分析し、彼らが都市環境に及ぼした影響を多角的に考察します。</p>
+                
+                <h3>建築家の作品分析</h3>
+                <p>三人の建築家の代表的作品とその特徴を分析し、それぞれの設計思想と表現手法の特徴を明らかにします。</p>
+                
+                <h3>都市景観への影響検証</h3>
+                <p>建築デザインが周辺建築や街並みに及ぼした波及効果を検証します。特に、周辺の建築家や施主に与えた設計上の影響について考察します。</p>
+                
+                <h3>人と人をつなぐ影響力</h3>
+                <p>建築家の活動が都市コミュニティに与えた影響を分析します。建築の生産過程を通じて形成された人間関係や、建築家が果たした社会的役割について論じます。</p>
+                
+                <h3>建築家の代替不可能性</h3>
+                <p>個人としての建築家が都市形成に与えた決定的貢献を考察します。規格化・標準化が進む現代においても、個人の建築家が持つ固有の価値について論じます。</p>
+            </div>
+        </section>
+        
+        <section id="chapter5">
+            <div class="chapter">
+                <h2>第5章：考察と結論</h2>
+                <p>研究の結論として、「量を担う建築家」の再評価を行い、今後の建築史研究への示唆を提示します。</p>
+                
+                <h3>建築家の生産論的解体</h3>
+                <p>戦後から現代に至る建築家の社会的位置づけの変遷を総括し、建築家という職能の本質について再考します。</p>
+                
+                <h3>統計的視点と個別的視点の融合</h3>
+                <p>建築家の歴史記述における新たな方法論として、量的調査と質的調査を融合させたアプローチの有効性を論じます。</p>
+                
+                <h3>郊外都市の隠れた功労者</h3>
+                <p>「量を担う建築家」が果たした歴史的役割を再評価し、従来の建築史における見落としを指摘します。著名ではないが都市形成に大きく寄与した建築家たちの貢献を歴史的に位置づけます。</p>
+                
+                <h3>今後の研究課題</h3>
+                <p>他地域での建築家研究の可能性や、異なる時代区分における「量を担う建築家」の研究展開について言及し、本研究の発展可能性を示します。</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 土居亮太. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        // シンプルなアニメーション効果
+        document.addEventListener('DOMContentLoaded', function() {
+            const sections = document.querySelectorAll('section');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            sections.forEach(section => {
+                section.style.opacity = 0;
+                section.style.transform = 'translateY(20px)';
+                section.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+                observer.observe(section);
+            });
+        });
+    </script>
+</body>
+</html>
