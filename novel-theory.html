@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="郊外都市の隆盛を担った建築家のライフヒストリーとその生産論的分析 - 小説のあらすじと理論">
+    <title>小説のあらすじと理論 - 郊外都市の隆盛を担った建築家のライフヒストリーとその生産論的分析</title>
+    <style>
+        /* ベースとなるスタイル */
+        :root {
+            --main-bg-color: #ffffff;
+            --main-text-color: #000000;
+            --accent-color: #333333;
+            --light-accent: #f0f0f0;
+            --dark-accent: #222222;
+            --highlight: #e0e0e0;
+            --transition-time: 0.3s;
+            --spacing: 2rem;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: "游明朝", YuMincho, "Hiragino Mincho ProN", "Hiragino Mincho Pro", "MS P明朝", serif;
+            background-color: var(--main-bg-color);
+            color: var(--main-text-color);
+            line-height: 1.7;
+            overflow-x: hidden;
+            padding: 0 15vw;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        /* ヘッダー */
+        header {
+            padding: 5vh 0;
+            border-bottom: 1px solid #eeeeee;
+            margin-bottom: var(--spacing);
+        }
+        
+        /* ナビゲーションメニュー */
+        .main-nav {
+            margin-top: 3rem;
+        }
+        
+        .main-nav ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: center;
+        }
+        
+        .main-nav li {
+            margin-bottom: 1rem;
+        }
+        
+        .main-nav a {
+            display: inline-block;
+            text-decoration: none;
+            color: var(--main-text-color);
+            font-size: 1rem;
+            padding: 0.8rem 1.5rem;
+            border: 1px solid var(--main-text-color);
+            transition: all var(--transition-time);
+            position: relative;
+            overflow: hidden;
+            background-color: transparent;
+        }
+        
+        .main-nav a:hover {
+            background-color: var(--main-text-color);
+            color: var(--main-bg-color);
+        }
+        
+        .main-nav a::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.1);
+            transition: transform 0.5s;
+            transform: skewX(-15deg);
+        }
+        
+        .main-nav a:hover::before {
+            transform: translateX(200%) skewX(-15deg);
+        }
+        
+        .title-container {
+            position: relative;
+            text-align: center;
+        }
+        
+        h1 {
+            font-size: clamp(1.5rem, 5vw, 2.5rem);
+            font-weight: 300;
+            letter-spacing: 0.05em;
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        h1::after {
+            content: "";
+            position: absolute;
+            height: 1px;
+            width: 50px;
+            background-color: var(--main-text-color);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .subtitle {
+            font-size: clamp(0.9rem, 3vw, 1.2rem);
+            margin-top: 1.5rem;
+            margin-bottom: 3rem;
+            font-weight: 300;
+        }
+        
+        /* メインコンテンツ */
+        main {
+            min-height: 60vh;
+            margin: var(--spacing) 0;
+        }
+        
+        .back-home {
+            margin-bottom: 2rem;
+            display: inline-block;
+            text-decoration: none;
+            color: var(--main-text-color);
+            font-size: 0.9rem;
+            transition: all var(--transition-time);
+            border-bottom: 1px solid transparent;
+        }
+        
+        .back-home:hover {
+            border-bottom: 1px solid var(--main-text-color);
+        }
+        
+        .back-home:before {
+            content: "← ";
+        }
+        
+        section {
+            margin-bottom: calc(var(--spacing) * 2);
+        }
+        
+        .theory-section {
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background-color: var(--light-accent);
+            border-left: 3px solid var(--accent-color);
+            transition: transform var(--transition-time);
+        }
+        
+        .theory-section:hover {
+            transform: translateX(5px);
+        }
+        
+        .scenario-section {
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background-color: var(--dark-accent);
+            color: var(--main-bg-color);
+            border-left: 3px solid #666;
+            transition: transform var(--transition-time);
+        }
+        
+        .scenario-section:hover {
+            transform: translateX(5px);
+        }
+        
+        .inference-section {
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background-color: var(--highlight);
+            border-left: 3px solid var(--accent-color);
+            transition: transform var(--transition-time);
+        }
+        
+        .inference-section:hover {
+            transform: translateX(5px);
+        }
+        
+        h2 {
+            font-size: clamp(1.2rem, 4vw, 1.8rem);
+            font-weight: 400;
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        h2::after {
+            content: "";
+            position: absolute;
+            height: 1px;
+            width: 30px;
+            background-color: currentColor;
+            bottom: -5px;
+            left: 0;
+        }
+        
+        h3 {
+            font-size: clamp(1rem, 3vw, 1.4rem);
+            font-weight: 400;
+            margin-bottom: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        p {
+            margin-bottom: 1rem;
+            font-size: clamp(0.9rem, 2vw, 1rem);
+        }
+        
+        .note {
+            font-size: 0.8rem;
+            color: #666;
+            margin-top: 0.5rem;
+        }
+        
+        .scenario-section .note {
+            color: #aaa;
+        }
+        
+        .inference-item {
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background-color: rgba(255, 255, 255, 0.7);
+            border-radius: 4px;
+        }
+        
+        .inference-title {
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+        
+        /* フッター */
+        footer {
+            padding: 3vh 0;
+            border-top: 1px solid #eeeeee;
+            text-align: center;
+            margin-top: calc(var(--spacing) * 2);
+            font-size: 0.8rem;
+        }
+        
+        /* アニメーションとインタラクション */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        header, main, section {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+        
+        section:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        
+        /* SF風の装飾 */
+        .grid-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(rgba(255,255,255,0.97) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.97) 1px, transparent 1px);
+            background-size: 20px 20px;
+            pointer-events: none;
+            z-index: -1;
+            opacity: 0.3;
+        }
+        
+        .corner-decoration {
+            position: fixed;
+            width: 100px;
+            height: 100px;
+            border: 1px solid rgba(0,0,0,0.1);
+            z-index: -1;
+        }
+        
+        .corner-tl {
+            top: 20px;
+            left: 20px;
+            border-right: none;
+            border-bottom: none;
+        }
+        
+        .corner-tr {
+            top: 20px;
+            right: 20px;
+            border-left: none;
+            border-bottom: none;
+        }
+        
+        .corner-bl {
+            bottom: 20px;
+            left: 20px;
+            border-right: none;
+            border-top: none;
+        }
+        
+        .corner-br {
+            bottom: 20px;
+            right: 20px;
+            border-left: none;
+            border-top: none;
+        }
+        
+        /* レスポンシブ対応 */
+        @media (max-width: 768px) {
+            :root {
+                --spacing: 1.5rem;
+            }
+            
+            body {
+                padding: 0 8vw;
+            }
+            
+            .corner-decoration {
+                width: 50px;
+                height: 50px;
+            }
+            
+            .main-nav ul {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: center;
+            }
+            
+            .main-nav a {
+                width: 100%;
+                text-align: center;
+                padding: 0.6rem 1.2rem;
+                font-size: 0.9rem;
+            }
+            
+            .theory-section, .scenario-section, .inference-section {
+                padding: 1.5rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- SF風の装飾 -->
+    <div class="grid-overlay"></div>
+    <div class="corner-decoration corner-tl"></div>
+    <div class="corner-decoration corner-tr"></div>
+    <div class="corner-decoration corner-bl"></div>
+    <div class="corner-decoration corner-br"></div>
+
+    <header>
+        <div class="title-container">
+            <h1>小説のあらすじと理論</h1>
+            <p class="subtitle">2080年の建築家の代替可能性を検証する方法としてのシナリオアプローチ</p>
+        </div>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="index.html">トップページ</a></li>
+                <li><a href="thesis-overview.html">修士論文の概要</a></li>
+                <li><a href="novel-theory.html">小説のあらすじと理論</a></li>
+                <li><a href="architect-sourcing.html">小説「アーキテクトソーシング」</a></li>
+                <li><a href="afterword.html">あとがき</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <a href="index.html" class="back-home">トップページに戻る</a>
+        
+        <section id="theoretical-framework">
+            <div class="theory-section">
+                <h2>理論的背景</h2>
+                <p>
+                    本稿では、歴史記述の方法論として、建築家を統計的側面と個別的で代替不可能な側面の両面から描くことで、
+                    戦後の郊外都市の不燃化の成立を、これまで捨象される傾向にあった建築家個人の観点から描き直し、
+                    建築家の人格性をめぐる問題を提起した。
+                </p>
+                <p>
+                    建築家の作家としての顕名性・無名性をめぐる問題は、本研究が主な対象とした戦後に限らず、
+                    現代あるいは、近い未来にも起こりうる問題である<span class="note">8)</span>。
+                </p>
+                <p>
+                    戦前の建築家は、国家的使命を担うエリートとして、英雄譚的に語ることが有効であり、彼らの人格性は担保されていた。
+                    しかし、戦後の建築家は、都市不燃化を担うべく、大衆化し、各地方へ拡散する過程において、
+                    建築家個人の記名性の重要性が相対的に低下し、代替可能な存在として扱われる傾向にあった。
+                    現代においては、建築家が建物全体の設計を担う機会は減少傾向にあり、
+                    ある部分もしくはプロセスの一端を担う仕事が主戦場に移りつつある。
+                </p>
+                <p>
+                    そして近い未来において、そうした建築設計の断片化は、飛躍的に進歩した人工知能の台頭や、
+                    人口減少による設計の需要の低下によって、益々加速し、建築家の個人の人格性は一層解体されると予測できる。
+                    そうした社会で、建築家は如何に創造性を発揮するだろうか。
+                    個人としての建築家がなお代替不可能な存在であると語ることは可能だろうか。
+                </p>
+            </div>
+        </section>
+        
+        <section id="scenario-approach">
+            <div class="theory-section">
+                <h2>方法としてのシナリオアプローチ</h2>
+                <p>
+                    補遺では、2080年の未来の建築家の代替可能性を検証すべく、シナリオアプローチ<span class="note">9)</span>としての小説という手法を用いる。
+                    数量的観点から予測される統計的な舞台設定と、登場人物の個別的な一人称視点から描く小説という手法は、
+                    スペキュラティブな未来予測の方法として、一定程度有効であると考えられる。
+                </p>
+            </div>
+        </section>
+        
+        <section id="novel-outline">
+            <div class="scenario-section">
+                <h2>2080年世界における建築家のシミュレーション</h2>
+                <p>
+                    舞台は2080年の郊外都市藤沢。2080年において、建物の設計は、一部の企業による一元的な管理によって制御されており、
+                    個人の建築家が設計を行う形式は完全に廃れている。建築家は「アーキテクトソーシング(AS)」という、
+                    人工知能を用いた巨大システムに従属している。
+                </p>
+                <p>
+                    建築家は、設計アルゴリズムにおける、機械には判断困難な要素に関わる一種の乱数発生装置として活用されている。
+                    プライバシー保護・セキュリティ確保の観点から、建築家には、どの建物のどの部位を担当しているかは秘匿され、
+                    特定できないようになっている。
+                </p>
+                <p>
+                    <strong>プロセスに解体され、匿名化した建築家、これは彼らの名前をめぐる物語である。</strong>
+                </p>
+            </div>
+        </section>
+        
+        <section id="four-inferences">
+            <div class="inference-section">
+                <h2>4つの推論</h2>
+                <p>
+                    シナリオアプローチによる検証の結果、建築家の代替不可能性に関する、以下の4つの推論が導出された。
+                </p>
+                
+                <div class="inference-item">
+                    <div class="inference-title">① 「仮説的推論の創造性」</div>
+                    <p>
+                        人工知能を活用したASは仮説的推論の原理的な限界を持つため、建築家の継続的な学習と独自の創造性が必要不可欠である。
+                    </p>
+                </div>
+                
+                <div class="inference-item">
+                    <div class="inference-title">② 「周縁的な創造性」</div>
+                    <p>
+                        創造性は事象の掛け合わせによって生まれ、周縁的な個人の実践や趣味が、偶発的に都市の個性を生み出す可能性がある。
+                    </p>
+                </div>
+                
+                <div class="inference-item">
+                    <div class="inference-title">③ 「経験の不可逆的文脈」</div>
+                    <p>
+                        長年の間、地域に住み、場に愛着を持つ。そうした人生のコンテクストは代替不可能であり、代替不可能性な固有の文脈を持つ。
+                    </p>
+                </div>
+                
+                <div class="inference-item">
+                    <div class="inference-title">④ 「創造性の世代間継承」</div>
+                    <p>
+                        建築家個人の個性や思想、創造性は世代を超えて継承され、その蓄積が都市の成長を支える重要な推進力となる。
+                    </p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="conclusion">
+            <div class="theory-section">
+                <h2>総論</h2>
+                <p>
+                    以上を通じて、生産論的観点から予測した2080年の世界においても、建築家を一人称視点から描くことにより、
+                    個人の存在が都市へ決定的な影響を及ぼす複数の可能性は示され、生産の超高度なシステム化が進んだ時代においても、
+                    建築家が代替不可能な存在でありえる可能性が示された。
+                </p>
+            </div>
+        </section>
+        
+        <section id="read-novel">
+            <div class="scenario-section">
+                <h2>小説「アーキテクトソーシング」を読む</h2>
+                <p>
+                    これらの理論的背景や推論に基づいて書かれた創作小説「アーキテクトソーシング」は、
+                    2080年の藤沢市を舞台に、建築家の代替不可能性について考察した未来SF作品です。
+                </p>
+                <p>
+                    <a href="architect-sourcing.html" style="color: white; text-decoration: underline;">小説「アーキテクトソーシング」を読む →</a>
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 土居亮太. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        // シンプルなアニメーション効果
+        document.addEventListener('DOMContentLoaded', function() {
+            const sections = document.querySelectorAll('section');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            sections.forEach(section => {
+                section.style.opacity = 0;
+                section.style.transform = 'translateY(20px)';
+                section.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+                observer.observe(section);
+            });
+        });
+    </script>
+</body>
+</html>
