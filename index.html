@@ -4,26 +4,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>郊外の影響者たち | 建築家の人格性をめぐる研究とフィクション</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <style>
+        body {
+            font-family: sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        h1, h2, h3 {
+            margin-top: 30px;
+        }
+        img {
+            max-width: 100%;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+        section {
+            margin-bottom: 40px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 20px;
+        }
+    </style>
 </head>
 <body>
-    <div class="loading-screen" id="loading-screen">
-        <div class="loader">
-            <div class="loader-inner"></div>
-        </div>
-        <div class="loader-text">郊外の影響者たち</div>
-    </div>
-
-    <header class="site-header">
-        <div class="logo-container">
-            <a href="index.html" class="logo">郊外の影響者たち</a>
-        </div>
-        <nav class="main-nav">
+    <header>
+        <h1>郊外の影響者たち</h1>
+        <p>建築家の人格性をめぐる研究とフィクション</p>
+        <nav>
             <ul>
                 <li><a href="#about">概要</a></li>
                 <li><a href="#research">研究</a></li>
@@ -32,314 +47,131 @@
                 <li><a href="#resources">リソース</a></li>
             </ul>
         </nav>
-        <div class="mode-toggle">
-            <button id="mode-switch" aria-label="ダークモード切替">
-                <span class="mode-icon">◐</span>
-            </button>
-        </div>
-        <button class="mobile-menu-btn" aria-label="メニュー">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
     </header>
 
     <main>
-        <!-- ヒーローセクション -->
-        <section class="hero-section">
-            <div class="hero-background">
-                <div class="hero-image past"></div>
-                <div class="hero-image future"></div>
-            </div>
-            <div class="hero-content">
-                <h1 class="hero-title">郊外の影響者たち</h1>
-                <p class="hero-subtitle">建築家の人格性をめぐる研究とフィクション</p>
-                <div class="hero-description">
-                    <p>戦後日本の郊外都市を形成した建築家たちのライフヒストリーから、<br>2080年の未来の建築家像を探る</p>
-                </div>
-                <div class="hero-cta">
-                    <a href="#about" class="btn primary-btn">研究を探る</a>
-                    <a href="#architect-sourcing" class="btn secondary-btn">2080年の世界へ</a>
-                </div>
-            </div>
-            <div class="scroll-indicator">
-                <span>スクロールして探索</span>
-                <div class="scroll-arrow"></div>
-            </div>
-        </section>
-
         <!-- プロジェクト概要 -->
-        <section id="about" class="about-section">
-            <div class="container">
-                <div class="section-header">
-                    <h2>プロジェクト概要</h2>
-                    <div class="section-line"></div>
-                </div>
-                <div class="about-content">
-                    <div class="about-text">
-                        <p>「郊外の影響者たち」は、土居亮太の修士論文「郊外都市の隆盛を担った建築家のライフヒストリーとその生産論的分析―建築家の人格性の生産論的解体をめぐって―」と、それに付随する創作「アーキテクトソーシング」を統合したウェブプラットフォームです。</p>
-                        <p>本サイトは学術研究とクリエイティブフィクションの境界を越え、戦後日本の郊外都市形成における「量を担う建築家」の役割と、未来の建築家像を多角的に探求します。</p>
-                    </div>
-                    <div class="about-image">
-                        <img src="images/project-overview.jpg" alt="プロジェクト概要イメージ">
-                    </div>
-                </div>
-                <div class="key-questions">
-                    <h3>本研究の問い</h3>
-                    <ul>
-                        <li>戦後の郊外都市はどのように形成されたのか</li>
-                        <li>「量を担う建築家」は都市形成にどのような影響を与えたのか</li>
-                        <li>建築家の人格性はいかに解体されてきたのか</li>
-                        <li>未来の建築家は代替可能な存在となるのか</li>
-                    </ul>
-                </div>
-            </div>
+        <section id="about">
+            <h2>プロジェクト概要</h2>
+            <p>「郊外の影響者たち」は、土居亮太の修士論文「郊外都市の隆盛を担った建築家のライフヒストリーとその生産論的分析―建築家の人格性の生産論的解体をめぐって―」と、それに付随する創作「アーキテクトソーシング」を統合したウェブプラットフォームです。</p>
+            <p>本サイトは学術研究とクリエイティブフィクションの境界を越え、戦後日本の郊外都市形成における「量を担う建築家」の役割と、未来の建築家像を多角的に探求します。</p>
+            
+            <h3>本研究の問い</h3>
+            <ul>
+                <li>戦後の郊外都市はどのように形成されたのか</li>
+                <li>「量を担う建築家」は都市形成にどのような影響を与えたのか</li>
+                <li>建築家の人格性はいかに解体されてきたのか</li>
+                <li>未来の建築家は代替可能な存在となるのか</li>
+            </ul>
         </section>
 
         <!-- 研究セクション -->
-        <section id="research" class="research-section">
-            <div class="container">
-                <div class="section-header">
-                    <h2>研究</h2>
-                    <div class="section-line"></div>
-                </div>
-                <div class="research-intro">
-                    <p>戦後日本において、都市不燃化は復興の大きなテーマでした。本研究では、神奈川県藤沢市を事例に、郊外都市の不燃化の成立と地場に個人設計事務所を構える建築家が如何に影響を及ぼしたかを分析しています。</p>
-                </div>
-                <div class="research-tabs">
-                    <div class="tab-buttons">
-                        <button class="tab-btn active" data-tab="background">研究背景</button>
-                        <button class="tab-btn" data-tab="fujisawa">藤沢市の変遷</button>
-                        <button class="tab-btn" data-tab="methodology">研究方法</button>
-                        <button class="tab-btn" data-tab="findings">発見と考察</button>
-                    </div>
-                    <div class="tab-content">
-                        <div class="tab-pane active" id="background">
-                            <h3>戦後の都市不燃化と建築家</h3>
-                            <div class="content-wrapper">
-                                <div class="text-content">
-                                    <p>第二次世界大戦により、日本の200以上の中核都市が焦土と化し、都市不燃化が戦後日本復興の大きなテーマとなりました。日本の都市の多くは木造建築物で構成されていたため、RC造をはじめとした不燃建築物の設計を行う技術者が大量に必要となり、法整備と教育改革が求められました。</p>
-                                    <p>戦後にかけて建築家は大量に育成され、「量を担う建築家」は、都市復興に伴う不燃化ビルや住宅建設のブームに後押しされ郊外や地方へ拡散していきました。</p>
-                                </div>
-                                <div class="visual-content">
-                                    <img src="images/postwar-reconstruction.jpg" alt="戦後の都市復興イメージ">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tab-pane" id="fujisawa">
-                            <!-- 藤沢市の変遷コンテンツ -->
-                        </div>
-                        <div class="tab-pane" id="methodology">
-                            <!-- 研究方法コンテンツ -->
-                        </div>
-                        <div class="tab-pane" id="findings">
-                            <!-- 発見と考察コンテンツ -->
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <section id="research">
+            <h2>研究</h2>
+            <p>戦後日本において、都市不燃化は復興の大きなテーマでした。本研究では、神奈川県藤沢市を事例に、郊外都市の不燃化の成立と地場に個人設計事務所を構える建築家が如何に影響を及ぼしたかを分析しています。</p>
+            
+            <h3>研究背景：戦後の都市不燃化と建築家</h3>
+            <p>第二次世界大戦により、日本の200以上の中核都市が焦土と化し、都市不燃化が戦後日本復興の大きなテーマとなりました。日本の都市の多くは木造建築物で構成されていたため、RC造をはじめとした不燃建築物の設計を行う技術者が大量に必要となり、法整備と教育改革が求められました。</p>
+            <p>戦後にかけて建築家は大量に育成され、「量を担う建築家」は、都市復興に伴う不燃化ビルや住宅建設のブームに後押しされ郊外や地方へ拡散していきました。</p>
+            
+            <h3>藤沢市の変遷</h3>
+            <p>藤沢市は、神奈川県南部に位置し、1601年に東海道江戸日本橋から数えて6番目の宿場町「藤沢宿」として栄えました。1887年の東海道線開通が後押しとなり町は繁栄しますが、1923年の関東大震災によって多大な被害をこうむりました。</p>
+            <p>戦後の首都圏への急激な人口集中の受け皿となり、藤沢市は高度経済成長期に急速に近代化していきました。1957年「藤沢総合都市計画」による大規模な都市整備を下地とした1960年代の高度経済成長期の都市開発により、藤沢駅を中心に急速な近代化が推進されました。</p>
+            
+            <h3>研究方法</h3>
+            <p>調査対象は、神奈川県藤沢市に個人設計事務所を構える建築家とします。藤沢市は、1960年頃から藤沢駅を中心とした急速な都市の発展に伴い、都市不燃化が推進された経緯があります。</p>
+            <p>実施した調査は、主に藤沢市の建築家の活動実態に関する調査と、3人の藤沢市で活動する建築家へのインタビュー調査（2024年9月19日～2025年1月21日）です。</p>
         </section>
 
         <!-- 三人の建築家 -->
-        <section id="architects" class="architects-section">
-            <div class="container">
-                <div class="section-header">
-                    <h2>三人の建築家</h2>
-                    <div class="section-line"></div>
-                </div>
-                <div class="architects-intro">
-                    <p>藤沢市で活動する3人の建築家へのインタビュー調査を通じて、時代の趨勢による統計的な側面と、代替不可能な個別的な側面の両面から彼らの語りを分析し、建築家の個人史を描き直しました。</p>
-                </div>
-                <div class="architects-gallery">
-                    <div class="architect-card" data-architect="y">
-                        <div class="architect-image">
-                            <img src="images/architect-y.jpg" alt="Y氏">
-                        </div>
-                        <div class="architect-info">
-                            <h3>Y氏</h3>
-                            <p class="architect-specialty">公共建築設計</p>
-                            <p class="architect-description">戦前生まれの「町医者的な建築家」として、藤沢の発展と街並み形成に貢献</p>
-                            <button class="read-more-btn">詳細を見る</button>
-                        </div>
-                    </div>
-                    <div class="architect-card" data-architect="s">
-                        <div class="architect-image">
-                            <img src="images/architect-s.jpg" alt="S氏">
-                        </div>
-                        <div class="architect-info">
-                            <h3>S氏</h3>
-                            <p class="architect-specialty">商業ビル設計</p>
-                            <p class="architect-description">バブル期を機に民間商業ビルを得意とし、独自の美学で藤沢の景観に影響</p>
-                            <button class="read-more-btn">詳細を見る</button>
-                        </div>
-                    </div>
-                    <div class="architect-card" data-architect="m">
-                        <div class="architect-image">
-                            <img src="images/architect-m.jpg" alt="M氏">
-                        </div>
-                        <div class="architect-info">
-                            <h3>M氏</h3>
-                            <p class="architect-specialty">木造住宅設計</p>
-                            <p class="architect-description">バブル期以後の変動する経済環境下で民間木造住宅を設計し続ける</p>
-                            <button class="read-more-btn">詳細を見る</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="architect-timeline">
-                    <h3>建築家の活動タイムライン</h3>
-                    <div class="timeline-container" id="architect-timeline">
-                        <!-- タイムラインはJavaScriptで動的に生成 -->
-                    </div>
-                </div>
-            </div>
+        <section id="architects">
+            <h2>三人の建築家</h2>
+            <p>藤沢市で活動する3人の建築家へのインタビュー調査を通じて、時代の趨勢による統計的な側面と、代替不可能な個別的な側面の両面から彼らの語りを分析し、建築家の個人史を描き直しました。</p>
+            
+            <h3>Y氏：戦前生まれの役所の仕事を得意とする建築家</h3>
+            <p>1940年藤沢市生まれ。神奈川県内の工業高校を卒業後、日本大学理工学部で建築を学ぶ。1970年に独立し、藤沢市の公共建築設計に携わる。藤沢市設計監理協会会長を務めた。</p>
+            <p><strong>得意分野：</strong> 公共建築</p>
+            <p><strong>思想：</strong>「町医者的な建築家」として地元に根付き、小さくても光るものを設計することを大切にしている。四角いものが多かった時代に、建築の可能性を追求した。</p>
+            <p><strong>代表作：</strong>藤沢市文書館（1984年竣工）- 家型の立面を持つ公共建築として先駆的な作品</p>
+            <p><strong>都市への影響：</strong>藤沢市設計監理協会での活動を通じて、多くの地元建築家や市職員との交流を深め、藤沢の都市景観形成に大きな影響を与えた。家型の立面デザインは周辺建築にも影響を与え、地域のアイデンティティ形成に貢献した。</p>
+            
+            <h3>S氏：バブル期を機に民間商業ビルを得意とする建築家</h3>
+            <p>1947年藤沢市生まれ。茶道の表千家に入門し、後に日本大学理工学部で建築を学ぶ。1973年に独立し、バブル経済期に多くの商業ビル設計を手がける。</p>
+            <p><strong>得意分野：</strong> 民間の商業ビル</p>
+            <p><strong>思想：</strong>建築を彫刻的に捉え、独自の美学を追求。「その場所を見て、ここにはいい感じ」という直感を大切にする。人生の師匠である彫刻家から受けた影響が、建築デザインに表れている。</p>
+            <p><strong>代表作：</strong>Kタワー（1995年竣工）- 曲面のR白御影石を用いた独創的な商業ビル</p>
+            <p><strong>都市への影響：</strong>複数の社会貢献団体に所属し、人脈形成と慈善活動に注力。その過程で築いた人間関係が、バブル経済期の商業ビル設計の仕事獲得に繋がった。独自の美学による建築が、藤沢の都市景観に創造的な視点をもたらした。</p>
+            
+            <h3>M氏：バブル期以後の民間木造住宅を得意とする建築家</h3>
+            <p>1958年東京都文京区生まれ。日本大学生産工学部卒業後、設計事務所で経験を積み、1993年に藤沢市で独立。バブル崩壊直後の厳しい経済環境の中で活動を開始。</p>
+            <p><strong>得意分野：</strong> 民間の木造住宅</p>
+            <p><strong>思想：</strong>立地条件の悪い敷地でも、施主に親身になって寄り添うことを大事にしている。「建築相談室」を設けるなど、アクセスしやすい建築家を目指している。</p>
+            <p><strong>代表作：</strong>約200件の木造住宅を設計</p>
+            <p><strong>都市への影響：</strong>個々の施主の生活に大きな影響を与えている。その影響は個別の建築にとどまり、都市への波及は限定的だが、「街の診療所」的な立場として地域に貢献している。</p>
         </section>
 
         <!-- アーキテクトソーシング -->
-        <section id="architect-sourcing" class="architect-sourcing-section">
-            <div class="container">
-                <div class="section-header future-header">
-                    <h2>アーキテクトソーシング</h2>
-                    <div class="section-line"></div>
-                </div>
-                <div class="sourcing-intro">
-                    <p>2080年、建築設計は巨大企業が管理する人工知能によって制御され、建築家はそのプロセスの一端を担う存在となっていた。このシナリオアプローチによる創作を通して、建築家の代替不可能性について考察します。</p>
-                </div>
-                <div class="sourcing-content">
-                    <div class="world-building">
-                        <h3>2080年の世界観</h3>
-                        <div class="content-wrapper">
-                            <div class="text-content">
-                                <p>日本は深刻な人口減少と高齢化に直面し、ほとんどの知的労働は人工知能に置き換えられています。グローバル化を背景に国家は希薄化し、多くのインフラは民営化されています。</p>
-                                <p>建築設計のプロセスは完全に分解され、建築家はそのプロセスの一部を担う存在になっています。プライバシー保護の観点から、建築家は施主と接触することができず、彼らのクライアントは巨大企業となっています。</p>
-                            </div>
-                            <div class="visual-content">
-                                <img src="images/2080-world.jpg" alt="2080年の世界観イメージ">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="story-preview">
-                        <h3>物語「アーキテクトソーシング」</h3>
-                        <div class="story-excerpt">
-                            <p>舞台は2080年の郊外都市藤沢。2040年の南海トラフ地震により藤沢市南部は壊滅した。国家と自治体による復興が困難となり、大企業「白菱社」による市の買収が決定され、大規模な都市計画とインフラシステムの変更が推し進められ、新生都市「湘南市」が誕生した...</p>
-                        </div>
-                        <a href="architect-sourcing.html" class="btn primary-btn">全文を読む</a>
-                    </div>
-                    <div class="hypotheses">
-                        <h3>建築家の代替不可能性に関する4つの仮説</h3>
-                        <div class="hypotheses-grid">
-                            <div class="hypothesis-card">
-                                <h4>仮説的推論の創造性</h4>
-                                <p>人工知能を活用したASは仮説的推論の原理的な限界を持つため、建築家の継続的な学習と独自の創造性が必要不可欠である。</p>
-                            </div>
-                            <div class="hypothesis-card">
-                                <h4>周縁的な創造性</h4>
-                                <p>創造性は事象の掛け合わせによって生まれ、周縁的な個人の実践や趣味が、偶発的に都市の個性を生み出す可能性がある。</p>
-                            </div>
-                            <div class="hypothesis-card">
-                                <h4>経験の不可逆的文脈</h4>
-                                <p>長年の間、地域に住み、場に愛着を持つ。そうした人生のコンテクストは代替不可能であり、代替不可能性な固有の文脈を持つ。</p>
-                            </div>
-                            <div class="hypothesis-card">
-                                <h4>創造性の世代間継承</h4>
-                                <p>建築家個人の個性や思想、創造性は世代を超えて継承され、その蓄積が都市の成長を支える重要な推進力となる。</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <section id="architect-sourcing">
+            <h2>アーキテクトソーシング</h2>
+            <p>2080年、建築設計は巨大企業が管理する人工知能によって制御され、建築家はそのプロセスの一端を担う存在となっていた。このシナリオアプローチによる創作を通して、建築家の代替不可能性について考察します。</p>
+            
+            <h3>2080年の世界観</h3>
+            <p>日本は深刻な人口減少と高齢化に直面し、ほとんどの知的労働は人工知能に置き換えられています。グローバル化を背景に国家は希薄化し、多くのインフラは民営化されています。</p>
+            <p>建築設計のプロセスは完全に分解され、建築家はそのプロセスの一部を担う存在になっています。プライバシー保護の観点から、建築家は施主と接触することができず、彼らのクライアントは巨大企業となっています。</p>
+            
+            <h3>物語「アーキテクトソーシング」</h3>
+            <p>舞台は2080年の郊外都市藤沢。2040年の南海トラフ地震により藤沢市南部は壊滅した。国家と自治体による復興が困難となり、大企業「白菱社」による市の買収が決定され、大規模な都市計画とインフラシステムの変更が推し進められ、新生都市「湘南市」が誕生した...</p>
+            
+            <h3>建築家の代替不可能性に関する4つの仮説</h3>
+            <ol>
+                <li><strong>仮説的推論の創造性</strong>: 人工知能を活用したASは仮説的推論の原理的な限界を持つため、建築家の継続的な学習と独自の創造性が必要不可欠である。</li>
+                <li><strong>周縁的な創造性</strong>: 創造性は事象の掛け合わせによって生まれ、周縁的な個人の実践や趣味が、偶発的に都市の個性を生み出す可能性がある。</li>
+                <li><strong>経験の不可逆的文脈</strong>: 長年の間、地域に住み、場に愛着を持つ。そうした人生のコンテクストは代替不可能であり、代替不可能性な固有の文脈を持つ。</li>
+                <li><strong>創造性の世代間継承</strong>: 建築家個人の個性や思想、創造性は世代を超えて継承され、その蓄積が都市の成長を支える重要な推進力となる。</li>
+            </ol>
         </section>
 
         <!-- リソース -->
-        <section id="resources" class="resources-section">
-            <div class="container">
-                <div class="section-header">
-                    <h2>リソース</h2>
-                    <div class="section-line"></div>
-                </div>
-                <div class="resources-content">
-                    <div class="resource-category">
-                        <h3>論文</h3>
-                        <ul class="resource-list">
-                            <li><a href="pdf/thesis.pdf" target="_blank">修士論文全文：郊外都市の隆盛を担った建築家のライフヒストリーとその生産論的分析（PDF）</a></li>
-                            <li><a href="pdf/summary.pdf" target="_blank">研究概要（PDF）</a></li>
-                        </ul>
-                    </div>
-                    <div class="resource-category">
-                        <h3>データセット</h3>
-                        <ul class="resource-list">
-                            <li><a href="data/fujisawa-buildings.csv" target="_blank">藤沢市内の建築物データセット（CSV）</a></li>
-                            <li><a href="data/architect-timeline.json" target="_blank">建築家活動タイムライン（JSON）</a></li>
-                        </ul>
-                    </div>
-                    <div class="resource-category">
-                        <h3>アーカイブ</h3>
-                        <ul class="resource-list">
-                            <li><a href="archive/interviews.html">インタビュー記録</a></li>
-                            <li><a href="archive/photos.html">歴史的写真アーカイブ</a></li>
-                        </ul>
-                    </div>
-                    <div class="resource-category">
-                        <h3>参考文献</h3>
-                        <ul class="resource-list">
-                            <li>稲垣栄三: 『日本の近代建築──その成立過程』, 丸善, 1959</li>
-                            <li>速水清孝: 『建築家と建築士―法と住宅をめぐる百年』, 東京大学出版会, 2011</li>
-                            <li>日本建築学会: 『近代日本建築学発達史』, 丸善, 1972</li>
-                            <li><a href="references.html">すべての参考文献を見る</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+        <section id="resources">
+            <h2>リソース</h2>
+            
+            <h3>論文</h3>
+            <ul>
+                <li>修士論文全文：郊外都市の隆盛を担った建築家のライフヒストリーとその生産論的分析（PDF）</li>
+                <li>研究概要（PDF）</li>
+            </ul>
+            
+            <h3>データセット</h3>
+            <ul>
+                <li>藤沢市内の建築物データセット（CSV）</li>
+                <li>建築家活動タイムライン（JSON）</li>
+            </ul>
+            
+            <h3>アーカイブ</h3>
+            <ul>
+                <li>インタビュー記録</li>
+                <li>歴史的写真アーカイブ</li>
+            </ul>
+            
+            <h3>参考文献</h3>
+            <ul>
+                <li>稲垣栄三: 『日本の近代建築──その成立過程』, 丸善, 1959</li>
+                <li>速水清孝: 『建築家と建築士―法と住宅をめぐる百年』, 東京大学出版会, 2011</li>
+                <li>日本建築学会: 『近代日本建築学発達史』, 丸善, 1972</li>
+                <li>高木勇夫: 『藤沢市: 明治・大正・昭和 (地図に刻まれた歴史と景観) 1』, 新人物往来社, 1992</li>
+                <li>中島直人: 藤沢駅前南部第一防災建築街区造成の都市計画史的意義に関する考察, 日本建築学会計画系論文集, 2013年, 78巻, 688号, pp.1301-1310</li>
+                <li>慶應義塾大学ＳＦＣ中島直人研究室: 『藤沢アーバニズム』, 2015</li>
+                <li>乾睦子: 『国内の花崗岩石材産業のあらましと現状─「稲田石」を例として』, 国士舘大学理工学部紀要, 2012, 5, pp.74-80</li>
+                <li>南後由和: 『有名性と「界」の形成――建築家の事例分析に向けて』, ソシオロジ, 2008, 32号, pp.216-234</li>
+                <li>田崎智宏, 金森有子, 吉田綾, 青柳みどり: 『シナリオアプローチの類型とライフスタイル研究への適用性』, シンポジウム論文, 2014年, 27巻, 1号, p.32-42</li>
+                <li>東浩紀, 桜坂洋: 『ゲーテステイト』, 2007</li>
+            </ul>
         </section>
     </main>
 
-    <footer class="site-footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-logo">
-                    <h2>郊外の影響者たち</h2>
-                    <p>建築家の人格性をめぐる研究とフィクション</p>
-                </div>
-                <div class="footer-links">
-                    <div class="footer-nav">
-                        <h3>サイトマップ</h3>
-                        <ul>
-                            <li><a href="#about">概要</a></li>
-                            <li><a href="#research">研究</a></li>
-                            <li><a href="#architects">三人の建築家</a></li>
-                            <li><a href="#architect-sourcing">アーキテクトソーシング</a></li>
-                            <li><a href="#resources">リソース</a></li>
-                        </ul>
-                    </div>
-                    <div class="footer-external">
-                        <h3>関連リンク</h3>
-                        <ul>
-                            <li><a href="https://www.city.fujisawa.kanagawa.jp/" target="_blank">藤沢市公式サイト</a></li>
-                            <li><a href="https://www.aij.or.jp/" target="_blank">日本建築学会</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="footer-contact">
-                    <h3>お問い合わせ</h3>
-                    <p>本プロジェクトに関するお問い合わせは下記までお願いします。</p>
-                    <a href="mailto:contact@suburban-influencers.jp">contact@suburban-influencers.jp</a>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 郊外の影響者たち | 土居亮太</p>
-            </div>
-        </div>
+    <footer>
+        <p>© 2025 郊外の影響者たち | 土居亮太</p>
+        <p>お問い合わせ: contact@suburban-influencers.jp</p>
     </footer>
-
-    <!-- モーダル -->
-    <div class="modal" id="architect-modal">
-        <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <div class="modal-body">
-                <!-- モーダルの内容はJavaScriptで動的に生成 -->
-            </div>
-        </div>
-    </div>
-
-    <script src="js/main.js"></script>
 </body>
 </html>
