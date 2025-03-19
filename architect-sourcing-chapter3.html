@@ -648,7 +648,7 @@
     </footer>
 
     <script>
-        // ローディングアニメーション
+        // ローディングアニメーション（最適化版）
         document.addEventListener('DOMContentLoaded', function() {
             const loadingScreen = document.querySelector('.loading-screen');
             const loadingProgress = document.querySelector('.loading-progress');
@@ -656,20 +656,13 @@
             const loadingStatus = document.querySelector('.loading-status');
             const loadingMessages = document.querySelector('.loading-messages');
             
-            // システムメッセージのリスト
+            // システムメッセージのリスト（短縮版）
             const messages = [
                 "個人認証プロトコル検索中...",
-                "履歴解析実行中...",
                 "建築家データベースに接続...",
                 "設計パターン解析中...",
-                "空間パラメータの照合...",
-                "建築家ソーシングシステムにアクセス...",
                 "形状認識センサー校正中...",
-                "脳波データマッピング実行中...",
                 "創造性指数評価中...",
-                "人格解析モジュール起動中...",
-                "量子レベル創発性計算処理実行中...",
-                "空間把握能力試験準備完了",
                 "物語モード初期化完了"
             ];
             
@@ -678,19 +671,19 @@
             let messageIndex = 0;
             let interval;
             
-            // ランダムな速度で進行状況を更新
+            // ランダムな速度で進行状況を更新（短縮版）
             const startLoading = () => {
                 interval = setInterval(() => {
-                    // 非線形的な進行 (最初は速く、後半は徐々に遅く)
+                    // 非線形的な進行（加速版）
                     let increment;
                     if (progress < 30) {
-                        increment = Math.random() * 3 + 1;
+                        increment = Math.random() * 5 + 2; // 加速
                     } else if (progress < 60) {
-                        increment = Math.random() * 2 + 0.5;
+                        increment = Math.random() * 4 + 1;
                     } else if (progress < 90) {
-                        increment = Math.random() * 1 + 0.3;
+                        increment = Math.random() * 3 + 0.5;
                     } else {
-                        increment = Math.random() * 0.5 + 0.1;
+                        increment = Math.random() * 2 + 0.3;
                     }
                     
                     progress = Math.min(progress + increment, 100);
@@ -723,14 +716,14 @@
                             loadingScreen.classList.add('hidden');
                             setTimeout(() => {
                                 loadingScreen.style.display = 'none';
-                            }, 500);
-                        }, 1000);
+                            }, 300); // 短縮
+                        }, 500); // 短縮
                     }
-                }, 100);
+                }, 65); // 短縮（間隔を短く）
             };
             
-            // ローディング開始（少し遅延させる）
-            setTimeout(startLoading, 500);
+            // ローディング開始（遅延時間短縮）
+            setTimeout(startLoading, 200);
         });
 
         // シンプルなアニメーション効果
