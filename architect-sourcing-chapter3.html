@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="郊外都市の隆盛を担った建築家のライフヒストリーとその生産論的分析 - 小説「アーキテクトソーシング」第3章">
+    <title>小説「アーキテクトソーシング」第3章 - 廃頽者の叛旗</title>
+    <style>
+        /* ベースとなるスタイル */
+        :root {
+            --main-bg-color: #111111;
+            --main-text-color: #e0e0e0;
+            --accent-color: #ffffff;
+            --light-accent: #222222;
+            --dark-accent: #080808;
+            --highlight: rgba(255, 255, 255, 0.15);
+            --transition-time: 0.3s;
+            --spacing: 2rem;
+            --font-title: "游明朝", YuMincho, "Hiragino Mincho ProN", "Hiragino Mincho Pro", "MS P明朝", serif;
+            --font-body: "游明朝", YuMincho, "Hiragino Mincho ProN", "Hiragino Mincho Pro", "MS P明朝", serif;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: var(--font-body);
+            background-color: var(--main-bg-color);
+            color: var(--main-text-color);
+            line-height: 1.8;
+            overflow-x: hidden;
+            padding: 0 15vw;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        /* ローディングアニメーション */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: black;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            transition: opacity 0.5s ease-out;
+        }
+        
+        .loading-screen.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+        
+        .loading-container {
+            width: 80%;
+            max-width: 600px;
+            color: var(--accent-color);
+            font-family: monospace;
+            font-size: 1.2rem;
+            text-align: center;
+        }
+        
+        .loading-bar {
+            width: 100%;
+            height: 2px;
+            background-color: #222;
+            margin: 20px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .loading-progress {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 0%;
+            background-color: var(--accent-color);
+            box-shadow: 0 0 10px var(--accent-color);
+        }
+        
+        .loading-text {
+            margin-bottom: 10px;
+            font-size: 1.4rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        
+        .loading-percent {
+            font-size: 2rem;
+            font-weight: bold;
+            letter-spacing: 3px;
+            margin: 15px 0;
+        }
+        
+        .loading-status {
+            font-size: 0.9rem;
+            opacity: 0.7;
+            height: 1.5em;
+            margin-top: 10px;
+        }
+        
+        .loading-messages {
+            margin-top: 20px;
+            font-size: 0.8rem;
+            color: #666;
+            height: 3em;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        /* ヘッダー */
+        header {
+            padding: 5vh 0;
+            border-bottom: 1px solid #333;
+            margin-bottom: var(--spacing);
+        }
+        
+        /* ナビゲーションメニュー */
+        .main-nav {
+            margin-top: 3rem;
+        }
+        
+        .main-nav ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: center;
+        }
+        
+        .main-nav li {
+            margin-bottom: 1rem;
+        }
+        
+        .main-nav a {
+            display: inline-block;
+            text-decoration: none;
+            color: var(--main-text-color);
+            font-size: 1rem;
+            padding: 0.8rem 1.5rem;
+            border: 1px solid var(--accent-color);
+            transition: all var(--transition-time);
+            position: relative;
+            overflow: hidden;
+            background-color: transparent;
+        }
+        
+        .main-nav a:hover {
+            background-color: var(--accent-color);
+            color: var(--dark-accent);
+        }
+        
+        .main-nav a::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.1);
+            transition: transform 0.5s;
+            transform: skewX(-15deg);
+        }
+        
+        .main-nav a:hover::before {
+            transform: translateX(200%) skewX(-15deg);
+        }
+        
+        .title-container {
+            position: relative;
+            text-align: center;
+        }
+        
+        h1 {
+            font-family: var(--font-title);
+            font-size: clamp(1.8rem, 5vw, 3rem);
+            font-weight: 300;
+            letter-spacing: 0.05em;
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+            color: var(--accent-color);
+        }
+        
+        h1::after {
+            content: "";
+            position: absolute;
+            height: 1px;
+            width: 100px;
+            background-color: var(--accent-color);
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .subtitle {
+            font-size: clamp(0.9rem, 3vw, 1.2rem);
+            margin-top: 2rem;
+            margin-bottom: 3rem;
+            font-weight: 300;
+            opacity: 0.8;
+        }
+        
+        /* メインコンテンツ */
+        main {
+            min-height: 60vh;
+            margin: var(--spacing) 0;
+        }
+        
+        .back-home {
+            margin-bottom: 2rem;
+            display: inline-block;
+            text-decoration: none;
+            color: var(--accent-color);
+            font-size: 0.9rem;
+            transition: all var(--transition-time);
+            border-bottom: 1px solid transparent;
+        }
+        
+        .back-home:hover {
+            border-bottom: 1px solid var(--accent-color);
+        }
+        
+        .back-home:before {
+            content: "← ";
+        }
+        
+        .next-chapter {
+            margin-top: 2rem;
+            display: inline-block;
+            text-decoration: none;
+            color: var(--accent-color);
+            font-size: 0.9rem;
+            transition: all var(--transition-time);
+            border-bottom: 1px solid transparent;
+            float: right;
+        }
+        
+        .next-chapter:hover {
+            border-bottom: 1px solid var(--accent-color);
+        }
+        
+        .next-chapter:after {
+            content: " →";
+        }
+        
+        .chapter-navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 2rem;
+            width: 100%;
+        }
+        
+        section {
+            margin-bottom: calc(var(--spacing) * 2);
+        }
+        
+        .novel-container {
+            background-color: var(--light-accent);
+            padding: 3rem;
+            border-radius: 4px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+            position: relative;
+        }
+        
+        .novel-container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 20px 20px;
+            pointer-events: none;
+            border-radius: 4px;
+        }
+        
+        .chapter-title {
+            font-family: var(--font-title);
+            font-size: 1.8rem;
+            color: var(--accent-color);
+            margin-bottom: 2rem;
+            text-align: center;
+            font-weight: 300;
+        }
+        
+        .novel-text {
+            line-height: 2;
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            text-align: justify;
+        }
+        
+        .novel-text p {
+            margin-bottom: 1.5rem;
+            text-indent: 1em;
+        }
+        
+        .message {
+            background-color: var(--light-accent);
+            padding: 1.5rem;
+            border-left: 3px solid var(--accent-color);
+            margin: 1.5rem 0;
+            font-family: monospace;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        .message strong {
+            color: var(--accent-color);
+        }
+        
+        /* フッター */
+        footer {
+            padding: 3vh 0;
+            border-top: 1px solid #333;
+            text-align: center;
+            margin-top: calc(var(--spacing) * 2);
+            font-size: 0.8rem;
+            opacity: 0.7;
+        }
+        
+        /* アニメーションとインタラクション */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes glowPulse {
+            0% { text-shadow: 0 0 5px rgba(255, 255, 255, 0.3); }
+            50% { text-shadow: 0 0 20px rgba(255, 255, 255, 0.6); }
+            100% { text-shadow: 0 0 5px rgba(255, 255, 255, 0.3); }
+        }
+        
+        header, main, section {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+        
+        section:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        
+        h1 {
+            animation: glowPulse 5s infinite;
+        }
+        
+        /* グリッドオーバーレイ */
+        .grid-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+            background-size: 20px 20px;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .corner-decoration {
+            position: fixed;
+            width: 100px;
+            height: 100px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            z-index: -1;
+        }
+        
+        .corner-tl {
+            top: 20px;
+            left: 20px;
+            border-right: none;
+            border-bottom: none;
+        }
+        
+        .corner-tr {
+            top: 20px;
+            right: 20px;
+            border-left: none;
+            border-bottom: none;
+        }
+        
+        .corner-bl {
+            bottom: 20px;
+            left: 20px;
+            border-right: none;
+            border-top: none;
+        }
+        
+        .corner-br {
+            bottom: 20px;
+            right: 20px;
+            border-left: none;
+            border-top: none;
+        }
+        
+        /* レスポンシブ対応 */
+        @media (max-width: 768px) {
+            :root {
+                --spacing: 1.5rem;
+            }
+            
+            body {
+                padding: 0 8vw;
+            }
+            
+            .corner-decoration {
+                width: 50px;
+                height: 50px;
+            }
+            
+            .main-nav ul {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: center;
+            }
+            
+            .main-nav a {
+                width: 100%;
+                text-align: center;
+                padding: 0.6rem 1.2rem;
+                font-size: 0.9rem;
+            }
+            
+            .novel-container {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ローディングアニメーション -->
+    <div class="loading-screen">
+        <div class="loading-container">
+            <div class="loading-text">アーキテクトソーシング・コネクション</div>
+            <div class="loading-bar">
+                <div class="loading-progress"></div>
+            </div>
+            <div class="loading-percent">0%</div>
+            <div class="loading-status">システムに接続中...</div>
+            <div class="loading-messages"></div>
+        </div>
+    </div>
+
+    <!-- SF風の装飾 -->
+    <div class="grid-overlay"></div>
+    <div class="corner-decoration corner-tl"></div>
+    <div class="corner-decoration corner-tr"></div>
+    <div class="corner-decoration corner-bl"></div>
+    <div class="corner-decoration corner-br"></div>
+
+    <header>
+        <div class="title-container">
+            <h1>アーキテクトソーシング</h1>
+            <p class="subtitle">2080年、建築家たちの物語</p>
+        </div>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="index.html">トップページ</a></li>
+                <li><a href="thesis-overview.html">修士論文の概要</a></li>
+                <li><a href="novel-theory.html">小説のあらすじと理論</a></li>
+                <li><a href="architect-sourcing.html">第1章：名もなき建築家</a></li>
+                <li><a href="architect-sourcing-chapter2.html">第2章：爪弾き、繕い、結う</a></li>
+                <li><a href="architect-sourcing-chapter3.html">第3章：廃頽者の叛旗</a></li>
+                <li><a href="architect-sourcing-chapter4.html">第4章：乱数発生装置としての建築家</a></li>
+                <li><a href="afterword.html">あとがき</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="chapter-navigation">
+            <a href="architect-sourcing-chapter2.html" class="back-home">第2章に戻る</a>
+            <a href="architect-sourcing-chapter4.html" class="next-chapter">第4章へ進む</a>
+        </div>
+        
+        <section id="novel">
+            <div class="novel-container">
+                <div class="chapter-title">第3章：廃頽者の叛旗</div>
+                <div class="novel-text">
+                    <p>
+                        湘南駅北口から離れた路地裏へと私は歩を進めていた。手元の紙の地図を頼りに、目的地を探す。デジタルマップでは表示されない場所。それは、システムの管理が及ばない空間を意味していた。端末であれば、目的地までの経路が視覚的に把握できる上、機械音声によるアシスト機能が備わっているため、道に迷うということはほとんどない。だが、手書きの地図は必要最低限の情報しか記載されておらず、何度も自分の位置を見失ってしまった。慣れない紙の地図に戸惑いながら、私は地図を回転させ、現実の風景と照らし合わせる。システムに依存した生活に慣れすぎた自分を、今更ながら実感していた。
+                    </p>
+                    <p>
+                        地図を頼りに歩き始めて30分。管理区域から離れるにつれ、街並みの様相は徐々に変わっていった。最新のナノマテリアルで構成された煌びやかなビル群は姿を消し、古びた建物群が顔を覗かせ始める。路地は次第に迷路のように入り組み、時折、思いがけない空き地に出くわした。建物の修繕の痕跡が、至る所に見られる。壁のひび割れを補修した跡、古い看板を支える新しい金具、風雨に耐えてきた木製の雨戸。それらは全て、この場所で生きる人々の意志を物語っていた。
+                    </p>
+                    <p>
+                        彼からは手描きの地図の他に、一枚の紙の入場券が渡されていた。デジタルチケットが当たり前となった現代において、紙の入場券の存在は非常に珍しかった。ざらざらとした質感の紙に、活版印刷でプリントされた入場券は、建築家S氏の個展への招待状であった。チケットの端には、インクの滲みが微かに残っている。時代に逆行するような、その物質性に目を引かれた。
+                    </p>
+                    <p>
+                        路地を曲がると、古びた三階建ての店舗が目に入った。どうやらここが目的地の店舗のようだ。一階は雑貨店として使われているようだが、二階への階段が外部に露出している。錆びた手すりに絡まるツタの様子が、おとぎ話に出てくる家のようであった。店先では、古道具が所狭しと並べられていた。錆びついた工具、色褪せた看板、年代物の家具。時間の堆積を感じさせる品々が、ひっそりと置かれている。
+                    </p>
+                    <p>
+                        「Sさんの個展を見に来たなら二階だよ」
+                    </p>
+                    <p>
+                        店の前で右往左往している私に、一階の店主が、階段を指差して言った。外階段を見上げると、小さな表札が見える。錆びついた鋼製の階段を一段一段上がっていく。古い階段は体重を預けるたびに音を立て、金属の軋みが静かな路地に響く。
+                    </p>
+                    <p>
+                        展示室に足を踏み入れた瞬間、私は息を呑んだ。手描きの建築ドローイング、精緻な模型、そして彫刻作品。デジタルデータが支配する現代において、もはや見ることのない光景が広がっていた。それは、まるで時代に対する静かな反逆のようだった。壁には幾重にも重なるように図面が貼られ、その一枚一枚に作者の思考の痕跡が刻まれていた。
+                    </p>
+                    <p>
+                        中でも際立っていたのは、粘土と石膏で作られた一連の建築彫刻だった。その形態からは、一種の狂気すら感じられた。物量の暴力とも呼べる圧倒的な存在感。しかし、その中に明確な意図を感じ取ることができた。それは、人の手から成る形の持つ力だった。彫刻の表面には制作者の指の跡が生々しく残され、その触覚的な質感が見る者の身体に直接訴えかけてくる。
+                    </p>
+                    <p>
+                        「建築は単なる構造ではない。それは思想だ」 
+                    </p>
+                    <p>
+                        展示室の中央で、S氏は来場者たちに語りかけていた。その声には、確固たる信念が宿っていた。私は思わずその言葉に引き込まれ、他の来場者たちと共に聞き入っていた。
+                    </p>
+                    <p>
+                        演説を終えたS氏に、大きな拍手が贈られる。何人かの来場者が彼の周りに集まり、熱心に質問を投げかけていた。S氏は一人一人の問いに丁寧に答えながら、ゆっくりと私の方へと近づいてきた。
+                    </p>
+                    <p>
+                        「Mさんから、話は伺っています」 
+                    </p>
+                    <p>
+                        その眼差しには、若々しい好奇心が宿っていた。彼の身振りには、システムに縛られない者特有の自由さがあった。
+                    </p>
+                    <p>
+                        「これらの作品、とても印象的です。特に、建築と彫刻の境界を行き来する表現に惹かれました」 
+                    </p>
+                    <p>
+                        私の言葉に、S氏は穏やかな笑みを浮かべた。その表情には、理解者を見出した喜びが垣間見えた。
+                    </p>
+                    <p>
+                        「ありがとうございます。実は、これらは全て、私たちのアトリエで制作したものなんです」 S氏は、古い写真を取り出した。そこには、昭和初期の穀物蔵が写っていた。写真は時を経て色褪せていたが、建物の持つ存在感は、今なお鮮明に伝わってきた。
+                    </p>
+                    <p>
+                        「もし良ければ、アトリエも見に来ませんか？」
+                    </p>
+                    <p>
+                        数時間後、私はS氏のアトリエを訪れた。錆びついた線路脇に佇む古い穀物蔵。二階建ての木造建築は、時を経て墨色に染まった杉板に覆われ、その存在感は周囲の建築群の中で異彩を放っていた。重厚な木製の扉を開けると、そこには想像を超える空間が広がっていた。木材の香りと、石膏の粉の匂いが、独特の空気を作り出している。
+                    </p>
+                    <p>
+                        「ここは、私たちの共同アトリエなんです。彫刻家、画家、建築家、デザイナー。様々なアーティストが集まって、それぞれの作品を作っています。企業の管理区域外だからこそ、できる活動なんです」
+                    </p>
+                    <p>
+                        S氏の声には、誇りと共に、ある種の覚悟のようなものが感じられた。
+                    </p>
+                    <p>
+                        土間には木材の切れ端や石膏の破片が散らばり、壁には幾何学的な図面が無数に貼られている。その図面群は互いに重なり合い、まるで星座のように点と線が織りなす宇宙を形作っていた。手描きの線は、時に激しく、時に繊細に紙面を走り、建築家の思考の軌跡を描いている。
+                    </p>
+                    <p>
+                        螺旋階段を上がると、彫刻作品が立ち並び、その間を縫うように歩を進めると、異国の路地を散策しているような錯覚に陥る。高窓から差し込む光は、空間全体を神秘的な雰囲気で満たしていた。その光は、彫刻群の輪郭を浮かび上がらせ、作品の表情を刻一刻と変化させていく。
+                    </p>
+                    <p>
+                        「私の師は、建築を総合芸術として捉えていました」S氏は、古書のページをゆっくりとめくりながら言った。その本には、20世紀の建築家たちの作品が収められていた。
+                    </p>
+                    <p>
+                        「1950年の建築士法は、確かに技術者としての定義に重きを置いていました」S氏は古い法令集を取り出した。「しかし、そこには建築家の可能性を制限しない余地があった。構造、環境、意匠―これらの分野を横断的に扱うことを、暗黙の了解として認めていたんです」
+                    </p>
+                    <p>
+                        彼は一枚の図面を広げた。それは彼の師が手がけた建築のスケッチだった。
+                    </p>
+                    <p>
+                        「見てください。この一枚の図面の中に、建築のあらゆる要素が込められている。構造計算の痕跡、環境への配慮、そして芸術的な表現。建築士法は、このような総合的な実践を可能にしていました」
+                    </p>
+                    <p>
+                        S氏は窓際に立ち、続けた。
+                    </p>
+                    <p>
+                        「しかし、2050年の建築家法は違った。建築家の職能を細分化し、専門性の名の下に私たちを分断した。皮肉なことに、建築家の地位を守ると思われたその法律は、逆に私たちを縛り付けることになったのです」
+                    </p>
+                    <p>
+                        彼は古い建築雑誌を手に取る。そこには、かつての建築家たちの姿が写っていた。
+                    </p>
+                    <p>
+                        「企業は、建築家を分業設計の人的資源として効率的に管理できるように、『専門技術者』として再定義したのです。設計プロセスは細分化され、一人の建築家が全体を把握することは、制度的に不可能となった」
+                    </p>
+                    <p>
+                        S氏の声には深い憤りが混じっていた。
+                    </p>
+                    <p>
+                        「そう、建築家法は、表向きは私たちの権利を保証するものでした。需要の増加に応じて、より多くの建築家を生み出すための法整備。しかし、その実態は...」
+                    </p>
+                    <p>
+                        彼は一枚の図面を広げた。それは、彼の師が最後に手がけた建築のスケッチだった。
+                    </p>
+                    <p>
+                        「これが、法改正前の最後の世代が描いた図面です。ここには建築家の全てが込められている。構造、環境、芸術性、そして何より、社会への深い洞察。私たちは、こうした総合的な視点を持つ存在だったのです」
+                    </p>
+                    <p>
+                        アトリエの壁に無数に貼られた図面群が、夕暮れの光を受けて揺らめく。
+                    </p>
+                    <p>
+                        「今や建築家は、資本の歯車として再編成された。参入障壁は下がり、確かに多くの建築家が生まれた。しかし、その代償として、私たちは本来の力を失ったのです」
+                    </p>
+                    <p>
+                        私は黙って聞いていた。S氏の言葉には、単なる懐古趣味を超えた、切実な問題提起が含まれていた。
+                    </p>
+                    <p>
+                        「今、私はアーキテクトソーシングには登録していません。社会制度上は、建築家とは認められていない。しかし」
+                    </p>
+                    <p>
+                        S氏は力強く続けた。
+                    </p>
+                    <p>
+                        「だからこそ、私は本来の建築家の姿を追求できる。それは社会システムへの反逆ではない。むしろ、建築家という存在の本質を取り戻す試みなのです」
+                    </p>
+                    <p>
+                        しかし、S氏の表情に迷いはなかった。
+                    </p>
+                    <p>
+                        「建築家とは何か。それは建築を追い続ける姿勢そのものだ。そして、自分の好きなことをやり続けること。それが結果として、人のためになるから」
+                    </p>
+                    <p>
+                        S氏は作業机の方へ歩み寄った。そこには、いくつもの模型が並んでいる。精緻な敷地模型の上には、様々な形の建物のスタディ模型が置かれていた。石膏で作られたそれらの模型は、重みのある存在感を放ち、まるで小さな彫刻作品のようだった。
+                    </p>
+                    <p>
+                        「これらは、このアトリエ周辺の将来の可能性を探っているんです」S氏は静かに語った。「建物同士の関係性、人々の動き、生まれる風景。まだ見ぬ空間への想像を、形にしてみる」
+                    </p>
+                    <p>
+                        「趣味のようなものですが」と言いながら、S氏は優しく模型に触れた。「こうして可能性を探り続けることで、思いがけない発見が生まれる。それが、いつか誰かの役に立つかもしれない」
+                    </p>
+                    <p>
+                        その言葉には、建築家としての矜持と、創造することへの純粋な喜びが感じられた。
+                    </p>
+                    <p>
+                        この場所から生まれる創造性は、個人の内なる想像力の発露であり、それは他の芸術性に呼応しながら、伝播していっている。システムではコントロールすることのできない、人間の手による創造の価値が、確かにそこにはあった。
+                    </p>
+                    <p>
+                        S氏の作品や活動もまた、彼自身の抑えきれない創造衝動から生まれた趣味的な営みだった。しかし、そうした制御不能な個人の表現こそが、均質化された都市に新たな個性を刻み込んでいく。それは意図的な都市計画では決して生み出せない、偶発的な可能性。
+                    </p>
+                    <p>
+                        夕暮れの光が、高窓から差し込む。埃っぽい空気の中で、光の粒子が揺らめいていた。その光の中で、私は確信していた。ここには、システムでは決して生み出せない何かがある。それは、人間にしか創り出せない、建築の新しい地平なのだと。アトリエを後にする私の心には、建築家としての新たな可能性が、確かな重みとなって刻まれていた。
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 土居亮太. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        // ローディングアニメーション
+        document.addEventListener('DOMContentLoaded', function() {
+            const loadingScreen = document.querySelector('.loading-screen');
+            const loadingProgress = document.querySelector('.loading-progress');
+            const loadingPercent = document.querySelector('.loading-percent');
+            const loadingStatus = document.querySelector('.loading-status');
+            const loadingMessages = document.querySelector('.loading-messages');
+            
+            // システムメッセージのリスト
+            const messages = [
+                "個人認証プロトコル検索中...",
+                "履歴解析実行中...",
+                "建築家データベースに接続...",
+                "設計パターン解析中...",
+                "空間パラメータの照合...",
+                "建築家ソーシングシステムにアクセス...",
+                "形状認識センサー校正中...",
+                "脳波データマッピング実行中...",
+                "創造性指数評価中...",
+                "人格解析モジュール起動中...",
+                "量子レベル創発性計算処理実行中...",
+                "空間把握能力試験準備完了",
+                "物語モード初期化完了"
+            ];
+            
+            // 進行状況関連の変数
+            let progress = 0;
+            let messageIndex = 0;
+            let interval;
+            
+            // ランダムな速度で進行状況を更新
+            const startLoading = () => {
+                interval = setInterval(() => {
+                    // 非線形的な進行 (最初は速く、後半は徐々に遅く)
+                    let increment;
+                    if (progress < 30) {
+                        increment = Math.random() * 3 + 1;
+                    } else if (progress < 60) {
+                        increment = Math.random() * 2 + 0.5;
+                    } else if (progress < 90) {
+                        increment = Math.random() * 1 + 0.3;
+                    } else {
+                        increment = Math.random() * 0.5 + 0.1;
+                    }
+                    
+                    progress = Math.min(progress + increment, 100);
+                    
+                    // 進行状況の更新
+                    loadingProgress.style.width = `${progress}%`;
+                    loadingPercent.textContent = `${Math.floor(progress)}%`;
+                    
+                    // 一定の閾値でメッセージを表示
+                    if (progress > messageIndex * (100 / messages.length) && messageIndex < messages.length) {
+                        loadingMessages.innerHTML = `<div>${messages[messageIndex]}</div>`;
+                        messageIndex++;
+                        
+                        // ステータスメッセージの更新
+                        if (progress < 33) {
+                            loadingStatus.textContent = "セキュリティプロトコル認証中...";
+                        } else if (progress < 66) {
+                            loadingStatus.textContent = "建築家パターン解析中...";
+                        } else if (progress < 99) {
+                            loadingStatus.textContent = "仮想空間生成中...";
+                        } else {
+                            loadingStatus.textContent = "接続完了";
+                        }
+                    }
+                    
+                    // 100%に達したら
+                    if (progress >= 100) {
+                        clearInterval(interval);
+                        setTimeout(() => {
+                            loadingScreen.classList.add('hidden');
+                            setTimeout(() => {
+                                loadingScreen.style.display = 'none';
+                            }, 500);
+                        }, 1000);
+                    }
+                }, 100);
+            };
+            
+            // ローディング開始（少し遅延させる）
+            setTimeout(startLoading, 500);
+        });
+
+        // シンプルなアニメーション効果
+        document.addEventListener('DOMContentLoaded', function() {
+            const sections = document.querySelectorAll('section');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            sections.forEach(section => {
+                section.style.opacity = 0;
+                section.style.transform = 'translateY(20px)';
+                section.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+                observer.observe(section);
+            });
+        });
+    </script>
+</body>
+</html>
