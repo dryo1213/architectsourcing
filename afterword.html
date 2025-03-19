@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="郊外都市の隆盛を担った建築家のライフヒストリーとその生産論的分析 - あとがき">
+    <title>あとがき - 郊外都市の隆盛を担った建築家のライフヒストリーとその生産論的分析</title>
+    <style>
+        /* ベースとなるスタイル */
+        :root {
+            --main-bg-color: #ffffff;
+            --main-text-color: #000000;
+            --accent-color: #333333;
+            --light-accent: #f0f0f0;
+            --transition-time: 0.3s;
+            --spacing: 2rem;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: "游明朝", YuMincho, "Hiragino Mincho ProN", "Hiragino Mincho Pro", "MS P明朝", serif;
+            background-color: var(--main-bg-color);
+            color: var(--main-text-color);
+            line-height: 1.7;
+            overflow-x: hidden;
+            padding: 0 15vw;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        /* ヘッダー */
+        header {
+            padding: 5vh 0;
+            border-bottom: 1px solid #eeeeee;
+            margin-bottom: var(--spacing);
+        }
+        
+        /* ナビゲーションメニュー */
+        .main-nav {
+            margin-top: 3rem;
+        }
+        
+        .main-nav ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: center;
+        }
+        
+        .main-nav li {
+            margin-bottom: 1rem;
+        }
+        
+        .main-nav a {
+            display: inline-block;
+            text-decoration: none;
+            color: var(--main-text-color);
+            font-size: 1rem;
+            padding: 0.8rem 1.5rem;
+            border: 1px solid var(--main-text-color);
+            transition: all var(--transition-time);
+            position: relative;
+            overflow: hidden;
+            background-color: transparent;
+        }
+        
+        .main-nav a:hover {
+            background-color: var(--main-text-color);
+            color: var(--main-bg-color);
+        }
+        
+        .main-nav a::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.1);
+            transition: transform 0.5s;
+            transform: skewX(-15deg);
+        }
+        
+        .main-nav a:hover::before {
+            transform: translateX(200%) skewX(-15deg);
+        }
+        
+        .title-container {
+            position: relative;
+            text-align: center;
+            width: 100%;
+        }
+        
+        h1 {
+            font-size: clamp(1.5rem, 5vw, 2.5rem);
+            font-weight: 300;
+            letter-spacing: 0.05em;
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+            text-align: center;
+            width: 100%;
+            line-height: 1.4;
+        }
+        
+        h1::after {
+            content: "";
+            position: absolute;
+            height: 1px;
+            width: 50px;
+            background-color: var(--main-text-color);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .subtitle {
+            font-size: clamp(0.9rem, 3vw, 1.2rem);
+            margin-top: 1.5rem;
+            margin-bottom: 3rem;
+            font-weight: 300;
+            text-align: center;
+        }
+        
+        /* メインコンテンツ */
+        main {
+            min-height: 60vh;
+            margin: var(--spacing) 0;
+        }
+        
+        .back-home {
+            margin-bottom: 2rem;
+            display: inline-block;
+            text-decoration: none;
+            color: var(--main-text-color);
+            font-size: 0.9rem;
+            transition: all var(--transition-time);
+            border-bottom: 1px solid transparent;
+        }
+        
+        .back-home:hover {
+            border-bottom: 1px solid var(--main-text-color);
+        }
+        
+        .back-home:before {
+            content: "← ";
+        }
+        
+        section {
+            margin-bottom: calc(var(--spacing) * 2);
+            text-align: center;
+        }
+        
+        .afterword-container {
+            background-color: var(--light-accent);
+            padding: 3rem;
+            border-radius: 4px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+        
+        h2 {
+            font-size: clamp(1.2rem, 4vw, 1.8rem);
+            font-weight: 400;
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+            text-align: center;
+        }
+        
+        h2::after {
+            content: "";
+            position: absolute;
+            height: 1px;
+            width: 30px;
+            background-color: var(--main-text-color);
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        p {
+            margin-bottom: 1rem;
+            font-size: clamp(0.9rem, 2vw, 1rem);
+            text-align: justify;
+        }
+        
+        .author-signature {
+            text-align: right;
+            margin-top: 3rem;
+            font-style: italic;
+        }
+        
+        .author-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-top: 2rem;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .author-contact {
+            margin-top: 1rem;
+        }
+        
+        .author-contact a {
+            color: var(--main-text-color);
+            text-decoration: none;
+            transition: opacity var(--transition-time);
+            display: inline-block;
+            margin-right: 1rem;
+            border-bottom: 1px solid transparent;
+            padding-bottom: 2px;
+        }
+        
+        .author-contact a:hover {
+            opacity: 0.7;
+            border-bottom: 1px solid var(--main-text-color);
+        }
+        
+        /* フッター */
+        footer {
+            padding: 3vh 0;
+            border-top: 1px solid #eeeeee;
+            text-align: center;
+            margin-top: calc(var(--spacing) * 2);
+            font-size: 0.8rem;
+        }
+        
+        /* アニメーションとインタラクション */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        header, main, section {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+        
+        section:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        
+        /* SF風の装飾 */
+        .grid-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(rgba(0,0,0,0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px);
+            background-size: 20px 20px;
+            pointer-events: none;
+            z-index: -1;
+            opacity: 0.5;
+        }
+        
+        .corner-decoration {
+            position: fixed;
+            width: 100px;
+            height: 100px;
+            border: 1px solid rgba(0,0,0,0.1);
+            z-index: -1;
+        }
+        
+        .corner-tl {
+            top: 20px;
+            left: 20px;
+            border-right: none;
+            border-bottom: none;
+        }
+        
+        .corner-tr {
+            top: 20px;
+            right: 20px;
+            border-left: none;
+            border-bottom: none;
+        }
+        
+        .corner-bl {
+            bottom: 20px;
+            left: 20px;
+            border-right: none;
+            border-top: none;
+        }
+        
+        .corner-br {
+            bottom: 20px;
+            right: 20px;
+            border-left: none;
+            border-top: none;
+        }
+        
+        /* レスポンシブ対応 */
+        @media (max-width: 768px) {
+            :root {
+                --spacing: 1.5rem;
+            }
+            
+            body {
+                padding: 0 8vw;
+            }
+            
+            .corner-decoration {
+                width: 50px;
+                height: 50px;
+            }
+            
+            .main-nav ul {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: center;
+            }
+            
+            .main-nav a {
+                width: 100%;
+                text-align: center;
+                padding: 0.6rem 1.2rem;
+                font-size: 0.9rem;
+            }
+            
+            .afterword-container {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- SF風の装飾 -->
+    <div class="grid-overlay"></div>
+    <div class="corner-decoration corner-tl"></div>
+    <div class="corner-decoration corner-tr"></div>
+    <div class="corner-decoration corner-bl"></div>
+    <div class="corner-decoration corner-br"></div>
+
+    <header>
+        <div class="title-container">
+            <h1>あとがき</h1>
+            <p class="subtitle">郊外都市の隆盛を担った建築家のライフヒストリーとその生産論的分析</p>
+        </div>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="index.html">トップページ</a></li>
+                <li><a href="thesis-overview.html">修士論文の概要</a></li>
+                <li><a href="novel-theory.html">小説のあらすじと理論</a></li>
+                <li><a href="architect-sourcing.html">第1章：名もなき建築家</a></li>
+                <li><a href="architect-sourcing-chapter2.html">第2章：爪弾き、繕い、結う</a></li>
+                <li><a href="architect-sourcing-chapter3.html">第3章：廃頽者の叛旗</a></li>
+                <li><a href="architect-sourcing-chapter4.html">第4章：乱数発生装置としての建築家</a></li>
+                <li><a href="architect-sourcing-chapter5.html">第5章：建築家の代替不可能性</a></li>
+                <li><a href="afterword.html">あとがき</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <a href="index.html" class="back-home">トップページに戻る</a>
+        
+        <section id="afterword">
+            <div class="afterword-container">
+                <h2>本論文を終えて</h2>
+                <p>
+                    本研究では、郊外都市の形成と発展に貢献してきた建築家たちの姿を、統計的データと個人のライフヒストリーという二つの視点から描き出すことを試みました。特に、建築史において捨象されがちな「量を担う建築家」たちの貢献に光を当て、その歴史的意義を再評価することを目指しました。
+                </p>
+                <p>
+                    調査の過程で、多くの建築家の方々にインタビューをさせていただきましたが、その一人一人の人生には、時代の変化に対応しながらも、自らの建築観を貫き通してきた強い信念を感じました。今回の論文は、そうした個人の物語を通じて、日本の郊外都市の形成過程を新たな視点から捉え直す試みでもあります。
+                </p>
+                <p>
+                    また、論文の補遺として執筆した小説「アーキテクトソーシング」は、建築家の代替可能性という問題について、近未来のフィクションを通じて考察したものです。技術の発展によって建築の生産システムが変化しても、建築家という存在の本質的な価値は失われないという信念を、物語として表現しました。
+                </p>
+                <p>
+                    最後に、本研究に協力してくださった全ての方々、特に長時間のインタビューに応じてくださった建築家の皆様、そして指導教員の門脇先生に心より感謝申し上げます。また、研究室の仲間たちからの数々の助言と励ましが、本論文を完成させる大きな力となりました。
+                </p>
+                <div class="author-signature">
+                    2025年2月<br>
+                    土居 亮太
+                </div>
+            </div>
+            
+            <div class="author-info">
+                <div class="author-name">土居 亮太</div>
+                <div class="author-lab">門脇研究室</div>
+                <div class="author-contact">
+                    <a href="https://x.com/ArchitectDry" target="_blank">X (Twitter)</a>
+                    <a href="https://www.instagram.com/dry_architect/?r=nametag" target="_blank">Instagram</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 土居亮太. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        // シンプルなアニメーション効果
+        document.addEventListener('DOMContentLoaded', function() {
+            const sections = document.querySelectorAll('section');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            sections.forEach(section => {
+                section.style.opacity = 0;
+                section.style.transform = 'translateY(20px)';
+                section.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+                observer.observe(section);
+            });
+        });
+    </script>
+</body>
+</html>
