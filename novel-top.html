@@ -37,7 +37,7 @@
             margin: 0 auto;
         }
         
-        /* ローディングアニメーション（最適化版） */
+        /* ローディングアニメーション（トップページにのみ表示） */
         .loading-screen {
             position: fixed;
             top: 0;
@@ -243,16 +243,18 @@
         }
         
         .cover-image {
-            max-width: 100%;
+            max-width: 80%; /* 画像サイズを縮小（100%から80%に変更） */
             height: auto;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.7);
             margin-bottom: 2rem;
-            transition: transform 0.3s ease;
+            /* ホバーエフェクトを削除 */
         }
         
+        /* ホバーエフェクトを削除
         .cover-image:hover {
             transform: scale(1.02);
         }
+        */
         
         /* 目次のスタイル */
         .toc-section {
@@ -452,8 +454,9 @@
     </style>
 </head>
 <body>
-    <!-- ローディングアニメーション -->
-    <div class="loading-screen">
+    <!-- ローディングアニメーション（トップページにのみ表示） -->
+    <!-- index.htmlの場合のみ表示 -->
+    <div class="loading-screen" id="loading-animation">
         <div class="loading-container">
             <div class="loading-text">アーキテクトソーシング・コネクション</div>
             <div class="loading-bar">
@@ -475,7 +478,7 @@
     <header>
         <div class="title-container">
             <h1>アーキテクトソーシング</h1>
-            <p class="subtitle">2080年、建築家たちの物語</p>
+            <p class="subtitle">2080年の建築家の名前をめぐる物語</p>
         </div>
         <nav class="main-nav">
             <ul>
@@ -551,82 +554,95 @@
     </footer>
 
     <script>
-        // ローディングアニメーション（最適化版）
+        // ローディングアニメーション（トップページにのみ表示）
         document.addEventListener('DOMContentLoaded', function() {
-            const loadingScreen = document.querySelector('.loading-screen');
-            const loadingProgress = document.querySelector('.loading-progress');
-            const loadingPercent = document.querySelector('.loading-percent');
-            const loadingStatus = document.querySelector('.loading-status');
-            const loadingMessages = document.querySelector('.loading-messages');
+            // 現在のページのURLパスを取得
+            const currentPath = window.location.pathname;
+            const loadingScreen = document.getElementById('loading-animation');
             
-            // システムメッセージのリスト（短縮版）
-            const messages = [
-                "個人認証プロトコル検索中...",
-                "建築家データベースに接続...",
-                "設計パターン解析中...",
-                "形状認識センサー校正中...",
-                "創造性指数評価中...",
-                "物語モード初期化完了"
-            ];
-            
-            // 進行状況関連の変数
-            let progress = 0;
-            let messageIndex = 0;
-            let interval;
-            
-            // ランダムな速度で進行状況を更新（短縮版）
-            const startLoading = () => {
-                interval = setInterval(() => {
-                    // 非線形的な進行（加速版）
-                    let increment;
-                    if (progress < 30) {
-                        increment = Math.random() * 5 + 2; // 加速
-                    } else if (progress < 60) {
-                        increment = Math.random() * 4 + 1;
-                    } else if (progress < 90) {
-                        increment = Math.random() * 3 + 0.5;
-                    } else {
-                        increment = Math.random() * 2 + 0.3;
-                    }
+            // index.html または / （ルートパス）の場合のみローディングアニメーションを表示
+            if (currentPath.endsWith('index.html') || currentPath === '/' || currentPath.endsWith('/')) {
+                if (loadingScreen) {
+                    const loadingProgress = document.querySelector('.loading-progress');
+                    const loadingPercent = document.querySelector('.loading-percent');
+                    const loadingStatus = document.querySelector('.loading-status');
+                    const loadingMessages = document.querySelector('.loading-messages');
                     
-                    progress = Math.min(progress + increment, 100);
+                    // システムメッセージのリスト（短縮版）
+                    const messages = [
+                        "個人認証プロトコル検索中...",
+                        "建築家データベースに接続...",
+                        "設計パターン解析中...",
+                        "形状認識センサー校正中...",
+                        "創造性指数評価中...",
+                        "物語モード初期化完了"
+                    ];
                     
-                    // 進行状況の更新
-                    loadingProgress.style.width = `${progress}%`;
-                    loadingPercent.textContent = `${Math.floor(progress)}%`;
+                    // 進行状況関連の変数
+                    let progress = 0;
+                    let messageIndex = 0;
+                    let interval;
                     
-                    // 一定の閾値でメッセージを表示
-                    if (progress > messageIndex * (100 / messages.length) && messageIndex < messages.length) {
-                        loadingMessages.innerHTML = `<div>${messages[messageIndex]}</div>`;
-                        messageIndex++;
-                        
-                        // ステータスメッセージの更新
-                        if (progress < 33) {
-                            loadingStatus.textContent = "セキュリティプロトコル認証中...";
-                        } else if (progress < 66) {
-                            loadingStatus.textContent = "建築家パターン解析中...";
-                        } else if (progress < 99) {
-                            loadingStatus.textContent = "仮想空間生成中...";
-                        } else {
-                            loadingStatus.textContent = "接続完了";
-                        }
-                    }
+                    // ランダムな速度で進行状況を更新（短縮版）
+                    const startLoading = () => {
+                        interval = setInterval(() => {
+                            // 非線形的な進行（加速版）
+                            let increment;
+                            if (progress < 30) {
+                                increment = Math.random() * 5 + 2; // 加速
+                            } else if (progress < 60) {
+                                increment = Math.random() * 4 + 1;
+                            } else if (progress < 90) {
+                                increment = Math.random() * 3 + 0.5;
+                            } else {
+                                increment = Math.random() * 2 + 0.3;
+                            }
+                            
+                            progress = Math.min(progress + increment, 100);
+                            
+                            // 進行状況の更新
+                            loadingProgress.style.width = `${progress}%`;
+                            loadingPercent.textContent = `${Math.floor(progress)}%`;
+                            
+                            // 一定の閾値でメッセージを表示
+                            if (progress > messageIndex * (100 / messages.length) && messageIndex < messages.length) {
+                                loadingMessages.innerHTML = `<div>${messages[messageIndex]}</div>`;
+                                messageIndex++;
+                                
+                                // ステータスメッセージの更新
+                                if (progress < 33) {
+                                    loadingStatus.textContent = "セキュリティプロトコル認証中...";
+                                } else if (progress < 66) {
+                                    loadingStatus.textContent = "建築家パターン解析中...";
+                                } else if (progress < 99) {
+                                    loadingStatus.textContent = "仮想空間生成中...";
+                                } else {
+                                    loadingStatus.textContent = "接続完了";
+                                }
+                            }
+                            
+                            // 100%に達したら
+                            if (progress >= 100) {
+                                clearInterval(interval);
+                                setTimeout(() => {
+                                    loadingScreen.classList.add('hidden');
+                                    setTimeout(() => {
+                                        loadingScreen.style.display = 'none';
+                                    }, 300); // 短縮
+                                }, 500); // 短縮
+                            }
+                        }, 65); // 短縮（間隔を短く）
+                    };
                     
-                    // 100%に達したら
-                    if (progress >= 100) {
-                        clearInterval(interval);
-                        setTimeout(() => {
-                            loadingScreen.classList.add('hidden');
-                            setTimeout(() => {
-                                loadingScreen.style.display = 'none';
-                            }, 300); // 短縮
-                        }, 500); // 短縮
-                    }
-                }, 65); // 短縮（間隔を短く）
-            };
-            
-            // ローディング開始（遅延時間短縮）
-            setTimeout(startLoading, 200);
+                    // ローディング開始（遅延時間短縮）
+                    setTimeout(startLoading, 200);
+                }
+            } else {
+                // トップページ以外ではローディング画面を非表示
+                if (loadingScreen) {
+                    loadingScreen.style.display = 'none';
+                }
+            }
         });
     </script>
 </body>
