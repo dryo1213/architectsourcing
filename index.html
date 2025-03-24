@@ -31,6 +31,86 @@
             max-width: 1400px;
             margin: 0 auto;
         }
+
+        /* ローディングアニメーション（トップページにのみ表示） */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: black;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            transition: opacity 0.5s ease-out;
+        }
+        
+        .loading-screen.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+        
+        .loading-container {
+            width: 80%;
+            max-width: 600px;
+            color: white;
+            font-family: monospace;
+            font-size: 1.2rem;
+            text-align: center;
+        }
+        
+        .loading-bar {
+            width: 100%;
+            height: 2px;
+            background-color: #222;
+            margin: 20px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .loading-progress {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 0%;
+            background-color: white;
+            box-shadow: 0 0 10px white;
+        }
+        
+        .loading-text {
+            margin-bottom: 10px;
+            font-size: 1.4rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        
+        .loading-percent {
+            font-size: 2rem;
+            font-weight: bold;
+            letter-spacing: 3px;
+            margin: 15px 0;
+        }
+        
+        .loading-status {
+            font-size: 0.9rem;
+            opacity: 0.7;
+            height: 1.5em;
+            margin-top: 10px;
+        }
+        
+        .loading-messages {
+            margin-top: 20px;
+            font-size: 0.8rem;
+            color: #666;
+            height: 3em;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
         
         /* ヘッダー */
         header {
@@ -122,6 +202,7 @@
             margin-top: 1.5rem;
             margin-bottom: 3rem;
             font-weight: 300;
+            text-align: center;
         }
         
         /* メインコンテンツ */
@@ -159,6 +240,22 @@
             margin-bottom: 1rem;
             font-size: clamp(0.9rem, 2vw, 1rem);
             text-align: center;
+        }
+
+        /* 表紙画像のスタイル */
+        .cover-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 3rem 0;
+        }
+        
+        .cover-image {
+            max-width: 80%; /* 画像サイズを縮小 */
+            height: auto;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            margin-bottom: 2rem;
+            /* ホバーエフェクトを削除 */
         }
         
         /* 著者情報 */
@@ -305,6 +402,20 @@
     </style>
 </head>
 <body>
+    <!-- ローディングアニメーション（novel-top.htmlにのみ表示） -->
+    <!-- novel-top.htmlの場合のみ表示 -->
+    <div class="loading-screen" id="loading-animation">
+        <div class="loading-container">
+            <div class="loading-text">アーキテクトソーシング・コネクション</div>
+            <div class="loading-bar">
+                <div class="loading-progress"></div>
+            </div>
+            <div class="loading-percent">0%</div>
+            <div class="loading-status">システムに接続中...</div>
+            <div class="loading-messages"></div>
+        </div>
+    </div>
+
     <!-- SF風の装飾 -->
     <div class="grid-overlay"></div>
     <div class="corner-decoration corner-tl"></div>
@@ -329,6 +440,11 @@
     </header>
 
     <main>
+        <!-- 表紙画像を追加 -->
+        <div class="cover-container">
+            <img src="architect-sourcing-cover.jpg" alt="アーキテクトソーシング表紙" class="cover-image" />
+        </div>
+    
         <section id="about">
             <h2>概要</h2>
             <p>
@@ -359,6 +475,97 @@
     </footer>
 
     <script>
+        // ローディングアニメーション（トップページにのみ表示）
+        document.addEventListener('DOMContentLoaded', function() {
+            // 現在のページのURLパスを取得
+            const currentPath = window.location.pathname;
+            const loadingScreen = document.getElementById('loading-animation');
+            
+            // novel_top.html の場合のみローディングアニメーションを表示
+            if (currentPath.includes('novel-top.html')) {
+                if (loadingScreen) {
+                    const loadingProgress = document.querySelector('.loading-progress');
+                    const loadingPercent = document.querySelector('.loading-percent');
+                    const loadingStatus = document.querySelector('.loading-status');
+                    const loadingMessages = document.querySelector('.loading-messages');
+                    
+                    // システムメッセージのリスト（短縮版）
+                    const messages = [
+                        "個人認証プロトコル検索中...",
+                        "建築家データベースに接続...",
+                        "設計パターン解析中...",
+                        "形状認識センサー校正中...",
+                        "創造性指数評価中...",
+                        "物語モード初期化完了"
+                    ];
+                    
+                    // 進行状況関連の変数
+                    let progress = 0;
+                    let messageIndex = 0;
+                    let interval;
+                    
+                    // ランダムな速度で進行状況を更新（短縮版）
+                    const startLoading = () => {
+                        interval = setInterval(() => {
+                            // 非線形的な進行（加速版）
+                            let increment;
+                            if (progress < 30) {
+                                increment = Math.random() * 5 + 2; // 加速
+                            } else if (progress < 60) {
+                                increment = Math.random() * 4 + 1;
+                            } else if (progress < 90) {
+                                increment = Math.random() * 3 + 0.5;
+                            } else {
+                                increment = Math.random() * 2 + 0.3;
+                            }
+                            
+                            progress = Math.min(progress + increment, 100);
+                            
+                            // 進行状況の更新
+                            loadingProgress.style.width = `${progress}%`;
+                            loadingPercent.textContent = `${Math.floor(progress)}%`;
+                            
+                            // 一定の閾値でメッセージを表示
+                            if (progress > messageIndex * (100 / messages.length) && messageIndex < messages.length) {
+                                loadingMessages.innerHTML = `<div>${messages[messageIndex]}</div>`;
+                                messageIndex++;
+                                
+                                // ステータスメッセージの更新
+                                if (progress < 33) {
+                                    loadingStatus.textContent = "セキュリティプロトコル認証中...";
+                                } else if (progress < 66) {
+                                    loadingStatus.textContent = "建築家パターン解析中...";
+                                } else if (progress < 99) {
+                                    loadingStatus.textContent = "仮想空間生成中...";
+                                } else {
+                                    loadingStatus.textContent = "接続完了";
+                                }
+                            }
+                            
+                            // 100%に達したら
+                            if (progress >= 100) {
+                                clearInterval(interval);
+                                setTimeout(() => {
+                                    loadingScreen.classList.add('hidden');
+                                    setTimeout(() => {
+                                        loadingScreen.style.display = 'none';
+                                    }, 300); // 短縮
+                                }, 500); // 短縮
+                            }
+                        }, 65); // 短縮（間隔を短く）
+                    };
+                    
+                    // ローディング開始（遅延時間短縮）
+                    setTimeout(startLoading, 200);
+                }
+            } else {
+                // トップページ以外ではローディング画面を非表示
+                if (loadingScreen) {
+                    loadingScreen.style.display = 'none';
+                }
+            }
+        });
+
         // シンプルなアニメーション効果
         document.addEventListener('DOMContentLoaded', function() {
             const sections = document.querySelectorAll('section');
