@@ -246,6 +246,31 @@
             content: "← ";
         }
         
+        /* 小説あらすじと理論へのリンク */
+        .theory-link-container {
+            text-align: center;
+            margin: 2rem 0 3rem;
+        }
+        
+        .theory-link {
+            display: inline-block;
+            text-decoration: none;
+            color: var(--accent-color);
+            font-size: 1.1rem;
+            padding: 0.8rem 1.8rem;
+            border: 1px solid var(--accent-color);
+            border-radius: 4px;
+            transition: all var(--transition-time);
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+        
+        .theory-link:hover {
+            background-color: var(--accent-color);
+            color: var(--dark-accent);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+        
         /* 表紙画像のスタイル */
         .cover-container {
             display: flex;
@@ -496,7 +521,12 @@
     </header>
 
     <main>
-        <a href="novel-theory.html" class="back-home">あらすじと理論に戻る</a>
+        <a href="index.html" class="back-home">トップページに戻る</a>
+        
+        <!-- 小説のあらすじと理論へのリンク -->
+        <div class="theory-link-container">
+            <a href="novel-theory.html" class="theory-link">小説のあらすじと理論</a>
+        </div>
         
         <!-- 表紙画像 -->
         <div class="cover-container">
