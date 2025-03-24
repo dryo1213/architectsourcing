@@ -3,21 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="郊外都市の隆盛を担った建築家のライフヒストリーとその生産論的分析 - 小説「アーキテクトソーシング」のあらすじと理論">
-    <title>小説「アーキテクトソーシング」のあらすじと理論</title>
+    <meta name="description" content="郊外都市の隆盛を担った建築家のライフヒストリーとその生産論的分析 - 小説のあらすじと理論">
+    <title>小説のあらすじと理論 - 郊外都市の隆盛を担った建築家のライフヒストリーとその生産論的分析</title>
     <style>
         /* ベースとなるスタイル */
         :root {
-            --main-bg-color: #111111;
-            --main-text-color: #e0e0e0;
-            --accent-color: #ffffff;
-            --light-accent: #222222;
-            --dark-accent: #080808;
-            --highlight: rgba(255, 255, 255, 0.15);
+            --main-bg-color: #ffffff;
+            --main-text-color: #000000;
+            --accent-color: #333333;
+            --light-accent: #f0f0f0;
             --transition-time: 0.3s;
             --spacing: 2rem;
-            --font-title: "游明朝", YuMincho, "Hiragino Mincho ProN", "Hiragino Mincho Pro", "MS P明朝", serif;
-            --font-body: "游明朝", YuMincho, "Hiragino Mincho ProN", "Hiragino Mincho Pro", "MS P明朝", serif;
         }
         
         * {
@@ -27,20 +23,21 @@
         }
         
         body {
-            font-family: var(--font-body);
+            font-family: "游明朝", YuMincho, "Hiragino Mincho ProN", "Hiragino Mincho Pro", "MS P明朝", serif;
             background-color: var(--main-bg-color);
             color: var(--main-text-color);
-            line-height: 1.8;
+            line-height: 2;
             overflow-x: hidden;
             padding: 0 15vw;
             max-width: 1400px;
             margin: 0 auto;
+            letter-spacing: 0.05em;
         }
         
         /* ヘッダー */
         header {
             padding: 5vh 0;
-            border-bottom: 1px solid #333;
+            border-bottom: 1px solid #eeeeee;
             margin-bottom: var(--spacing);
         }
         
@@ -67,16 +64,17 @@
             color: var(--main-text-color);
             font-size: 1rem;
             padding: 0.8rem 1.5rem;
-            border: 1px solid var(--accent-color);
+            border: 1px solid var(--main-text-color);
             transition: all var(--transition-time);
             position: relative;
             overflow: hidden;
             background-color: transparent;
+            letter-spacing: 0.1em;
         }
         
         .main-nav a:hover {
-            background-color: var(--accent-color);
-            color: var(--dark-accent);
+            background-color: var(--main-text-color);
+            color: var(--main-bg-color);
         }
         
         .main-nav a::before {
@@ -98,36 +96,39 @@
         .title-container {
             position: relative;
             text-align: center;
+            width: 100%;
         }
         
         h1 {
-            font-family: var(--font-title);
-            font-size: clamp(1.8rem, 5vw, 3rem);
+            font-size: clamp(1.5rem, 5vw, 2.5rem);
             font-weight: 300;
-            letter-spacing: 0.05em;
-            margin-bottom: 1.5rem;
+            letter-spacing: 0.08em;
+            margin-bottom: 1rem;
             position: relative;
             display: inline-block;
-            color: var(--accent-color);
+            text-align: center;
+            width: 100%;
+            line-height: 1.6;
         }
         
         h1::after {
             content: "";
             position: absolute;
             height: 1px;
-            width: 100px;
-            background-color: var(--accent-color);
-            bottom: -15px;
+            width: 50px;
+            background-color: var(--main-text-color);
+            bottom: -10px;
             left: 50%;
             transform: translateX(-50%);
         }
         
         .subtitle {
             font-size: clamp(0.9rem, 3vw, 1.2rem);
-            margin-top: 2rem;
+            margin-top: 1.5rem;
             margin-bottom: 3rem;
             font-weight: 300;
-            opacity: 0.8;
+            text-align: center;
+            letter-spacing: 0.07em;
         }
         
         /* メインコンテンツ */
@@ -140,112 +141,97 @@
             margin-bottom: 2rem;
             display: inline-block;
             text-decoration: none;
-            color: var(--accent-color);
+            color: var(--main-text-color);
             font-size: 0.9rem;
             transition: all var(--transition-time);
             border-bottom: 1px solid transparent;
+            letter-spacing: 0.05em;
         }
         
         .back-home:hover {
-            border-bottom: 1px solid var(--accent-color);
+            border-bottom: 1px solid var(--main-text-color);
         }
         
         .back-home:before {
             content: "← ";
         }
         
-        .section-container {
+        section {
+            margin-bottom: calc(var(--spacing) * 2);
+        }
+        
+        .theory-container {
             background-color: var(--light-accent);
             padding: 3rem;
             border-radius: 4px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-            position: relative;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
             margin-bottom: 2rem;
         }
         
-        .section-container::before {
+        h2 {
+            font-size: clamp(1.2rem, 4vw, 1.8rem);
+            font-weight: 400;
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+            text-align: center;
+            letter-spacing: 0.07em;
+        }
+        
+        h2::after {
             content: "";
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: 
-                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-            background-size: 20px 20px;
-            pointer-events: none;
-            border-radius: 4px;
-        }
-        
-        .novel-link-container {
-            text-align: center;
-            margin: 2rem 0;
-        }
-        
-        .novel-link {
-            display: inline-block;
-            text-decoration: none;
-            color: var(--accent-color);
-            font-size: 1.1rem;
-            padding: 0.8rem 1.8rem;
-            border: 1px solid var(--accent-color);
-            border-radius: 4px;
-            transition: all var(--transition-time);
-            background-color: rgba(255, 255, 255, 0.05);
-        }
-        
-        .novel-link:hover {
-            background-color: var(--accent-color);
-            color: var(--dark-accent);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-        }
-        
-        h2 {
-            font-family: var(--font-title);
-            font-size: 1.8rem;
-            color: var(--accent-color);
-            margin-bottom: 1.5rem;
-            font-weight: 300;
-            text-align: center;
-        }
-        
-        h3 {
-            font-family: var(--font-title);
-            font-size: 1.4rem;
-            color: var(--accent-color);
-            margin: 2rem 0 1rem;
-            font-weight: 300;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            padding-bottom: 0.5rem;
+            height: 1px;
+            width: 30px;
+            background-color: var(--main-text-color);
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
         }
         
         p {
+            margin-bottom: 1.5rem;
+            font-size: clamp(1rem, 2vw, 1.1rem);
+            text-align: justify;
+            line-height: 2.1;
+            letter-spacing: 0.05em;
+        }
+        
+        /* 画像コンテナ */
+        .image-container {
+            margin: 3rem 0;
+            text-align: center;
+        }
+        
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.2);
             margin-bottom: 1rem;
-            line-height: 1.8;
+        }
+        
+        .image-caption {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 0.5rem;
+            text-align: center;
         }
         
         /* フッター */
         footer {
             padding: 3vh 0;
-            border-top: 1px solid #333;
+            border-top: 1px solid #eeeeee;
             text-align: center;
             margin-top: calc(var(--spacing) * 2);
-            font-size: 0.8rem;
-            opacity: 0.7;
+            font-size: 0.7rem;
+            letter-spacing: 0.05em;
+            opacity: 0.8;
         }
         
         /* アニメーションとインタラクション */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
-        }
-        
-        @keyframes glowPulse {
-            0% { text-shadow: 0 0 5px rgba(255, 255, 255, 0.3); }
-            50% { text-shadow: 0 0 20px rgba(255, 255, 255, 0.6); }
-            100% { text-shadow: 0 0 5px rgba(255, 255, 255, 0.3); }
         }
         
         header, main, section {
@@ -256,11 +242,7 @@
             animation-delay: 0.2s;
         }
         
-        h1 {
-            animation: glowPulse 5s infinite;
-        }
-        
-        /* グリッドオーバーレイ */
+        /* SF風の装飾 */
         .grid-overlay {
             position: fixed;
             top: 0;
@@ -268,18 +250,19 @@
             width: 100%;
             height: 100%;
             background: 
-                linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+                linear-gradient(rgba(255,255,255,0.97) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.97) 1px, transparent 1px);
             background-size: 20px 20px;
             pointer-events: none;
             z-index: -1;
+            opacity: 0.3;
         }
         
         .corner-decoration {
             position: fixed;
             width: 100px;
             height: 100px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(0,0,0,0.1);
             z-index: -1;
         }
         
@@ -339,7 +322,7 @@
                 font-size: 0.9rem;
             }
             
-            .section-container {
+            .theory-container {
                 padding: 1.5rem;
             }
         }
@@ -355,16 +338,15 @@
 
     <header>
         <div class="title-container">
-            <h1>アーキテクトソーシング</h1>
-            <p class="subtitle">2080年の建築家の名前をめぐる物語</p>
+            <h1>小説のあらすじと理論</h1>
+            <p class="subtitle">郊外都市の隆盛を担った建築家のライフヒストリーとその生産論的分析</p>
         </div>
         <nav class="main-nav">
             <ul>
-                <li><a href="index.html">トップページ</a></li>
-                <li><a href="thesis-overview.html">修士論文の概要</a></li>
-                <li><a href="novel-theory.html">小説のあらすじと理論</a></li>
-                <li><a href="novel-top.html">小説「アーキテクトソーシング」</a></li>
-                <li><a href="afterword.html">あとがき</a></li>
+                <li><a href="index.html">TOP</a></li>
+                <li><a href="thesis-overview.html">THESIS</a></li>
+                <li><a href="novel-top.html">NOVEL</a></li>
+                <li><a href="afterword.html">EPILOGUE</a></li>
             </ul>
         </nav>
     </header>
@@ -372,40 +354,124 @@
     <main>
         <a href="index.html" class="back-home">トップページに戻る</a>
         
-        <div class="novel-link-container">
-            <a href="novel-top.html" class="novel-link">小説「アーキテクトソーシング」を読む</a>
-        </div>
-        
-        <section class="section-container">
-            <h2>物語のあらすじ</h2>
-            
-            <p>「アーキテクトソーシング」は2080年の近未来を舞台にした小説です。高度に発達したAIと人間が協働する世界において、建築家の役割と定義が大きく変わりつつある未来社会を描きます。</p>
-            
-            <p>主人公は「アーキテクトソーシング」と呼ばれるシステムに参加する若手建築家です。このシステムでは、建築家は断片化された設計タスクのみを担当し、全体像を知ることはできません。しかし、M氏とS氏、そしてY氏という三人の異なる建築家との出会いによって、主人公は建築家としての自己の存在意義について考え始めます。</p>
-            
-            <p>テクノロジーによって効率化された社会の中で、人間の創造性と個性がどのような役割を果たすのか。AIが進化する世界で建築家の「代替不可能性」とは何か。本作はそうした問いを通じて、未来の建築と社会の姿を探る物語です。</p>
+        <section id="novel-theory">
+            <div class="theory-container">
+                <h2>小説『アーキテクトソーシング』について</h2>
+                <p>
+                    この小説は、2080年の近未来を舞台に、建築家の仕事が人工知能によって代替されていく世界を描いています。現代において、建築家が建物全体の設計を担う機会は減り、建物の部分もしくはプロセスの一端を担う仕事が多く占めるようになってきました。そのような設計の断片化は、技術進歩によってさらに加速することが予測されます。
+                </p>
+                <p>
+                    本作では、シナリオアプローチを用いて、建築家の人格性の解体について予測・ストーリー化を行い、建築家の代替不可能性について検証します。舞台は2080年の郊外都市「湘南市」。2040年の南海トラフ地震により藤沢市南部は壊滅し、国家と自治体による復興が困難となり、大企業によって新たな都市計画とインフラシステムの変更が進められた結果、誕生した都市です。この都市は、かつての藤沢市の黒磯は失われ、現代でも明るい湘南のイメージに、都市は塗り替えられています。
+                </p>
+                
+                <div class="image-container">
+                    <img src="images/shonan-city-map1.jpg" alt="2080年藤沢市計画総括図" title="2080年藤沢市計画総括図">
+                    <div class="image-caption">図: 2080年藤沢市計画総括図 - 湘南市の形成過程</div>
+                </div>
+                
+                <p>
+                    湘南市は北部が過疎化し、南部が観光都市化するという二極化が進んでいます。南部では2050年の大震災の復興を契機にリゾート地化が進み、海の家は恒久化し、江ノ島はテーマパーク化しています。一方で北部ではコンパクトシティ化により多くの郊外地域は廃棄され、長後駅や六会日大前駅は消滅しています。本書の舞台は、神奈川県藤沢市南部に当たる地域で、風俗されることに高商業化・ゲーテッド・コミュニティ化が進み、中低所得者向けの賃貸アパートや分譲住宅などが建設されています。公共サービスのほとんどは民間企業によって提供されており、ブランディングの観点から藤沢駅は湘南駅に改名、その他地域も同様に湘南のイメージ強調のため改名が行われています。
+                </p>
+                
+                <div class="image-container">
+                    <img src="images/theory1.jpg" alt="小説概要と構成" title="小説概要と構成">
+                    <div class="image-caption">図1: 小説『アーキテクトソーシング』の概要と構成</div>
+                </div>
+                
+                <p>
+                    2080年においては、建物の設計・改修は一部の企業による一元的な管理によって制御されており、個人の建築家が設計を行う形式は完全に退廃しています。建築家は「アーキテクトソーシング」という、人工知能を担い手とした巨大システムに従属していて、設計プロセスにおける機械には判断困難な乱数発生装置として使用されています。また、都市の一部は「先進的な IoT 化都市」として再開発され、スマートシティ化が進んだエリアでは建築家の役割はさらに限定的になっています。
+                </p>
+                
+                <p>
+                    都市空間の変容と同時に、建築家の仕事も大きく変わっています。特に注目すべきは、建築家の間に明確な階層化が生じていることです。一部の建築家はコンペやインセンティブ制度を通じて設計の中核に関わる機会を得ていますが、多くは断片化した設計プロセスの一部を担当するだけとなり、設計全体への理解や影響力を失っています。このような状況下で、建築家としての職能や創造性をどのように保持していくかが、物語の中心テーマとなっています。
+                </p>
+                
+                <div class="image-container">
+                    <img src="images/theory2.jpg" alt="建築家の歴史的変遷と予測シナリオ" title="建築家の歴史的変遷と予測シナリオ">
+                    <div class="image-caption">図2: 1915年から2080年までの建築家の役割の変遷と予測されるシナリオ</div>
+                </div>
+                
+                <h2>建築家の代替不可能性</h2>
+                <p>
+                    小説では、代替不可能性について4つの仮説を検証しています：
+                </p>
+                <p>
+                    1. <strong>仮説的推論の創造性</strong>：人工知能を活用したシステムは仮説的推論の原理的な限界を持つため、建築家の継続的な学習と独自の創造性が必要不可欠である。
+                </p>
+                <p>
+                    2. <strong>周縁的な創造性</strong>：創造性は事象の掛け合わせによって生まれ、周縁的に都市の個性を生み出す可能性がある。
+                </p>
+                <p>
+                    3. <strong>経験の不可逆的文脈</strong>：長年の間、地域に住み、場に愛着を持つ。そうした人生の文脈そのものが代替不可能であり、固有の文脈を持つ。
+                </p>
+                <p>
+                    4. <strong>創造性の世代間継承</strong>：建築家個人の個性や思想、創造性は世代を超えて継承され、都市の横断的構造が都市の成長を支える重要な推進力となる。
+                </p>
+                
+                <div class="image-container">
+                    <img src="images/character-scenarios.jpg" alt="ペルソナ設定による2080年のシナリオ検証" title="ペルソナ設定による2080年のシナリオ検証">
+                    <div class="image-caption">図: ペルソナ設定による2080年のシナリオ検証 - 3人の建築家から見る代替不可能性</div>
+                </div>
+                
+                <p>
+                    これらの仮説を検証するため、小説ではシナリオアプローチとして3人の異なるキャラクターを設定し、それぞれの視点から建築家の代替不可能性を検証しています。実際に藤沢市と東京で活動する3人の建築家へのインタビューに基づいた人物像をもとに、物語の検証を行っています。
+                </p>
+                
+                <p>
+                    Y氏は「AS システム『内側』でのクリエイティビティ」を代表するトップアーキテクトとして描かれ、生まれた環境での制度的な側面が決定的な何かを及ぼせるのかを問います。S氏は「AS システム『外側』でのクリエイティビティ」を持ち、異なる思想的な背景を持つことによって、分野横断的な思想が必要だろうかという問いを投げかけます。そしてM氏は、理想的な技術によって「代替されない人を多数存在に成り得るのか」、固有の文脈による非営利活動を行う修繕建築家として描かれています。
+                </p>
+                
+                <div class="image-container">
+                    <img src="images/theory3.jpg" alt="2080年の建築家の設計プロセスとシナリオアプローチ" title="2080年の建築家の設計プロセスとシナリオアプローチ">
+                    <div class="image-caption">図3: 2080年における建築家の設計プロセスとシナリオアプローチにおけるプロット構成</div>
+                </div>
+                
+                <h2>建築家の多様な仕事</h2>
+                <p>
+                    物語の中で描かれる2080年には、建築家の仕事は5つのタイプに分けられています：図面作成・設計、都市調査、執筆、3DCGの作成、アンケート。それぞれが細分化され、建築家はそれぞれの専門領域を担当しています。
+                </p>
+                
+                <div class="image-container">
+                    <img src="images/theory4.jpg" alt="2080年における建築家の仕事" title="2080年における建築家の仕事">
+                    <div class="image-caption">図4: 2080年における建築家の仕事の類型と具体例</div>
+                </div>
+                
+                <p>
+                    この小説を通じて、テクノロジーの進化がもたらす建築家の役割の変化と、それでもなお残り続ける建築家の本質的な価値について考察しています。それは単に建物を設計する技術だけでなく、人間の感性や地域の文脈を理解し、それを空間に反映させる能力こそが、機械では代替できない建築家の本質であるという問いかけです。特に「外縁」で活動する建築家たちの実践に着目し、中心・外縁の関係性の中で生まれる創造性や抵抗の可能性を描いています。
+                </p>
+                
+                <p>
+                    また、小説では「放置廃村」や「文化施設都市」など、2080年の湘南市における様々な都市的状況も描かれており、それぞれの場所が持つ固有の文脈の中で、建築家たちがどのように活動し、都市の未来にどのような影響を与えうるのかを探求しています。建築家の代替不可能性は、単に技術的な側面だけでなく、人生の文脈や場所への愛着、継承される創造性といった多層的な視点から検証されており、建築家という職能の本質を問い直す試みとなっています。
+                </p>
+            </div>
         </section>
-        
-        <section class="section-container">
-            <h2>理論的背景</h2>
-            
-            <h3>建築家の代替可能性と固有性</h3>
-            <p>本作では、高度に発達したAIによって建築設計のプロセスが自動化された未来において、建築家の代替可能性と固有性について考察しています。機械学習やビッグデータの発達により、人間の創造的な仕事すらもアルゴリズム化される可能性がある中で、なお人間にしかできない創造性の本質とは何かを問いかけています。</p>
-            
-            <h3>建築家の人格性の解体</h3>
-            <p>戦後の建築家の歴史的変遷を踏まえ、建築家の「作家性」や「人格性」が断片化・解体されていく過程を小説形式で描いています。かつての建築家が「作家」として全体を統括していた時代から、現代の分業化された設計プロセスへの変化、そして未来のAIとの協働における建築家の立場の変容を考察しています。</p>
-            
-            <h3>生産論的視点から見た建築家</h3>
-            <p>建築家を単なる個人の天才性ではなく、社会的な生産システムの中での存在として捉え直す視点から物語が構築されています。建築生産のシステムが変化する中で、建築家の社会的位置づけも変化していきます。小説では、2080年という未来社会における建築生産のシステムを「アーキテクトソーシング」として描き、そこでの建築家の存在意義を問いかけています。</p>
-        </section>
-        
-        <div class="novel-link-container">
-            <a href="novel-top.html" class="novel-link">小説「アーキテクトソーシング」を読む</a>
-        </div>
     </main>
 
     <footer>
-        <p>&copy; 2025 土居亮太. All Rights Reserved.</p>
+        <p>&copy; 2025 Ryota Doi. All Rights Reserved.</p>
     </footer>
+
+    <script>
+        // シンプルなアニメーション効果
+        document.addEventListener('DOMContentLoaded', function() {
+            const sections = document.querySelectorAll('section');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            sections.forEach(section => {
+                section.style.opacity = 0;
+                section.style.transform = 'translateY(20px)';
+                section.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+                observer.observe(section);
+            });
+        });
+    </script>
 </body>
 </html>
