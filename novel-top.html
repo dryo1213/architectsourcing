@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="郊外都市の隆盛を担った建築家のライフヒストリーとその生産論的分析 - 小説「アーキテクトソーシング」">
+    <title>小説「アーキテクトソーシング」 - 郊外都市の隆盛を担った建築家のライフヒストリーとその生産論的分析</title>
+    <style>
+        /* ベースとなるスタイル */
+        :root {
+            --main-bg-color: #111111;
+            --main-text-color: #e0e0e0;
+            --accent-color: #ffffff;
+            --light-accent: #222222;
+            --dark-accent: #080808;
+            --highlight: rgba(255, 255, 255, 0.15);
+            --transition-time: 0.3s;
+            --spacing: 2rem;
+            --font-title: "游明朝", YuMincho, "Hiragino Mincho ProN", "Hiragino Mincho Pro", "MS P明朝", serif;
+            --font-body: "游明朝", YuMincho, "Hiragino Mincho ProN", "Hiragino Mincho Pro", "MS P明朝", serif;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: var(--font-body);
+            background-color: var(--main-bg-color);
+            color: var(--main-text-color);
+            line-height: 1.8;
+            overflow-x: hidden;
+            padding: 0 15vw;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        /* ローディングアニメーション（最適化版） */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: black;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            transition: opacity 0.5s ease-out;
+        }
+        
+        .loading-screen.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+        
+        .loading-container {
+            width: 80%;
+            max-width: 600px;
+            color: var(--accent-color);
+            font-family: monospace;
+            font-size: 1.2rem;
+            text-align: center;
+        }
+        
+        .loading-bar {
+            width: 100%;
+            height: 2px;
+            background-color: #222;
+            margin: 20px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .loading-progress {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 0%;
+            background-color: var(--accent-color);
+            box-shadow: 0 0 10px var(--accent-color);
+        }
+        
+        .loading-text {
+            margin-bottom: 10px;
+            font-size: 1.4rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        
+        .loading-percent {
+            font-size: 2rem;
+            font-weight: bold;
+            letter-spacing: 3px;
+            margin: 15px 0;
+        }
+        
+        .loading-status {
+            font-size: 0.9rem;
+            opacity: 0.7;
+            height: 1.5em;
+            margin-top: 10px;
+        }
+        
+        .loading-messages {
+            margin-top: 20px;
+            font-size: 0.8rem;
+            color: #666;
+            height: 3em;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        /* ヘッダー */
+        header {
+            padding: 5vh 0;
+            border-bottom: 1px solid #333;
+            margin-bottom: var(--spacing);
+        }
+        
+        /* ナビゲーションメニュー */
+        .main-nav {
+            margin-top: 3rem;
+        }
+        
+        .main-nav ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: center;
+        }
+        
+        .main-nav li {
+            margin-bottom: 1rem;
+        }
+        
+        .main-nav a {
+            display: inline-block;
+            text-decoration: none;
+            color: var(--main-text-color);
+            font-size: 1rem;
+            padding: 0.8rem 1.5rem;
+            border: 1px solid var(--accent-color);
+            transition: all var(--transition-time);
+            position: relative;
+            overflow: hidden;
+            background-color: transparent;
+        }
+        
+        .main-nav a:hover {
+            background-color: var(--accent-color);
+            color: var(--dark-accent);
+        }
+        
+        .main-nav a::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.1);
+            transition: transform 0.5s;
+            transform: skewX(-15deg);
+        }
+        
+        .main-nav a:hover::before {
+            transform: translateX(200%) skewX(-15deg);
+        }
+        
+        .title-container {
+            position: relative;
+            text-align: center;
+        }
+        
+        h1 {
+            font-family: var(--font-title);
+            font-size: clamp(1.8rem, 5vw, 3rem);
+            font-weight: 300;
+            letter-spacing: 0.05em;
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+            color: var(--accent-color);
+        }
+        
+        h1::after {
+            content: "";
+            position: absolute;
+            height: 1px;
+            width: 100px;
+            background-color: var(--accent-color);
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .subtitle {
+            font-size: clamp(0.9rem, 3vw, 1.2rem);
+            margin-top: 2rem;
+            margin-bottom: 3rem;
+            font-weight: 300;
+            opacity: 0.8;
+        }
+        
+        /* メインコンテンツ */
+        main {
+            min-height: 60vh;
+            margin: var(--spacing) 0;
+        }
+        
+        .back-home {
+            margin-bottom: 2rem;
+            display: inline-block;
+            text-decoration: none;
+            color: var(--accent-color);
+            font-size: 0.9rem;
+            transition: all var(--transition-time);
+            border-bottom: 1px solid transparent;
+        }
+        
+        .back-home:hover {
+            border-bottom: 1px solid var(--accent-color);
+        }
+        
+        .back-home:before {
+            content: "← ";
+        }
+        
+        /* 表紙画像のスタイル */
+        .cover-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 4rem;
+        }
+        
+        .cover-image {
+            max-width: 100%;
+            height: auto;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.7);
+            margin-bottom: 2rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .cover-image:hover {
+            transform: scale(1.02);
+        }
+        
+        /* 目次のスタイル */
+        .toc-section {
+            margin: 3rem 0;
+            animation: fadeIn 1s ease-out forwards;
+            animation-delay: 0.5s;
+            opacity: 0;
+        }
+        
+        .toc-title {
+            text-align: center;
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            font-weight: 300;
+            color: var(--accent-color);
+        }
+        
+        .toc-list {
+            list-style: none;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .toc-item {
+            margin-bottom: 1.5rem;
+            transition: transform 0.3s ease;
+            position: relative;
+        }
+        
+        .toc-item:hover {
+            transform: translateX(10px);
+        }
+        
+        .toc-link {
+            display: flex;
+            justify-content: space-between;
+            text-decoration: none;
+            color: var(--main-text-color);
+            padding: 1rem 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background-color: rgba(255, 255, 255, 0.03);
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+        
+        .toc-link:hover {
+            background-color: rgba(255, 255, 255, 0.07);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+        
+        .chapter-number {
+            font-weight: 300;
+            opacity: 0.7;
+            min-width: 80px;
+        }
+        
+        .chapter-title {
+            flex-grow: 1;
+            text-align: left;
+            font-size: 1.1rem;
+        }
+        
+        .read-button {
+            background-color: transparent;
+            color: var(--accent-color);
+            border: 1px solid var(--accent-color);
+            padding: 0.3rem 1rem;
+            border-radius: 3px;
+            font-size: 0.8rem;
+            transition: all 0.3s ease;
+        }
+        
+        .toc-link:hover .read-button {
+            background-color: var(--accent-color);
+            color: var(--dark-accent);
+        }
+        
+        /* フッター */
+        footer {
+            padding: 3vh 0;
+            border-top: 1px solid #333;
+            text-align: center;
+            margin-top: calc(var(--spacing) * 2);
+            font-size: 0.8rem;
+            opacity: 0.7;
+        }
+        
+        /* アニメーションとインタラクション */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes glowPulse {
+            0% { text-shadow: 0 0 5px rgba(255, 255, 255, 0.3); }
+            50% { text-shadow: 0 0 20px rgba(255, 255, 255, 0.6); }
+            100% { text-shadow: 0 0 5px rgba(255, 255, 255, 0.3); }
+        }
+        
+        header, main {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+        
+        h1 {
+            animation: glowPulse 5s infinite;
+        }
+        
+        /* グリッドオーバーレイ */
+        .grid-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+            background-size: 20px 20px;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .corner-decoration {
+            position: fixed;
+            width: 100px;
+            height: 100px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            z-index: -1;
+        }
+        
+        .corner-tl {
+            top: 20px;
+            left: 20px;
+            border-right: none;
+            border-bottom: none;
+        }
+        
+        .corner-tr {
+            top: 20px;
+            right: 20px;
+            border-left: none;
+            border-bottom: none;
+        }
+        
+        .corner-bl {
+            bottom: 20px;
+            left: 20px;
+            border-right: none;
+            border-top: none;
+        }
+        
+        .corner-br {
+            bottom: 20px;
+            right: 20px;
+            border-left: none;
+            border-top: none;
+        }
+        
+        /* レスポンシブ対応 */
+        @media (max-width: 768px) {
+            :root {
+                --spacing: 1.5rem;
+            }
+            
+            body {
+                padding: 0 8vw;
+            }
+            
+            .corner-decoration {
+                width: 50px;
+                height: 50px;
+            }
+            
+            .main-nav ul {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: center;
+            }
+            
+            .main-nav a {
+                width: 100%;
+                text-align: center;
+                padding: 0.6rem 1.2rem;
+                font-size: 0.9rem;
+            }
+            
+            .toc-link {
+                flex-direction: column;
+                gap: 0.5rem;
+                align-items: flex-start;
+            }
+            
+            .read-button {
+                align-self: flex-end;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ローディングアニメーション -->
+    <div class="loading-screen">
+        <div class="loading-container">
+            <div class="loading-text">アーキテクトソーシング・コネクション</div>
+            <div class="loading-bar">
+                <div class="loading-progress"></div>
+            </div>
+            <div class="loading-percent">0%</div>
+            <div class="loading-status">システムに接続中...</div>
+            <div class="loading-messages"></div>
+        </div>
+    </div>
+
+    <!-- SF風の装飾 -->
+    <div class="grid-overlay"></div>
+    <div class="corner-decoration corner-tl"></div>
+    <div class="corner-decoration corner-tr"></div>
+    <div class="corner-decoration corner-bl"></div>
+    <div class="corner-decoration corner-br"></div>
+
+    <header>
+        <div class="title-container">
+            <h1>アーキテクトソーシング</h1>
+            <p class="subtitle">2080年、建築家たちの物語</p>
+        </div>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="index.html">トップページ</a></li>
+                <li><a href="thesis-overview.html">修士論文の概要</a></li>
+                <li><a href="novel-theory.html">小説のあらすじと理論</a></li>
+                <li><a href="novel-top.html">小説「アーキテクトソーシング」</a></li>
+                <li><a href="afterword.html">あとがき</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <a href="novel-theory.html" class="back-home">あらすじと理論に戻る</a>
+        
+        <!-- 表紙画像 -->
+        <div class="cover-container">
+            <img src="/api/placeholder/600/800" alt="アーキテクトソーシング表紙" class="cover-image" />
+        </div>
+        
+        <!-- 目次セクション -->
+        <section class="toc-section">
+            <h2 class="toc-title">目 次</h2>
+            <ul class="toc-list">
+                <li class="toc-item">
+                    <a href="architect-sourcing-chapter1.html" class="toc-link">
+                        <span class="chapter-number">第1章</span>
+                        <span class="chapter-title">名もなき建築家</span>
+                        <span class="read-button">読む</span>
+                    </a>
+                </li>
+                <li class="toc-item">
+                    <a href="architect-sourcing-chapter2.html" class="toc-link">
+                        <span class="chapter-number">第2章</span>
+                        <span class="chapter-title">爪弾き、繕い、結う</span>
+                        <span class="read-button">読む</span>
+                    </a>
+                </li>
+                <li class="toc-item">
+                    <a href="architect-sourcing-chapter3.html" class="toc-link">
+                        <span class="chapter-number">第3章</span>
+                        <span class="chapter-title">廃頽者の叛旗</span>
+                        <span class="read-button">読む</span>
+                    </a>
+                </li>
+                <li class="toc-item">
+                    <a href="architect-sourcing-chapter4.html" class="toc-link">
+                        <span class="chapter-number">第4章</span>
+                        <span class="chapter-title">乱数発生装置としての建築家</span>
+                        <span class="read-button">読む</span>
+                    </a>
+                </li>
+                <li class="toc-item">
+                    <a href="architect-sourcing-chapter5.html" class="toc-link">
+                        <span class="chapter-number">第5章</span>
+                        <span class="chapter-title">建築家の代替不可能性</span>
+                        <span class="read-button">読む</span>
+                    </a>
+                </li>
+                <li class="toc-item">
+                    <a href="architect-sourcing-final.html" class="toc-link">
+                        <span class="chapter-number">終章</span>
+                        <span class="chapter-title">次世代の黎明</span>
+                        <span class="read-button">読む</span>
+                    </a>
+                </li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 土居亮太. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        // ローディングアニメーション（最適化版）
+        document.addEventListener('DOMContentLoaded', function() {
+            const loadingScreen = document.querySelector('.loading-screen');
+            const loadingProgress = document.querySelector('.loading-progress');
+            const loadingPercent = document.querySelector('.loading-percent');
+            const loadingStatus = document.querySelector('.loading-status');
+            const loadingMessages = document.querySelector('.loading-messages');
+            
+            // システムメッセージのリスト（短縮版）
+            const messages = [
+                "個人認証プロトコル検索中...",
+                "建築家データベースに接続...",
+                "設計パターン解析中...",
+                "形状認識センサー校正中...",
+                "創造性指数評価中...",
+                "物語モード初期化完了"
+            ];
+            
+            // 進行状況関連の変数
+            let progress = 0;
+            let messageIndex = 0;
+            let interval;
+            
+            // ランダムな速度で進行状況を更新（短縮版）
+            const startLoading = () => {
+                interval = setInterval(() => {
+                    // 非線形的な進行（加速版）
+                    let increment;
+                    if (progress < 30) {
+                        increment = Math.random() * 5 + 2; // 加速
+                    } else if (progress < 60) {
+                        increment = Math.random() * 4 + 1;
+                    } else if (progress < 90) {
+                        increment = Math.random() * 3 + 0.5;
+                    } else {
+                        increment = Math.random() * 2 + 0.3;
+                    }
+                    
+                    progress = Math.min(progress + increment, 100);
+                    
+                    // 進行状況の更新
+                    loadingProgress.style.width = `${progress}%`;
+                    loadingPercent.textContent = `${Math.floor(progress)}%`;
+                    
+                    // 一定の閾値でメッセージを表示
+                    if (progress > messageIndex * (100 / messages.length) && messageIndex < messages.length) {
+                        loadingMessages.innerHTML = `<div>${messages[messageIndex]}</div>`;
+                        messageIndex++;
+                        
+                        // ステータスメッセージの更新
+                        if (progress < 33) {
+                            loadingStatus.textContent = "セキュリティプロトコル認証中...";
+                        } else if (progress < 66) {
+                            loadingStatus.textContent = "建築家パターン解析中...";
+                        } else if (progress < 99) {
+                            loadingStatus.textContent = "仮想空間生成中...";
+                        } else {
+                            loadingStatus.textContent = "接続完了";
+                        }
+                    }
+                    
+                    // 100%に達したら
+                    if (progress >= 100) {
+                        clearInterval(interval);
+                        setTimeout(() => {
+                            loadingScreen.classList.add('hidden');
+                            setTimeout(() => {
+                                loadingScreen.style.display = 'none';
+                            }, 300); // 短縮
+                        }, 500); // 短縮
+                    }
+                }, 65); // 短縮（間隔を短く）
+            };
+            
+            // ローディング開始（遅延時間短縮）
+            setTimeout(startLoading, 200);
+        });
+    </script>
+</body>
+</html>
