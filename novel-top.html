@@ -271,6 +271,24 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
         }
         
+        /* 導入文スタイル */
+        .intro-text {
+            margin: 2rem auto 3rem;
+            max-width: 800px;
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.05);
+            padding: 1.5rem;
+            border-radius: 4px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .intro-text p {
+            font-size: 1.1rem;
+            margin: 0;
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+        
         /* 表紙画像のスタイル */
         .cover-container {
             display: flex;
@@ -368,7 +386,7 @@
             border-top: 1px solid #333;
             text-align: center;
             margin-top: calc(var(--spacing) * 2);
-            font-size: 0.8rem;
+            font-size: 0.7rem;
             opacity: 0.7;
         }
         
@@ -510,13 +528,13 @@
             <p class="subtitle">2080年の建築家の名前をめぐる物語</p>
         </div>
         <nav class="main-nav">
-    <ul>
-        <li><a href="index.html">TOP</a></li>
-        <li><a href="thesis-overview.html">THESIS</a></li>
-        <li><a href="novel-top.html">NOVEL</a></li>
-        <li><a href="afterword.html">EPILOGUE</a></li>
-    </ul>
-</nav>
+            <ul>
+                <li><a href="index.html">TOP</a></li>
+                <li><a href="thesis-overview.html">THESIS</a></li>
+                <li><a href="novel-top.html">NOVEL</a></li>
+                <li><a href="afterword.html">EPILOGUE</a></li>
+            </ul>
+        </nav>
     </header>
 
     <main>
@@ -525,6 +543,11 @@
         <!-- 小説のあらすじと理論へのリンク -->
         <div class="theory-link-container">
             <a href="novel-theory.html" class="theory-link">小説のあらすじと理論</a>
+        </div>
+        
+        <!-- 導入文 -->
+        <div class="intro-text">
+            <p>本作は理論部分から読んでいただいても、小説部分から読んでいただいても構いません。自由にお楽しみください。</p>
         </div>
         
         <!-- 表紙画像 -->
@@ -583,7 +606,7 @@
     </main>
 
     <footer>
-        <p>&copy; 2025 土居亮太. All Rights Reserved.</p>
+        <p>&copy; 2025 Ryota Doi. All Rights Reserved.</p>
     </footer>
 
     <script>
