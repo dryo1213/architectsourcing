@@ -265,32 +265,18 @@
         }
         
         .novel-container {
-            background-color: var(--light-accent);
+            background-color: #c0c0c0;
             padding: 3rem;
             border-radius: 4px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
             position: relative;
-        }
-        
-        .novel-container::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: 
-                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-            background-size: 20px 20px;
-            pointer-events: none;
-            border-radius: 4px;
+            z-index: 2;
         }
         
         .chapter-title {
             font-family: var(--font-title);
             font-size: 1.8rem;
-            color: var(--accent-color);
+            color: #000;
             margin-bottom: 2rem;
             text-align: center;
             font-weight: 300;
@@ -301,6 +287,8 @@
             font-size: 1.1rem;
             margin-bottom: 1.5rem;
             text-align: justify;
+            color: #000;
+            position: relative;
         }
         
         .novel-text p {
@@ -316,6 +304,7 @@
             font-family: monospace;
             font-size: 0.95rem;
             line-height: 1.6;
+            color: var(--main-text-color);
         }
         
         .message strong {
@@ -442,19 +431,6 @@
     </style>
 </head>
 <body>
-    <!-- ローディングアニメーション（novel-top.htmlにのみ表示） -->
-    <div class="loading-screen" id="loading-animation" style="display: none;">
-        <div class="loading-container">
-            <div class="loading-text">アーキテクトソーシング・コネクション</div>
-            <div class="loading-bar">
-                <div class="loading-progress"></div>
-            </div>
-            <div class="loading-percent">0%</div>
-            <div class="loading-status">システムに接続中...</div>
-            <div class="loading-messages"></div>
-        </div>
-    </div>
-
     <!-- SF風の装飾 -->
     <div class="grid-overlay"></div>
     <div class="corner-decoration corner-tl"></div>
@@ -469,15 +445,9 @@
         </div>
         <nav class="main-nav">
             <ul>
-                <li><a href="index.html">トップページ</a></li>
-                <li><a href="thesis-overview.html">修士論文の概要</a></li>
-                <li><a href="novel-theory.html">小説のあらすじと理論</a></li>
-                <li><a href="novel-top.html">小説「アーキテクトソーシング」</a></li>
-                <li><a href="architect-sourcing-chapter1.html">第1章：名もなき建築家</a></li>
-                <li><a href="architect-sourcing-chapter3.html">第3章：廃頽者の叛旗</a></li>
-                <li><a href="architect-sourcing-chapter4.html">第4章：乱数発生装置としての建築家</a></li>
-                <li><a href="architect-sourcing-chapter5.html">第5章：建築家の代替不可能性</a></li>
-                <li><a href="architect-sourcing-final.html">終章：次世代の黎明</a></li>
+                <li><a href="index.html">概要</a></li>
+                <li><a href="thesis.html">論文</a></li>
+                <li><a href="novel-top.html">小説</a></li>
                 <li><a href="afterword.html">あとがき</a></li>
             </ul>
         </nav>
@@ -499,7 +469,145 @@
                     <p>
                         碁盤状に整然と区画された住宅地の道を、何度か曲がっていく。すると、一軒の家があった。活気のある人々の声と工具の甲高い音が、静かな街並みに響いている。建物の裏手に回り込んで庭を覗くと、そこには作業着姿の人々が忙しなく行き交い、古材を切り出す者、材木を運ぶ者、測量する者、議論する者がいた。その中心に一人の男性の姿があった。
                     </p>
-                    <!-- 以下省略 - 小説本文は既存と同じ -->
+                    <p>
+                        男は私に気づくと、作業の手を止め、こちらへ近づいてきた。灰色のつなぎを着た、白髪交じりの髪の初老の男性。屈強な体つきには緊張感が漂うと同時に、どこか不思議な親しみやすさも感じられた。
+                    </p>
+                    <p>
+                        「ああ、来てくれたんですね」
+                    </p>
+                    <p>
+                        穏やかな声で、私に声をかけてきた。この男こそがM氏であった。
+                    </p>
+                    <p>
+                        「今日は、リビングの内装改修とパーゴラの施工です。ここで、ちょっと勾配を変えてみようと思うんです。この角度なら、午後の日差しを程よく遮りながら、風通しも確保できる」
+                    </p>
+                    <p>
+                        「なるほど。でも、そんな繊細な調整は、アーキテクトソーシングの方が正確にできるんじゃないでしょうか」 
+                    </p>
+                    <p>
+                        M氏は穏やかな笑みを浮かべながら、首を横に振った。
+                    </p>
+                    <p>
+                        M氏は現場で陣頭指揮を執りながら、自らも作業に加わっていた。その手には、長年の経験が刻まれていた。私にとって、建築家とは図面制作が主な仕事だった。施主と大工の間に立ち、泥臭く働く建築家の姿は新鮮だった。
+                    </p>
+                    <p>
+                        明るい庭に、新しいパーゴラの骨組みが姿を現す。木材の接合部には、微妙な調整が施されていた。室内では、リビングの壁紙とフローリングの張替えが進んでいた。
+                    </p>
+                    <p>
+                        「ところで、この方々は？」
+                    </p>
+                    <p>
+                        私は作業をする人々を見渡しながら尋ねた。
+                    </p>
+                    <p>
+                        「ああ、彼らは有志の職能集団の仲間たちです。ASシステムから外れた人々を支援する、独立した非営利集団なんです」 M氏は誇らしげに答えた。
+                    </p>
+                    <p>
+                        一人の大工が、古い壁紙を丁寧に剥がしていく。その下から、かつての住人の生活の痕跡が現れる。子供の落書き、家具の跡。それらは全て、この家で紡がれてきた物語の一部だった。
+                    </p>
+                    <p>
+                        「困っている人たちを放っておけない」 
+                    </p>
+                    <p>
+                        M氏は、作業の合間に静かに語った。その声には、確固たる信念が宿っていた。
+                    </p>
+                    <p>
+                        「建築の専門家としてできることをやる。それも、企業に属するアーキテクトにはできないことを。建築家としてやる。システムは効率を追求する。でも、建築には効率だけでは測れない価値がある」
+                    </p>
+                    <p>
+                        「でも、それは規則に反することになりますよね」
+                    </p>
+                    <p>
+                        私は躊躇いながらも、言葉を紡いだ。
+                    </p>
+                    <p>
+                        「規則よりも大切なものがある。人の暮らしだ」 
+                    </p>
+                    <p>
+                        M氏の言葉は静かだが力強かった。
+                    </p>
+                    <p>
+                        その言葉には、強い信念が込められていた。2080年の建築家は、クライアントとのつながりを完全に断たれ、自らが作ったものへの実感も、帰属意識も一切持てない。設計は断片化され、匿名化される。しかし、M氏の活動は、これまで断たれていた建築家と人との関係性の回路を、確かに結び直していた。
+                    </p>
+                    <p>
+                        昼過ぎ、作業が一段落したところで、M氏は私を次の現場へと誘った。彼の車は古い自動運転モデルだった。艶の失せた車体には、長年の使用感が刻まれている。窓の外では、管理された都市と放置された地域の境界線が、徐々に見えてきていた。その風景は、私自身の過去を呼び覚ました。
+                    </p>
+                    <p>
+                        「さっきの家の施主さん、建物を購入して10年も経たないうちに、企業による対象敷地外に指定されたんです。企業の都市計画から外れた瞬間、インフラ整備も停止される。でも、住民たちにはどこにも行くあてがない」
+                    </p>
+                    <p>
+                        私は黙って外を見つめていた。対象敷地外。それは、企業の都市計画から除外された死の領域を意味する。そこでは、基本的なインフラさえも更新されず、住民たちは取り残されていく。
+                    </p>
+                    <p>
+                        藤沢。私の家族もかつて、この地に暮らしていた。企業の都市計画によって対象敷地外に指定され、立ち退きを余儀なくされるまでは。東京への移住を決めた日の、父の背中の落胆を、私は今でも忘れることができない。
+                    </p>
+                    <p>
+                        「ローンは残ったまま。引っ越すにも引っ越せない。そんな状況が何年も続いている。システムは、こういう人々の声を拾わない」
+                    </p>
+                    <p>
+                        街には、このように見捨てられた場所で苦しむ人々が大勢いた。私は再び、その現実を目の当たりにしていた。小さな対話の中から生まれる建築のあり方。それは、システムでは決して拾い上げることのできない、人々の生活の真実だった。
+                    </p>
+                    <p>
+                        車は湘南駅北側へと向かう。そこには、20世紀後半に建てられた古い公共建築が佇んでいた。建物のファサードは特徴的な構成を持っている。半分は切妻屋根を持つ家型のボリューム。もう半分は二階分の高さを持つ大きなガラス窓に覆われたエントランス。一見異なる二つの表情を持ちながら、建物全体は不思議な一体感を醸し出していた。
+                    </p>
+                    <p>
+                        窓は全て正方形で統一され、規則正しく並んでいる。その家型のシルエットと相まって、見る者に不思議な安心感を与えていた。あたかも、大きな家のように。
+                    </p>
+                    <p>
+                        21世紀半ばの公共自治体の破綻以降、この建物は放置されたままだ。割れたガラス窓、錆びついた手摺。時の流れは容赦なく建物を蝕んでいた。それでも、その建物には確かな存在感があった。
+                    </p>
+                    <p>
+                        「この建物を、有志で改修しているんです。かつてここは、市の文書館でした。古い公文書や記録、地域の歴史的資料が大切に保管されていた場所です。住民たちの記憶だけでなく、街の記憶そのものが眠っている。この建物自体が、湘南、いや藤沢の記録装置だったんです」
+                    </p>
+                    <p>
+                        M氏は、白い正方形のタイル壁に手を当てながら続けた。
+                    </p>
+                    <p>
+                        「公共機関が破綻した後、多くの資料は散逸してしまいました。でも、この建物には今でも、資料を守り続けようとした人々の想いが染み込んでいる。だからこそ、私たちはこの場所を守りたいんです」
+                    </p>
+                    <p>
+                        「でも、なぜここまでするのですか」 
+                    </p>
+                    <p>
+                        私の問いかけに、M氏はゆっくりと振り返った。
+                    </p>
+                    <p>
+                        「私たちにできる資材の調達は限られています。企業の管理下にない建物の修繕には、正規のルートが使えない。でも、この建物には、かつての地場の建築家が込めた想いがある。そして、長年この場所を大切に使い続けてきた人々の記憶も刻まれている」
+                    </p>
+                    <p>
+                        彼は、壁のタイルの目地を指でなぞった。「修繕を進めていくうちに、少しずつ理解できてきたんです。この目地の合わせ方や、窓の配置の意図を。特徴的なのは、この建物の印象的な輪郭と、内部の随所に見られるアーチ形状です。百年前、こうした試みは相当に挑戦的なものだったはずです」
+                    </p>
+                    <p>
+                        「建築と向き合い、その痕跡を読み解いていくことで、私たちは多くのことを学べるんです」M氏の声には、深い敬意が込められていた。「この建物を修繕する過程で、当時の建築家の試行錯誤や決断の跡が見えてきます。それは現代の私たちへの、静かなメッセージのようなものかもしれません」
+                    </p>
+                    <p>
+                        「対話...ですね」 私は思わず壁に手を伸ばした。そこには確かに、年月の重みと共に、人々の暮らしの温もりが刻まれていた。
+                    </p>
+                    <p>
+                        彼の活動は、ASの効率性とは異なる価値を持っていた。それは、人々との直接的な対話から生まれる創造性であり、建築家が施主との接触が可能だった時代の職能の復権であった。そして、モノとの対話を通じて、建物を修繕し、新しい命を吹き込む。その過程で、失われかけた人々のつながりも、少しずつ修復されていく。そんな対話型の創造的取り組みが、この場所で静かに続けられていた。
+                    </p>
+                    <p>
+                        落ち込む夕刻の光が、古い建物の傷んだ外壁を照らしていた。その光の中で、建物の傷跡が、まるで刻まれた物語のように見えた。その瞬間、私は気づいた。建築とは、単なる物質ではない。それは、人々の暮らしを創造する営みなのだと。そこには、「他者」と向き合い、モノを作る建築家の本質があった。アーキテクトソーシングの殻の中に閉じていては決して到達することのできない、確かな真実が。
+                    </p>
+                    <p>
+                        「建築家は、本来こうあるべきなのかもしれません。人々の暮らしやモノに寄り添い、その声に耳を傾ける。それが、私たちの使命のひとつだと思うんです」
+                    </p>
+                    <p>
+                        「はい、私にも分かります」 私の声には、確かな決意が込められていた。
+                    </p>
+                    <p>
+                        「ところで」
+                    </p>
+                    <p>
+                        M氏は懐から一枚の紙を取り出すと、素早く地図を描き、もう一枚の紙片とともに私に差し出した。
+                    </p>
+                    <p>
+                        「街のはずれで、S氏という建築家が個展を開いているんです。私とは少し異なる活動をしている方です。もし良ければ、明日、行ってみてはいかがでしょうか？」
+                    </p>
+                    
+                    <div style="text-align: right; margin-top: 3rem;">
+                        <a href="architect-sourcing-chapter3.html" class="next-chapter">第3章へ進む</a>
+                    </div>
                 </div>
             </div>
         </section>
@@ -508,94 +616,5 @@
     <footer>
         <p>&copy; 2025 土居亮太. All Rights Reserved.</p>
     </footer>
-
-    <script>
-        // ローディングアニメーション（novel-top.htmlにのみ表示）
-        document.addEventListener('DOMContentLoaded', function() {
-            // 現在のページのURLパスを取得
-            const currentPath = window.location.pathname;
-            const loadingScreen = document.getElementById('loading-animation');
-            
-            // novel-top.html の場合のみローディングアニメーションを表示
-            if (currentPath.includes('novel-top.html')) {
-                if (loadingScreen) {
-                    loadingScreen.style.display = 'flex';
-                    const loadingProgress = document.querySelector('.loading-progress');
-                    const loadingPercent = document.querySelector('.loading-percent');
-                    const loadingStatus = document.querySelector('.loading-status');
-                    const loadingMessages = document.querySelector('.loading-messages');
-                    
-                    // システムメッセージのリスト（短縮版）
-                    const messages = [
-                        "個人認証プロトコル検索中...",
-                        "建築家データベースに接続...",
-                        "設計パターン解析中...",
-                        "形状認識センサー校正中...",
-                        "創造性指数評価中...",
-                        "物語モード初期化完了"
-                    ];
-                    
-                    // 進行状況関連の変数
-                    let progress = 0;
-                    let messageIndex = 0;
-                    let interval;
-                    
-                    // ランダムな速度で進行状況を更新（短縮版）
-                    const startLoading = () => {
-                        interval = setInterval(() => {
-                            // 非線形的な進行（加速版）
-                            let increment;
-                            if (progress < 30) {
-                                increment = Math.random() * 5 + 2; // 加速
-                            } else if (progress < 60) {
-                                increment = Math.random() * 4 + 1;
-                            } else if (progress < 90) {
-                                increment = Math.random() * 3 + 0.5;
-                            } else {
-                                increment = Math.random() * 2 + 0.3;
-                            }
-                            
-                            progress = Math.min(progress + increment, 100);
-                            
-                            // 進行状況の更新
-                            loadingProgress.style.width = `${progress}%`;
-                            loadingPercent.textContent = `${Math.floor(progress)}%`;
-                            
-                            // 一定の閾値でメッセージを表示
-                            if (progress > messageIndex * (100 / messages.length) && messageIndex < messages.length) {
-                                loadingMessages.innerHTML = `<div>${messages[messageIndex]}</div>`;
-                                messageIndex++;
-                                
-                                // ステータスメッセージの更新
-                                if (progress < 33) {
-                                    loadingStatus.textContent = "セキュリティプロトコル認証中...";
-                                } else if (progress < 66) {
-                                    loadingStatus.textContent = "建築家パターン解析中...";
-                                } else if (progress < 99) {
-                                    loadingStatus.textContent = "仮想空間生成中...";
-                                } else {
-                                    loadingStatus.textContent = "接続完了";
-                                }
-                            }
-                            
-                            // 100%に達したら
-                            if (progress >= 100) {
-                                clearInterval(interval);
-                                setTimeout(() => {
-                                    loadingScreen.classList.add('hidden');
-                                    setTimeout(() => {
-                                        loadingScreen.style.display = 'none';
-                                    }, 300); // 短縮
-                                }, 500); // 短縮
-                            }
-                        }, 65); // 短縮（間隔を短く）
-                    };
-                    
-                    // ローディング開始（遅延時間短縮）
-                    setTimeout(startLoading, 200);
-                }
-            }
-        });
-    </script>
 </body>
 </html>
