@@ -6,19 +6,36 @@
     <meta name="description" content="郊外都市の隆盛を担った建築家のライフヒストリーとその生産論的分析 - 小説「アーキテクトソーシング」の目次ページ">
     <title>小説「アーキテクトソーシング」</title>
     <style>
-        /* 基本スタイル */
+        /* フォントの読み込み */
+        @font-face {
+            font-family: 'AB-clip_medium Regular';
+            src: url('fonts/AB-clip_medium_Regular.woff2') format('woff2'),
+                 url('fonts/AB-clip_medium_Regular.woff') format('woff'),
+                 url('fonts/AB-clip_medium_Regular.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+        
+        /* ベースとなるスタイル */
         :root {
             --main-bg-color: #111111;
             --main-text-color: #e0e0e0;
             --accent-color: #ffffff;
+            --light-accent: #222222;
             --dark-accent: #080808;
+            --highlight: rgba(255, 255, 255, 0.15);
             --transition-time: 0.3s;
             --spacing: 2rem;
             --font-title: "游明朝", YuMincho, "Hiragino Mincho ProN", "Hiragino Mincho Pro", "MS P明朝", serif;
             --font-body: "游明朝", YuMincho, "Hiragino Mincho ProN", "Hiragino Mincho Pro", "MS P明朝", serif;
         }
         
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
         
         body {
             font-family: var(--font-body);
@@ -34,19 +51,23 @@
         /* ローディングアニメーション */
         .loading-screen {
             position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             background-color: black;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             z-index: 1000;
-            transition: opacity 0.8s ease-out;
-            overflow: hidden;
+            transition: opacity 0.5s ease-out;
         }
         
-        .loading-screen.hidden { opacity: 0; pointer-events: none; }
+        .loading-screen.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
         
         .loading-container {
             width: 80%;
@@ -55,8 +76,6 @@
             font-family: monospace;
             font-size: 1.2rem;
             text-align: center;
-            position: relative;
-            z-index: 10;
         }
         
         .loading-bar {
@@ -70,7 +89,8 @@
         
         .loading-progress {
             position: absolute;
-            top: 0; left: 0;
+            top: 0;
+            left: 0;
             height: 100%;
             width: 0%;
             background-color: var(--accent-color);
@@ -81,7 +101,8 @@
             margin-bottom: 10px;
             font-size: 1.4rem;
             letter-spacing: 1px;
-            text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+            text-transform: uppercase;
+            font-family: 'AB-clip_medium Regular', monospace;
         }
         
         .loading-percent {
@@ -89,7 +110,6 @@
             font-weight: bold;
             letter-spacing: 3px;
             margin: 15px 0;
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
         }
         
         .loading-status {
@@ -109,54 +129,62 @@
             justify-content: center;
         }
         
-        /* ノイズエフェクト簡易版 */
-        .noise {
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background-image: url('data:image/png;base64,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');
-            opacity: 0.05;
-            pointer-events: none;
-            z-index: 5;
-        }
-        
-        /* カバー画像のフェードインアウト */
-        .cover-image-container {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background-color: rgba(0, 0, 0, 0.9);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 20;
-            opacity: 0;
-            transition: opacity 1.5s ease;
-            pointer-events: none;
-        }
-        
-        .cover-image-container.visible { opacity: 1; }
-        
-        .cover-image-container img {
-            max-width: 80%;
-            max-height: 80%;
-            object-fit: contain;
-            box-shadow: 0 0 50px rgba(255, 255, 255, 0.2);
-            opacity: 0;
-            transform: scale(0.9);
-            transition: all 1.5s ease;
-        }
-        
-        .cover-image-container.visible img {
-            opacity: 1;
-            transform: scale(1);
-        }
-        
-        /* ヘッダーとナビゲーション */
+        /* ヘッダー */
         header {
             padding: 5vh 0;
             border-bottom: 1px solid #333;
             margin-bottom: var(--spacing);
+        }
+        
+        /* ナビゲーションメニュー */
+        .main-nav {
+            margin-top: 3rem;
+        }
+        
+        .main-nav ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: center;
+        }
+        
+        .main-nav li {
+            margin-bottom: 1rem;
+        }
+        
+        .main-nav a {
+            display: inline-block;
+            text-decoration: none;
+            color: var(--main-text-color);
+            font-size: 1rem;
+            padding: 0.8rem 1.5rem;
+            border: 1px solid var(--accent-color);
+            transition: all var(--transition-time);
+            position: relative;
+            overflow: hidden;
+            background-color: transparent;
+        }
+        
+        .main-nav a:hover {
+            background-color: var(--accent-color);
+            color: var(--dark-accent);
+        }
+        
+        .main-nav a::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.1);
+            transition: transform 0.5s;
+            transform: skewX(-15deg);
+        }
+        
+        .main-nav a:hover::before {
+            transform: translateX(200%) skewX(-15deg);
         }
         
         .title-container {
@@ -194,38 +222,6 @@
             opacity: 0.8;
         }
         
-        .main-nav {
-            margin-top: 3rem;
-        }
-        
-        .main-nav ul {
-            list-style: none;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 2rem;
-            justify-content: center;
-        }
-        
-        .main-nav li { margin-bottom: 1rem; }
-        
-        .main-nav a {
-            display: inline-block;
-            text-decoration: none;
-            color: var(--main-text-color);
-            font-size: 1rem;
-            padding: 0.8rem 1.5rem;
-            border: 1px solid var(--accent-color);
-            transition: all var(--transition-time);
-            position: relative;
-            overflow: hidden;
-            background-color: transparent;
-        }
-        
-        .main-nav a:hover {
-            background-color: var(--accent-color);
-            color: var(--dark-accent);
-        }
-        
         /* メインコンテンツ */
         main {
             min-height: 60vh;
@@ -242,8 +238,13 @@
             border-bottom: 1px solid transparent;
         }
         
-        .back-home:hover { border-bottom: 1px solid var(--accent-color); }
-        .back-home:before { content: "← "; }
+        .back-home:hover {
+            border-bottom: 1px solid var(--accent-color);
+        }
+        
+        .back-home:before {
+            content: "← ";
+        }
         
         /* 小説あらすじと理論へのリンク */
         .theory-link-container {
@@ -288,7 +289,22 @@
             opacity: 0.9;
         }
         
-        /* 目次スタイル */
+        /* 表紙画像のスタイル */
+        .cover-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 4rem;
+        }
+        
+        .cover-image {
+            max-width: 80%;
+            height: auto;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.7);
+            margin-bottom: 2rem;
+        }
+        
+        /* 目次のスタイル */
         .toc-section {
             margin: 3rem 0;
             animation: fadeIn 1s ease-out forwards;
@@ -316,7 +332,9 @@
             position: relative;
         }
         
-        .toc-item:hover { transform: translateX(10px); }
+        .toc-item:hover {
+            transform: translateX(10px);
+        }
         
         .toc-link {
             display: flex;
@@ -372,16 +390,91 @@
             opacity: 0.7;
         }
         
-        /* アニメーション */
+        /* アニメーションとインタラクション */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
         
+        @keyframes glowPulse {
+            0% { text-shadow: 0 0 5px rgba(255, 255, 255, 0.3); }
+            50% { text-shadow: 0 0 20px rgba(255, 255, 255, 0.6); }
+            100% { text-shadow: 0 0 5px rgba(255, 255, 255, 0.3); }
+        }
+        
+        header, main {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+        
+        h1 {
+            animation: glowPulse 5s infinite;
+        }
+        
+        /* グリッドオーバーレイ */
+        .grid-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+            background-size: 20px 20px;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .corner-decoration {
+            position: fixed;
+            width: 100px;
+            height: 100px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            z-index: -1;
+        }
+        
+        .corner-tl {
+            top: 20px;
+            left: 20px;
+            border-right: none;
+            border-bottom: none;
+        }
+        
+        .corner-tr {
+            top: 20px;
+            right: 20px;
+            border-left: none;
+            border-bottom: none;
+        }
+        
+        .corner-bl {
+            bottom: 20px;
+            left: 20px;
+            border-right: none;
+            border-top: none;
+        }
+        
+        .corner-br {
+            bottom: 20px;
+            right: 20px;
+            border-left: none;
+            border-top: none;
+        }
+        
         /* レスポンシブ対応 */
         @media (max-width: 768px) {
-            :root { --spacing: 1.5rem; }
-            body { padding: 0 8vw; }
+            :root {
+                --spacing: 1.5rem;
+            }
+            
+            body {
+                padding: 0 8vw;
+            }
+            
+            .corner-decoration {
+                width: 50px;
+                height: 50px;
+            }
             
             .main-nav ul {
                 flex-direction: column;
@@ -402,12 +495,14 @@
                 align-items: flex-start;
             }
             
-            .read-button { align-self: flex-end; }
+            .read-button {
+                align-self: flex-end;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- ローディングアニメーション -->
+    <!-- ローディングアニメーション（novel-top.htmlページのみに表示） -->
     <div class="loading-screen" id="loading-animation">
         <div class="loading-container">
             <div class="loading-text">アーキテクトソーシング・コネクション</div>
@@ -418,14 +513,14 @@
             <div class="loading-status">システムに接続中...</div>
             <div class="loading-messages"></div>
         </div>
-        <!-- ノイズエフェクト -->
-        <div class="noise"></div>
     </div>
-    
-    <!-- カバー画像フェードイン/アウト用コンテナ -->
-    <div class="cover-image-container" id="cover-image-display">
-        <img src="architect-sourcing-cover.jpg" alt="アーキテクトソーシング表紙" id="cover-image">
-    </div>
+
+    <!-- SF風の装飾 -->
+    <div class="grid-overlay"></div>
+    <div class="corner-decoration corner-tl"></div>
+    <div class="corner-decoration corner-tr"></div>
+    <div class="corner-decoration corner-bl"></div>
+    <div class="corner-decoration corner-br"></div>
 
     <header>
         <div class="title-container">
@@ -445,14 +540,22 @@
     <main>
         <a href="index.html" class="back-home">トップページに戻る</a>
         
+        <!-- 小説のあらすじと理論へのリンク -->
         <div class="theory-link-container">
             <a href="novel-theory.html" class="theory-link">小説のあらすじと理論</a>
         </div>
         
+        <!-- 導入文 -->
         <div class="intro-text">
             <p>本作は理論部分から読んでいただいても、小説部分から読んでいただいても構いません。自由にお楽しみください。</p>
         </div>
         
+        <!-- 表紙画像 -->
+        <div class="cover-container">
+            <img src="architect-sourcing-cover.jpg" alt="アーキテクトソーシング表紙" class="cover-image" />
+        </div>
+        
+        <!-- 目次セクション -->
         <section class="toc-section">
             <h2 class="toc-title">目 次</h2>
             <ul class="toc-list">
@@ -507,15 +610,13 @@
     </footer>
 
     <script>
+        // ローディングアニメーション
         document.addEventListener('DOMContentLoaded', function() {
-            // 要素の取得
             const loadingScreen = document.getElementById('loading-animation');
             const loadingProgress = document.querySelector('.loading-progress');
             const loadingPercent = document.querySelector('.loading-percent');
             const loadingStatus = document.querySelector('.loading-status');
             const loadingMessages = document.querySelector('.loading-messages');
-            const coverContainer = document.getElementById('cover-image-display');
-            const coverImage = document.getElementById('cover-image');
             
             // システムメッセージのリスト
             const messages = [
@@ -530,19 +631,30 @@
             // 進行状況関連の変数
             let progress = 0;
             let messageIndex = 0;
+            let interval;
             
-            // ローディングアニメーション
+            // ランダムな速度で進行状況を更新
             const startLoading = () => {
-                const interval = setInterval(() => {
-                    // 進行速度の調整
-                    let increment = Math.random() * 3 + (progress < 50 ? 2 : 0.5);
+                interval = setInterval(() => {
+                    // 非線形的な進行
+                    let increment;
+                    if (progress < 30) {
+                        increment = Math.random() * 5 + 2; // 加速
+                    } else if (progress < 60) {
+                        increment = Math.random() * 4 + 1;
+                    } else if (progress < 90) {
+                        increment = Math.random() * 3 + 0.5;
+                    } else {
+                        increment = Math.random() * 2 + 0.3;
+                    }
+                    
                     progress = Math.min(progress + increment, 100);
                     
-                    // UIの更新
+                    // 進行状況の更新
                     loadingProgress.style.width = `${progress}%`;
                     loadingPercent.textContent = `${Math.floor(progress)}%`;
                     
-                    // メッセージの表示
+                    // 一定の閾値でメッセージを表示
                     if (progress > messageIndex * (100 / messages.length) && messageIndex < messages.length) {
                         loadingMessages.innerHTML = `<div>${messages[messageIndex]}</div>`;
                         messageIndex++;
@@ -559,29 +671,20 @@
                         }
                     }
                     
-                    // ローディング完了
+                    // 100%に達したら
                     if (progress >= 100) {
                         clearInterval(interval);
-                        
-                        // カバー画像の表示
                         setTimeout(() => {
-                            coverContainer.classList.add('visible');
-                            
-                            // カバー画像が表示されたら3秒後に消す
+                            loadingScreen.classList.add('hidden');
                             setTimeout(() => {
-                                coverContainer.classList.remove('visible');
-                                
-                                // カバー画像のフェードアウト後にローディング画面を非表示
-                                setTimeout(() => {
-                                    loadingScreen.classList.add('hidden');
-                                }, 1500);
-                            }, 3000);
+                                loadingScreen.style.display = 'none';
+                            }, 300);
                         }, 500);
                     }
                 }, 65);
             };
             
-            // ローディング開始（少し遅延させる）
+            // ローディング開始
             setTimeout(startLoading, 200);
         });
     </script>
