@@ -246,6 +246,14 @@
             text-align: center;
             line-height: 2.1; /* 本文の行間をさらに広げる */
             letter-spacing: 0.05em; /* 本文の文字間隔 */
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1.5s, transform 1.5s;
+        }
+        
+        .visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         /* 表紙画像のスタイル */
@@ -322,12 +330,8 @@
             to { opacity: 1; transform: translateY(0); }
         }
         
-        header, main, section {
+        header {
             animation: fadeIn 0.8s ease-out forwards;
-        }
-        
-        section:nth-child(2) {
-            animation-delay: 0.2s;
         }
         
         /* SF風の装飾 */
@@ -441,10 +445,10 @@
         </div>
         <nav class="main-nav">
             <ul>
-                <li><a href="index.html">TOP</a></li>
-                <li><a href="thesis-overview.html">THESIS</a></li>
-                <li><a href="novel-top.html">NOVEL</a></li>
-                <li><a href="afterword.html">EPILOGUE</a></li>
+                <li><a href="index.html">概要</a></li>
+                <li><a href="thesis-overview.html">論文</a></li>
+                <li><a href="novel-top.html">小説</a></li>
+                <li><a href="afterword.html">あとがき</a></li>
             </ul>
         </nav>
     </header>
@@ -572,24 +576,41 @@
             }
         });
 
-        // シンプルなアニメーション効果
+        // テキストのフェードインアニメーション
         document.addEventListener('DOMContentLoaded', function() {
-            const sections = document.querySelectorAll('section');
+            // 段落を探す
+            const paragraphs = document.querySelectorAll('p:not(.subtitle)');
             
+            // IntersectionObserverの設定
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
-                        entry.target.style.opacity = 1;
-                        entry.target.style.transform = 'translateY(0)';
+                        // 要素が表示範囲に入ったらvisibleクラスを追加
+                        entry.target.classList.add('visible');
+                        
+                        // すでに表示された要素は監視を解除
+                        observer.unobserve(entry.target);
                     }
                 });
-            }, { threshold: 0.1 });
+            }, { 
+                threshold: 0.1,    // 要素の10%が見えたらコールバック実行
+                rootMargin: '0px 0px -50px 0px' // 下側に少しマージンを設定
+            });
             
-            sections.forEach(section => {
-                section.style.opacity = 0;
-                section.style.transform = 'translateY(20px)';
-                section.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
-                observer.observe(section);
+            // 段落を監視
+            paragraphs.forEach(paragraph => {
+                observer.observe(paragraph);
+            });
+            
+            // スクロールイベントのスムース化
+            let ticking = false;
+            window.addEventListener('scroll', function() {
+                if (!ticking) {
+                    window.requestAnimationFrame(function() {
+                        ticking = false;
+                    });
+                    ticking = true;
+                }
             });
         });
     </script>
