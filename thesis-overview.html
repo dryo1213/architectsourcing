@@ -106,7 +106,8 @@
             line-height: 1.4;
         }
         
-        h1::after {
+        /* 区切り線を削除 */
+        /* h1::after {
             content: "";
             position: absolute;
             height: 1px;
@@ -115,7 +116,7 @@
             bottom: -10px;
             left: 50%;
             transform: translateX(-50%);
-        }
+        } */
         
         .subtitle {
             font-size: clamp(0.9rem, 3vw, 1.2rem);
@@ -162,52 +163,15 @@
             text-align: center;
         }
         
-        .pdf-container {
-            margin: 3rem auto;
-            width: 100%;
-            max-width: 800px;
-            text-align: center;
-        }
-        
-        .pdf-link {
-            display: inline-block;
-            background-color: var(--accent-color);
-            color: white;
-            padding: 1rem 2rem;
-            border-radius: 4px;
-            text-decoration: none;
-            font-weight: 300;
-            transition: all var(--transition-time);
-            margin: 2rem 0;
-        }
-        
-        .pdf-link:hover {
-            background-color: #555;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
-        
-        .notice {
-            background-color: #f8f9fa;
-            padding: 1.5rem;
-            margin: 2rem auto;
-            max-width: 600px;
-            text-align: center;
-            border-radius: 4px;
-            color: #666;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 80px; /* 高さを確保して中央揃えをより明確に */
-        }
-        
         /* フッター */
         footer {
             padding: 3vh 0;
             border-top: 1px solid #eeeeee;
             text-align: center;
             margin-top: calc(var(--spacing) * 2);
-            font-size: 0.8rem;
+            font-size: 0.7rem;
+            letter-spacing: 0.05em;
+            opacity: 0.8;
         }
         
         /* アニメーションとインタラクション */
@@ -232,12 +196,12 @@
             width: 100%;
             height: 100%;
             background: 
-                linear-gradient(rgba(255,255,255,0.97) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255,255,255,0.97) 1px, transparent 1px);
+                linear-gradient(rgba(0, 0, 0, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
             background-size: 20px 20px;
             pointer-events: none;
             z-index: -1;
-            opacity: 0.3;
+            opacity: 0.5;
         }
         
         .corner-decoration {
@@ -321,26 +285,19 @@
         </div>
         <nav class="main-nav">
             <ul>
-                <li><a href="index.html">TOP</a></li>
-                <li><a href="thesis-overview.html">THESIS</a></li>
-                <li><a href="novel-top.html">NOVEL</a></li>
-                <li><a href="afterword.html">EPILOGUE</a></li>
+                <li><a href="index.html">概要</a></li>
+                <li><a href="thesis-overview.html">論文</a></li>
+                <li><a href="novel-top.html">小説</a></li>
+                <li><a href="afterword.html">あとがき</a></li>
             </ul>
         </nav>
     </header>
 
     <main>
-        <section id="pdf-section">
-            <h2>修士論文概要</h2>
-            
-            <div class="pdf-container">
-                <a href="summary.pdf" class="pdf-link" target="_blank">梗概PDF</a>
-                
-                <div class="notice">
-                    <p>現在整備中。随時更新予定</p>
-                </div>
-            </div>
-        </section>
+        <a href="index.html" class="back-home">トップページに戻る</a>
+        
+        <!-- 修士論文概要セクションを削除 -->
+        
     </main>
 
     <footer>
