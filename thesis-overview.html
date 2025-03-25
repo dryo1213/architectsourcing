@@ -25,11 +25,12 @@
             font-family: "游明朝", YuMincho, "Hiragino Mincho ProN", "Hiragino Mincho Pro", "MS P明朝", serif;
             background-color: var(--main-bg-color);
             color: var(--main-text-color);
-            line-height: 1.7;
+            line-height: 2;
             overflow-x: hidden;
             padding: 0 15vw;
             max-width: 1400px;
             margin: 0 auto;
+            letter-spacing: 0.05em;
         }
         
         /* ヘッダー */
@@ -67,6 +68,7 @@
             position: relative;
             overflow: hidden;
             background-color: transparent;
+            letter-spacing: 0.1em;
         }
         
         .main-nav a:hover {
@@ -92,31 +94,23 @@
         
         .title-container {
             position: relative;
+            text-align: center;
+            width: 100%;
         }
         
         h1 {
             font-size: clamp(1.5rem, 5vw, 2.5rem);
             font-weight: 300;
-            letter-spacing: 0.05em;
+            letter-spacing: 0.08em;
             margin-bottom: 1rem;
             position: relative;
             display: inline-block;
             text-align: center;
             width: 100%;
-            line-height: 1.4;
+            line-height: 1.6;
         }
         
         /* 区切り線を削除 */
-        /* h1::after {
-            content: "";
-            position: absolute;
-            height: 1px;
-            width: 50px;
-            background-color: var(--main-text-color);
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-        } */
         
         .subtitle {
             font-size: clamp(0.9rem, 3vw, 1.2rem);
@@ -124,6 +118,7 @@
             margin-bottom: 3rem;
             font-weight: 300;
             text-align: center;
+            letter-spacing: 0.07em;
         }
         
         /* メインコンテンツ */
@@ -132,35 +127,71 @@
             margin: var(--spacing) 0;
         }
         
-        section {
-            margin-bottom: calc(var(--spacing) * 2);
-            text-align: center;
-        }
-        
-        h2 {
-            font-size: clamp(1.2rem, 4vw, 1.8rem);
-            font-weight: 400;
-            margin-bottom: 1.5rem;
-            position: relative;
+        .back-home {
+            margin-bottom: 2rem;
             display: inline-block;
-            text-align: center;
+            text-decoration: none;
+            color: var(--main-text-color);
+            font-size: 0.9rem;
+            transition: all var(--transition-time);
+            border-bottom: 1px solid transparent;
+            letter-spacing: 0.05em;
         }
         
-        h2::after {
-            content: "";
-            position: absolute;
-            height: 1px;
-            width: 30px;
-            background-color: var(--main-text-color);
-            bottom: -5px;
-            left: 50%;
-            transform: translateX(-50%);
+        .back-home:hover {
+            border-bottom: 1px solid var(--main-text-color);
         }
         
+        .back-home:before {
+            content: "← ";
+        }
+        
+        /* 段落 */
         p {
-            margin-bottom: 1rem;
-            font-size: clamp(0.9rem, 2vw, 1rem);
+            margin-bottom: 1.5rem;
+            font-size: clamp(1rem, 2vw, 1.1rem);
             text-align: center;
+            line-height: 2.1;
+            letter-spacing: 0.05em;
+        }
+        
+        .pdf-container {
+            margin: 3rem auto;
+            width: 100%;
+            max-width: 800px;
+            text-align: center;
+        }
+        
+        .pdf-link {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 300;
+            transition: all var(--transition-time);
+            margin: 2rem 0;
+        }
+        
+        .pdf-link:hover {
+            background-color: #555;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .notice {
+            background-color: #f8f9fa;
+            padding: 1.5rem;
+            margin: 2rem auto;
+            max-width: 600px;
+            text-align: center;
+            border-radius: 4px;
+            color: #666;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 80px;
         }
         
         /* フッター */
@@ -180,15 +211,11 @@
             to { opacity: 1; transform: translateY(0); }
         }
         
-        header, main, section {
+        header, main {
             animation: fadeIn 0.8s ease-out forwards;
         }
         
-        section:nth-child(2) {
-            animation-delay: 0.2s;
-        }
-        
-        /* SF風の装飾 */
+        /* グリッドオーバーレイ */
         .grid-overlay {
             position: fixed;
             top: 0;
@@ -196,8 +223,8 @@
             width: 100%;
             height: 100%;
             background: 
-                linear-gradient(rgba(0, 0, 0, 0.05) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
+                linear-gradient(rgba(0, 0, 0, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
             background-size: 20px 20px;
             pointer-events: none;
             z-index: -1;
@@ -267,6 +294,10 @@
                 padding: 0.6rem 1.2rem;
                 font-size: 0.9rem;
             }
+            
+            .theory-container {
+                padding: 1.5rem;
+            }
         }
     </style>
 </head>
@@ -294,10 +325,15 @@
     </header>
 
     <main>
-        <a href="index.html" class="back-home">トップページに戻る</a>
-        
-        <!-- 修士論文概要セクションを削除 -->
-        
+        <section id="pdf-section">            
+            <div class="pdf-container">
+                <a href="summary.pdf" class="pdf-link" target="_blank">梗概PDF</a>
+                
+                <div class="notice">
+                    <p>現在整備中。随時更新予定</p>
+                </div>
+            </div>
+        </section>
     </main>
 
     <footer>
@@ -307,23 +343,7 @@
     <script>
         // シンプルなアニメーション効果
         document.addEventListener('DOMContentLoaded', function() {
-            const sections = document.querySelectorAll('section');
-            
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.opacity = 1;
-                        entry.target.style.transform = 'translateY(0)';
-                    }
-                });
-            }, { threshold: 0.1 });
-            
-            sections.forEach(section => {
-                section.style.opacity = 0;
-                section.style.transform = 'translateY(20px)';
-                section.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
-                observer.observe(section);
-            });
+            // 必要なアニメーション効果があれば追加
         });
     </script>
 </body>
